@@ -1,0 +1,5 @@
+ToDos
+-----
+- Implement the Architecture
+  1. Implement a basic `PropertyContainer`
+  2. Implement the `Node` class 
