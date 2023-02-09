@@ -13,7 +13,6 @@ int M = 10;
 // Then delete containers
 
 
-
 std::string random_string(std::size_t length)
 {
   const std::string CHARS = "01234567890abcdefghijklmnopqrstuvwxyz";
@@ -40,6 +39,9 @@ int main()
     S.push_back(s);
     x->add_property(s, new IntValue(i));
   }
+  
+  auto x2 = x->get("theboxahaan");
+  assert(x2->type() == ValueType::kNull);
   PropertyPrinter::pprint(*x);
 
   

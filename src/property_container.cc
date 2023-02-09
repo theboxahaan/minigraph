@@ -8,6 +8,10 @@
 // TODO think about using smart pointers for `Value` ownership.
 // Hence for now, `Values` can dereference to null which is unsafe.
 
+
+// having null_value_ on the stack as it is static makes sense ?
+NullValue PropertyContainer::null_value_ = NullValue();
+
 PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &list)
 {
   for(auto &l: list){
@@ -20,8 +24,13 @@ void PropertyContainer::add_property(std::string property_name, Value* value)
   properties_.insert({property_name, value});
 }
 
-Value* PropertyContainer::get(std::string &key) const
+Value* PropertyContainer::get(const std::string &key) const
 {
   // TODO overload the operator [] here for access to the `properties_` map
-  return nullptr; 
+  auto iter = properties_.find(key);
+  if(iter != properties_.end()){
+    return iter->second;
+  } else {
+    return &null_value_;
+  }
 }

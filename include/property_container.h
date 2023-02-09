@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-enum class ValueType {kInt, kFloat};
+enum class ValueType {kInt, kFloat, kNull};
 
 class Value {
 
@@ -46,16 +46,31 @@ class FloatValue : public Value {
 };
 
 
+class NullValue : public Value {
+
+  private:
+    ValueType type_ = ValueType::kNull;
+    int value_;
+
+  public:
+    NullValue() {}
+    
+    inline ValueType type() { return type_; }
+};
+
+
 class PropertyContainer {
 
   private:
     std::unordered_map<std::string, Value*> properties_;
+    // could inline static decl if using -std=c++17
+    static NullValue null_value_;
     friend class PropertyPrinter; 
 
   public:
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
     void add_property(std::string , Value* );
-    Value* get(std::string &) const;
+    Value* get(const std::string &) const;
 };
 
 
