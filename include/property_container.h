@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-enum class ValueType {kInt, kString, kFloat};
+enum class ValueType {kInt, kFloat};
 
 class Value {
 
@@ -55,6 +55,7 @@ class PropertyContainer {
   public:
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
     void add_property(std::string , Value* );
+    Value* get(std::string &) const;
 };
 
 

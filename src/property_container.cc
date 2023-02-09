@@ -9,14 +9,19 @@
 // Hence for now, `Values` can dereference to null which is unsafe.
 
 PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &list)
-  {
-    for(auto &l: list){
-      properties_.insert({l.first, l.second});
-    }
+{
+  for(auto &l: list){
+    properties_.insert({l.first, l.second});
   }
+}
 
 void PropertyContainer::add_property(std::string property_name, Value* value)
-  {
-    properties_.insert({property_name, value});
-  }
+{
+  properties_.insert({property_name, value});
+}
 
+Value* PropertyContainer::get(std::string &key) const
+{
+  // TODO overload the operator [] here for access to the `properties_` map
+  return nullptr; 
+}
