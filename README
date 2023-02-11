@@ -1,7 +1,7 @@
 ToDos
 -----
-- Implement the Architecture
-  1. Implement a basic `PropertyContainer`
-    - Implement desctructors for the `PropertyContainer` class. All `Values` contained in
-      the container are free'd on `Container` deletion
-  2. Implement the `Node` class 
+[ ] Implement the Architecture
+  [ ] Implement a basic `PropertyContainer`
+    [ ] Implement desctructors for the `PropertyContainer` class. All `Values` contained in
+        the container are free'd on `Container` deletion
+  [ ] Implement the `Node` class 
