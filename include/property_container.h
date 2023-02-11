@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-enum class ValueType {kInt, kFloat, kNull};
+enum class ValueType {kNull, kInt, kFloat};
 
 class Value {
 
@@ -58,7 +58,10 @@ class NullValue : public Value {
     inline ValueType type() { return type_; }
 };
 
-
+// PropertyContainer is basically a wrapper around an unordered_map to contain different 
+// `Value` subclasses.
+// It also implements the `NullValue` static object which should always be returned in case
+// of a failure.
 class PropertyContainer {
 
   private:
@@ -66,6 +69,7 @@ class PropertyContainer {
     // could inline static decl if using -std=c++17
     static NullValue null_value_;
     friend class PropertyPrinter; 
+    // friend class PageWriter;
 
   public:
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
