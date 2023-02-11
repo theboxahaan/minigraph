@@ -1,7 +1,11 @@
 ToDos
 -----
-[ ] Implement the Architecture
-  [ ] Implement a basic `PropertyContainer`
-    [ ] Implement desctructors for the `PropertyContainer` class. All `Values` contained in
+
+
+
+[-] Implement the Architecture
+  [-] Implement a basic `PropertyContainer`
+    [x] Implement desctructors for the `PropertyContainer` class. All `Values` contained in
         the container are free'd on `Container` deletion
+    [ ] implement a memleak test for `PropertyContainer`
   [ ] Implement the `Node` class 

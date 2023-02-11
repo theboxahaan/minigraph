@@ -43,7 +43,8 @@ int main()
   auto x2 = x->get("theboxahaan");
   assert(x2->type() == ValueType::kNull);
   PropertyPrinter::pprint(*x);
-
+  
+  delete x; 
   
   return 0;
   

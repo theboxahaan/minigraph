@@ -10,6 +10,10 @@ class Value {
 
   public:
     virtual ValueType type() = 0;
+    inline void clear() { delete this; }  
+  
+  protected:
+    // make the destructor protected to prevent object initialisation on the stack
     virtual ~Value() {}
 };
 
@@ -75,6 +79,7 @@ class PropertyContainer {
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
     void add_property(std::string , Value* );
     Value* get(const std::string &) const;
+    ~PropertyContainer();
 };
 
 
