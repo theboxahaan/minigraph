@@ -78,7 +78,20 @@ class PropertyContainer {
   public:
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
     bool add_property(std::string , Value* );
-    Value* get(const std::string &) const;
+    
+    template <typename T>
+    T* get(const std::string &key) const 
+    {
+      auto iter = properties_.find(key);
+      if(iter != properties_.end()){
+        return static_cast<T*>(iter->second);
+      }
+      // FIXME make null_value_ work with the generic T
+      // else {
+      //   return &null_value_;
+      // }
+    }
+    
     ~PropertyContainer();
 };
 

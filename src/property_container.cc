@@ -29,16 +29,6 @@ bool PropertyContainer::add_property(std::string property_name, Value* value)
    return properties_.insert({property_name, value}).second ;
 }
 
-Value* PropertyContainer::get(const std::string &key) const 
-{
-  auto iter = properties_.find(key);
-  if(iter != properties_.end()){
-    return iter->second;
-  } else {
-    return &null_value_;
-  }
-}
-
 
 // the destructor clears the memory assoc with the `Value` subtype. The assumption is that
 // the container has been initialised with objects that have been dynamically allocated.

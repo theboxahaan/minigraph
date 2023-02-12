@@ -1,8 +1,6 @@
 ToDos
 -----
 
-
-
 [-] Implement the Architecture
   [-] Implement a basic `PropertyContainer`
     [x] Implement desctructors for the `PropertyContainer` class. All `Values` contained in
@@ -12,5 +10,8 @@ ToDos
     [x] add ability to catch initialisation, insertion errors to `PropertyContainer`
     [ ] shift PropertyContainer to using std::unique_ptr so that it's easier to manage destruction
         `get` should return references to the ptr but maintain ownership
-    [ ] make the `get` function generic so that it doesn't depend on RTTI 
+    [x] make the `get` function generic so that it doesn't depend on RTTI 
+        - FIXME had to get rid of `MullValue` returned when `get` fails. Possible solution
+          is have it be derived from all SubTypes
+    [ ] see how to incorporate the `NullValue` type into generic `get`
   [ ] Implement the `Node` class 
