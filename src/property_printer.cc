@@ -10,12 +10,12 @@ void PropertyPrinter::pprint(const PropertyContainer &c)
     switch(elt.second->type()){
 
       case ValueType::kInt : {
-        auto x = static_cast<IntValue *> (elt.second);
+        auto x = static_cast<IntValue *> (elt.second.get());
         std::cout<<elt.first<<": "<< x->get() << std::endl;
         break;
       }
       case ValueType::kFloat :{
-        auto x = static_cast<FloatValue *> (elt.second);
+        auto x = static_cast<FloatValue *> (elt.second.get());
         std::cout<<elt.first<<": "<< x->get() << std::endl;
         break;
       }

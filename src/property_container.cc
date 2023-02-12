@@ -17,17 +17,17 @@
 NullValue PropertyContainer::null_value_ = NullValue();
 
 
-PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &list)
-{
-  for(auto &l: list){
-    auto t = properties_.insert({l.first, l.second});
-    if(!t.second) delete this;
-  }
-}
+// PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &list)
+// {
+//   for(auto &l: list){
+//     auto t = properties_.insert({l.first, std::move(l.second)});
+//     if(!t.second) delete this;
+//   }
+// }
 
-bool PropertyContainer::add_property(std::string property_name, Value* value)
+bool PropertyContainer::add_property(std::string property_name, std::unique_ptr<Value> value)
 {
-   return properties_.insert({property_name, value}).second ;
+  return properties_.insert({property_name, std::move(value)}).second ;
 }
 
 
@@ -36,6 +36,6 @@ bool PropertyContainer::add_property(std::string property_name, Value* value)
 // TODO have the initialiser of `Value` always initialise it on heap 
 PropertyContainer::~PropertyContainer()
 {
-  for(auto &elt: properties_) elt.second->clear();
+  // for(auto &elt: properties_) elt.second->clear();
   properties_.clear();
 }

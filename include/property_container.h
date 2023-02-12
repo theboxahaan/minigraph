@@ -10,9 +10,9 @@ class Value {
 
   public:
     virtual ValueType type() = 0;
-    inline void clear() { delete this; }  
+    // inline void clear() { delete this; }  
   
-  protected:
+  //protected:
     // make the destructor protected to prevent object initialisation on the stack
     virtual ~Value() {}
 };
@@ -71,7 +71,7 @@ class NullValue : public IntValue, public FloatValue {
 class PropertyContainer {
 
   private:
-    std::unordered_map<std::string, Value*> properties_;
+    std::unordered_map<std::string, std::unique_ptr<Value> > properties_;
     // could inline static decl if using -std=c++17
     static NullValue null_value_;
     friend class PropertyPrinter; 
@@ -79,15 +79,15 @@ class PropertyContainer {
 
   public:
     PropertyContainer() {}
-    PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
-    bool add_property(std::string , Value* );
+    PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
+    bool add_property(std::string , std::unique_ptr<Value> );
     
     template <typename T>
     T* get(const std::string &key) const 
     {
       auto iter = properties_.find(key);
       if(iter != properties_.end()){
-        return static_cast<T*>(iter->second);
+        return static_cast<T*>(iter->second.get());
       } else {
         return static_cast<T*>(&null_value_);
       }

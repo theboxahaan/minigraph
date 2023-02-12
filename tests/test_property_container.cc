@@ -6,8 +6,8 @@
 #include "include/property_container.h"
 #include "include/property_printer.h"
 
-int M = 10;
-int N = 100000;
+int M = 100;
+int N = 10000; 
 
 // The test spawns N PropertyContainers each with M IntValues.
 // After creation, assert that the stored values are equal to the initialised values
@@ -47,16 +47,17 @@ int main()
     }
   }
   std::cout << "adding properties..." << std::endl;
-  for(int j=0; j<N; j++)
-  for(int i=0; i<M; ++i){
-    std::string s = random_string(60);
-    try{
-      bool flag = Q[j]->add_property(s, new IntValue(i));
-      if(flag) S[j].push_back(s);
-      else i--;
+  for(int j=0; j<N; j++){
+    for(int i=0; i<M; ++i){
+      std::string s = random_string(60);
+      try{
+        bool flag = Q[j]->add_property(s, std::make_unique<IntValue>(i) );
+        if(flag) S[j].push_back(s);
+        else i--;
 
-    } catch(std::bad_alloc&){
-      std::cerr<<"bad alloc"<<std::endl;
+      } catch(std::bad_alloc&){
+        std::cerr<<"bad alloc"<<std::endl;
+      }
     }
   }
   int index = 0;
@@ -70,7 +71,7 @@ int main()
     // PropertyPrinter::pprint(*x);
   }
   
-  std::cout << "deleteing containers... " << std::endl; 
+  std::cout << "deleting containers... " << std::endl; 
   for(auto &x: Q) delete x; 
   
   return 0;

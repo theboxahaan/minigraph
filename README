@@ -8,7 +8,7 @@ ToDos
     [x] implement a memleak test for `PropertyContainer`
         - memleak test using `leaks -atExit -- ../test`
     [x] add ability to catch initialisation, insertion errors to `PropertyContainer`
-    [ ] shift PropertyContainer to using std::unique_ptr so that it's easier to manage destruction
+    [x] shift PropertyContainer to using std::unique_ptr so that it's easier to manage destruction
         `get` should return references to the ptr but maintain ownership
     [x] make the `get` function generic so that it doesn't depend on RTTI 
         - FIXME had to get rid of `MullValue` returned when `get` fails. Possible solution
