@@ -44,7 +44,7 @@ Value* PropertyContainer::get(const std::string &key) const
 
 // the destructor clears the memory assoc with the `Value` subtype. The assumption is that
 // the container has been initialised with objects that have been dynamically allocated.
-// TODO have the initialiser of `Value` always initialise it on stack
+// TODO have the initialiser of `Value` always initialise it on heap 
 PropertyContainer::~PropertyContainer()
 {
   for(auto &elt: properties_){
