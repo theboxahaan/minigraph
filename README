@@ -14,8 +14,11 @@ ToDos
         - FIXME had to get rid of `MullValue` returned when `get` fails. Possible solution
           is have it be derived from all SubTypes
     [x] see how to incorporate the `NullValue` type into generic `get`
+  [ ] write a profiling macro for getting time information of different functions. Adding 
+      properties seems to be pretty slow as of now 
   [ ] Implement the `Node` class 
-
+  [ ] consider using std::variant because we might have a closed inheritance hierarchy
+  [ ] cache friendly code ?
 
 
 Ideas

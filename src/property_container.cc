@@ -16,6 +16,7 @@
 
 NullValue PropertyContainer::null_value_ = NullValue();
 
+
 PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &list)
 {
   for(auto &l: list){

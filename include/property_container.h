@@ -51,12 +51,11 @@ class FloatValue : public Value {
 
 };
 
-
+//TODO come up with something that does not depend on the derived types
 class NullValue : public IntValue, public FloatValue {
 
   private:
     ValueType type_ = ValueType::kNull;
-    bool value_;
 
   public:
     NullValue() {}
@@ -79,6 +78,7 @@ class PropertyContainer {
     // friend class PageWriter;
 
   public:
+    PropertyContainer() {}
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
     bool add_property(std::string , Value* );
     

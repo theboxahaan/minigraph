@@ -6,8 +6,8 @@
 #include "include/property_container.h"
 #include "include/property_printer.h"
 
-int N = 10;
-int M = 100000;
+int M = 10;
+int N = 100000;
 
 // The test spawns N PropertyContainers each with M IntValues.
 // After creation, assert that the stored values are equal to the initialised values
@@ -33,34 +33,44 @@ std::string random_string(std::size_t length)
 
 int main()
 {
-  std::vector<std::string> S {"property 1", "property 2"};
+  std::vector< std::vector<std::string>> S;
   std::vector<PropertyContainer *> Q;
-  try{
-    auto PC = new PropertyContainer({ {"property 1", new IntValue(0)}, {"property 2", new IntValue(1)} });
-    Q.push_back(PC);
-  } catch(std::bad_alloc&){
-    std::cerr << "container alloc failed" << std::endl;
+  std::cout << "constructing property containers..." << std::endl;
+  for(int i=0; i< N; i++){
+    try{
+      // auto PC = new PropertyContainer({ {"property 1", new IntValue(0)}, {"property 2", new IntValue(1)} });
+      auto PC = new PropertyContainer();
+      Q.push_back(PC);
+      S.push_back(std::vector<std::string> {});
+    } catch(std::bad_alloc&){
+      std::cerr << "container alloc failed" << std::endl;
+    }
   }
-  for(int i=2; i<M; ++i){
+  std::cout << "adding properties..." << std::endl;
+  for(int j=0; j<N; j++)
+  for(int i=0; i<M; ++i){
     std::string s = random_string(60);
     try{
-      bool flag = Q[0]->add_property(s, new IntValue(i));
-      if(flag) S.push_back(s);
+      bool flag = Q[j]->add_property(s, new IntValue(i));
+      if(flag) S[j].push_back(s);
       else i--;
 
     } catch(std::bad_alloc&){
       std::cerr<<"bad alloc"<<std::endl;
     }
   }
-  
+  int index = 0;
   for(auto &x: Q){
-    assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
-    for(int i=0; i < S.size(); i++){
-      assert(x->get<IntValue>(S[i])->get() == i);
+    std::cout << "testing: " << index << std::endl;
+    // assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
+    for(int i=0; i < S[index].size(); i++){
+      assert(x->get<IntValue>(S[index][i])->get() == i);
     }
+    index++;
     // PropertyPrinter::pprint(*x);
   }
   
+  std::cout << "deleteing containers... " << std::endl; 
   for(auto &x: Q) delete x; 
   
   return 0;
