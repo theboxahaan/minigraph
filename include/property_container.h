@@ -26,6 +26,7 @@ class IntValue : public Value {
 
   public:
     IntValue(int value) : value_{value} {}
+    IntValue() {}
     
     inline ValueType type() { return type_; }
 
@@ -42,6 +43,7 @@ class FloatValue : public Value {
 
   public:
     FloatValue(float value) : value_{value} {}
+    FloatValue() {}
     
     inline ValueType type() { return type_; }
 
@@ -50,17 +52,18 @@ class FloatValue : public Value {
 };
 
 
-class NullValue : public Value {
+class NullValue : public IntValue, public FloatValue {
 
   private:
     ValueType type_ = ValueType::kNull;
-    int value_;
+    bool value_;
 
   public:
     NullValue() {}
     
     inline ValueType type() { return type_; }
 };
+
 
 // PropertyContainer is basically a wrapper around an unordered_map to contain different 
 // `Value` subclasses.
@@ -85,6 +88,8 @@ class PropertyContainer {
       auto iter = properties_.find(key);
       if(iter != properties_.end()){
         return static_cast<T*>(iter->second);
+      } else {
+        return static_cast<T*>(&null_value_);
       }
       // FIXME make null_value_ work with the generic T
       // else {

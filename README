@@ -13,5 +13,11 @@ ToDos
     [x] make the `get` function generic so that it doesn't depend on RTTI 
         - FIXME had to get rid of `MullValue` returned when `get` fails. Possible solution
           is have it be derived from all SubTypes
-    [ ] see how to incorporate the `NullValue` type into generic `get`
+    [x] see how to incorporate the `NullValue` type into generic `get`
   [ ] Implement the `Node` class 
+
+
+
+Ideas
+-----
+1. Is a `NullType` even required?

@@ -54,11 +54,9 @@ int main()
   }
   
   for(auto &x: Q){
-    // assert(x->get("theboxahaan")->type() == ValueType::kNull);
+    assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
     for(int i=0; i < S.size(); i++){
       assert(x->get<IntValue>(S[i])->get() == i);
-      // IntValue *q = static_cast<IntValue *>(x->get(S[i]));
-      // assert(static_cast<IntValue *>(x->get(S[i]))->get() == i);
     }
     // PropertyPrinter::pprint(*x);
   }
