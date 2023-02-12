@@ -20,9 +20,7 @@ PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::
 {
   for(auto &l: list){
     auto t = properties_.insert({l.first, l.second});
-    if(!t.second){
-      delete this;
-    }
+    if(!t.second) delete this;
   }
 }
 
@@ -47,8 +45,6 @@ Value* PropertyContainer::get(const std::string &key) const
 // TODO have the initialiser of `Value` always initialise it on heap 
 PropertyContainer::~PropertyContainer()
 {
-  for(auto &elt: properties_){
-    elt.second->clear();
-  }
+  for(auto &elt: properties_) elt.second->clear();
   properties_.clear();
 }
