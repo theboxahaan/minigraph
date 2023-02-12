@@ -10,23 +10,29 @@
 
 
 // having null_value_ on the stack as it is static makes sense ?
+// FIXME the constructor for `PropertyContainer` will deallocate all initialised elts
+// to prevent memory leaks. Throw exception to signal an error to caller?
+
+
 NullValue PropertyContainer::null_value_ = NullValue();
 
 PropertyContainer::PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &list)
 {
   for(auto &l: list){
-    properties_.insert({l.first, l.second});
+    auto t = properties_.insert({l.first, l.second});
+    if(!t.second){
+      delete this;
+    }
   }
 }
 
-void PropertyContainer::add_property(std::string property_name, Value* value)
+bool PropertyContainer::add_property(std::string property_name, Value* value)
 {
-  properties_.insert({property_name, value});
+   return properties_.insert({property_name, value}).second ;
 }
 
-Value* PropertyContainer::get(const std::string &key) const
+Value* PropertyContainer::get(const std::string &key) const 
 {
-  // TODO overload the operator [] here for access to the `properties_` map
   auto iter = properties_.find(key);
   if(iter != properties_.end()){
     return iter->second;

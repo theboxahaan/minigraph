@@ -7,5 +7,10 @@ ToDos
   [-] Implement a basic `PropertyContainer`
     [x] Implement desctructors for the `PropertyContainer` class. All `Values` contained in
         the container are free'd on `Container` deletion
-    [ ] implement a memleak test for `PropertyContainer`
+    [x] implement a memleak test for `PropertyContainer`
+        - memleak test using `leaks -atExit -- ../test`
+    [x] add ability to catch initialisation, insertion errors to `PropertyContainer`
+    [ ] shift PropertyContainer to using std::unique_ptr so that it's easier to manage destruction
+        `get` should return references to the ptr but maintain ownership
+    [ ] make the `get` function generic so that it doesn't depend on RTTI 
   [ ] Implement the `Node` class 

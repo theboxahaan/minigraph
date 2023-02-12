@@ -77,7 +77,7 @@ class PropertyContainer {
 
   public:
     PropertyContainer(const std::initializer_list<std::pair<std::string, Value*> > &);
-    void add_property(std::string , Value* );
+    bool add_property(std::string , Value* );
     Value* get(const std::string &) const;
     ~PropertyContainer();
 };
