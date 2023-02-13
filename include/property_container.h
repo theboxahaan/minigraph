@@ -79,7 +79,7 @@ class PropertyContainer {
 
   public:
     PropertyContainer() {}
-    PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
+    // PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
     bool add_property(std::string , std::unique_ptr<Value> );
     
     template <typename T>

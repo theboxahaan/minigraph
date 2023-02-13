@@ -6,9 +6,6 @@
 #include "include/property_container.h"
 #include "include/property_printer.h"
 
-int M = 100;
-int N = 10000; 
-
 // The test spawns N PropertyContainers each with M IntValues.
 // After creation, assert that the stored values are equal to the initialised values
 // Then delete containers
@@ -31,8 +28,19 @@ std::string random_string(std::size_t length)
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
+
+  int M = 10;
+  int N = 1; 
+
+  if(argc == 3){
+    // no formatting checks here - assuming the test input in legal
+    std::cout << "M: " << M << ", N: " << N << std::endl;
+    std::size_t pos;
+    M = std::stoi(argv[1], &pos);
+    N = std::stoi(argv[2], &pos);
+  }
   std::vector< std::vector<std::string>> S;
   std::vector<PropertyContainer *> Q;
   std::cout << "constructing property containers..." << std::endl;
@@ -63,12 +71,12 @@ int main()
   int index = 0;
   for(auto &x: Q){
     std::cout << "testing: " << index << std::endl;
-    // assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
+    assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
     for(int i=0; i < S[index].size(); i++){
       assert(x->get<IntValue>(S[index][i])->get() == i);
     }
     index++;
-    // PropertyPrinter::pprint(*x);
+    PropertyPrinter::pprint(*x);
   }
   
   std::cout << "deleting containers... " << std::endl; 
