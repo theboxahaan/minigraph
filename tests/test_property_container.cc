@@ -36,11 +36,11 @@ int main(int argc, char *argv[])
 
   if(argc == 3){
     // no formatting checks here - assuming the test input in legal
-    std::cout << "M: " << M << ", N: " << N << std::endl;
     std::size_t pos;
     M = std::stoi(argv[1], &pos);
     N = std::stoi(argv[2], &pos);
   }
+  std::cout << "M: " << M << ", N: " << N << std::endl;
   std::vector< std::vector<std::string>> S;
   std::vector<PropertyContainer *> Q;
   std::cout << "constructing property containers..." << std::endl;
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
       assert(x->get<IntValue>(S[index][i])->get() == i);
     }
     index++;
-    PropertyPrinter::pprint(*x);
+    // PropertyPrinter::pprint(*x);
   }
   
   std::cout << "deleting containers... " << std::endl; 
