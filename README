@@ -14,6 +14,7 @@ ToDos
         - FIXME had to get rid of `MullValue` returned when `get` fails. Possible solution
           is have it be derived from all SubTypes
     [x] see how to incorporate the `NullValue` type into generic `get`
+    [ ] for `PropertyPrinter` refactor to a *Visitor* pattern to get rid of the switch stmt.
   [ ] write a profiling macro for getting time information of different functions. Adding 
       properties seems to be pretty slow as of now 
   [ ] Implement the `Node` class 
@@ -24,3 +25,4 @@ ToDos
 Ideas
 -----
 1. Is a `NullType` even required?
+2. Look at using faster hashmaps like the robin_hood::unordered_map

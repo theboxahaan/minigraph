@@ -26,6 +26,7 @@ class IntValue : public Value {
 
   public:
     IntValue(int value) : value_{value} {}
+    // adding default constructor for compat with NullType
     IntValue() {}
     
     inline ValueType type() { return type_; }
@@ -43,6 +44,7 @@ class FloatValue : public Value {
 
   public:
     FloatValue(float value) : value_{value} {}
+    // adding default constructor for compat with NullType
     FloatValue() {}
     
     inline ValueType type() { return type_; }
