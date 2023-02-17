@@ -83,7 +83,9 @@ class PropertyContainer {
     PropertyContainer() {}
     // PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
     bool add_property(std::string , std::unique_ptr<Value> );
-    
+   
+    // return a raw pointer to the `Value` object. Treat the pointer as a read only ptr
+    // return a pointer to the null value in case nothing is reuturned.
     template <typename T>
     T* get(const std::string &key) const 
     {
@@ -93,13 +95,9 @@ class PropertyContainer {
       } else {
         return static_cast<T*>(&null_value_);
       }
-      // FIXME make null_value_ work with the generic T
-      // else {
-      //   return &null_value_;
-      // }
     }
     
-    ~PropertyContainer();
+    ~PropertyContainer() noexcept;
 };
 
 
