@@ -42,24 +42,25 @@ int main(int argc, char *argv[])
   }
   std::cout << "M: " << M << ", N: " << N << std::endl;
   std::vector< std::vector<std::string>> S;
-  std::vector<PropertyContainer *> Q;
+  std::vector<PropertyContainer> Q;
   std::cout << "constructing property containers..." << std::endl;
   for(int i=0; i< N; i++){
     try{
       // auto PC = new PropertyContainer({ {"property 1", new IntValue(0)}, {"property 2", new IntValue(1)} });
-      auto PC = new PropertyContainer();
-      Q.push_back(PC);
+      //Q.push_back(PropertyContainer());
+      Q.emplace_back();
       S.push_back(std::vector<std::string> {});
     } catch(std::bad_alloc&){
       std::cerr << "container alloc failed" << std::endl;
     }
   }
+
   std::cout << "adding properties..." << std::endl;
   for(int j=0; j<N; j++){
     for(int i=0; i<M; ++i){
       std::string s = random_string(60);
       try{
-        bool flag = Q[j]->add_property(s, std::make_unique<IntValue>(i) );
+        bool flag = Q[j].add_property(s, std::make_unique<IntValue>(i) );
         if(flag) S[j].push_back(s);
         else i--;
 
@@ -71,16 +72,17 @@ int main(int argc, char *argv[])
   int index = 0;
   for(auto &x: Q){
     std::cout << "testing: " << index << std::endl;
-    assert(x->get<IntValue>("theboxahaan")->type() == ValueType::kNull);
+    assert(x.get<IntValue>("theboxahaan")->type() == ValueType::kNull);
     for(int i=0; i < S[index].size(); i++){
-      assert(x->get<IntValue>(S[index][i])->get() == i);
+      assert(x.get<IntValue>(S[index][i])->get() == i);
     }
     index++;
     // PropertyPrinter::pprint(*x);
   }
   
   std::cout << "deleting containers... " << std::endl; 
-  for(auto &x: Q) delete x; 
+  // letting Q go out of scope should ideally dete all containers
+  // for(auto &x: Q) delete x; 
   
   return 0;
   

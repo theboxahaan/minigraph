@@ -82,6 +82,12 @@ class PropertyContainer {
   public:
     PropertyContainer() {}
     // PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
+    
+    // define move constructor so that PropertyContainer can be push_back'd or emplace_back'd 
+    
+    PropertyContainer(PropertyContainer &&o) : properties_{std::move(o.properties_)} {}
+
+
     bool add_property(std::string , std::unique_ptr<Value> );
    
     // return a raw pointer to the `Value` object. Treat the pointer as a read only ptr
