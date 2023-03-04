@@ -84,6 +84,7 @@ class PropertyContainer {
     // PropertyContainer(const std::initializer_list<std::pair<std::string, std::unique_ptr<Value> > > &);
     
     // define move constructor so that PropertyContainer can be push_back'd or emplace_back'd 
+    // in a vector<PropertyContainer>'s
     PropertyContainer(PropertyContainer &&o) : properties_{std::move(o.properties_)} {}
 
     // add property to properties_ map and return false if it fails.
