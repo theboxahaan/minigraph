@@ -3,42 +3,18 @@
 
 #include <vector>
 #include <array>
-// // the MiniPoint class only contains the coordinates and no properties. Bare minimum
-// // class for a point.
-// class MiniPoint {
-//   private:
-//     const float x_;
-//     const float y_;
-//   
-//   public:
-//     MiniPoint(float x, float y): x_{x}, y_{y} {}
-//     MMiniPoint(MiniPoint &&o): x_{o.x_}, y_{o.y_} {}
-// 
-// };
-// 
-// // basic class that contains a vector of unque_ptrs to MiniPoint objects designating 
-// // ownership.
-// class MiniBox{
-//   private:
-//     // assuming that points in a MiniBox will need to be accessed frequently. So placing them
-//     // contiguously.
-//     std::vector<std::unique_ptr<MiniPoint>> children_;
-// 
-//   public:
-//     MiniBox();
-// 
-// };
-
 
 //compile time const to allocate space for R_DIM*2 constrains in the Node
 static const int R_DIM = 2; 
 static const int R_RECORDS_MAX = 9;
+typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
+
 class Rectangle{
   private:
-    std::array<std::pair<int, int>, R_DIM> vertices_;
+    VertexArray vertices_;
     int area_;
   public:
-    Rectangle(const std::array<std::pair<int, int>, R_DIM> &vertices) :
+    Rectangle(const VertexArray &vertices) :
       vertices_{vertices} 
     {
       int t_area = 1;
@@ -67,6 +43,7 @@ class Node {
     // approach to storage. Depends on how big the tree is.
     // FIXME use std::unique_ptr here instead of raw ptr
     std::vector<Node*> children_;
+    Node *parent_ = nullptr;
     bool is_leaf_;
     friend class Rtree;
   public:
@@ -91,6 +68,9 @@ class Rtree {
     Node& search();
     Node& choose_leaf(Node&, const Rectangle& );
     void insert(const Rectangle& );
+    void adjust_tree();
+    void linear_pick_seeds();
+    Node& linear_split(Node& );
 
 };
 

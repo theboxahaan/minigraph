@@ -1,6 +1,8 @@
 #include "include/rtree.h"
 
 
+
+
 // insert a new index entry (E) into the R-tree
 // E := std::array<std::pair<int, int>>, R_DIM>, tuple pointer
 
@@ -21,13 +23,13 @@ void Rtree::insert(const Rectangle &e)
 {
   // invoke choose_leaf
   Node &chosen_leaf = choose_leaf(root_, e);
-  if(chosen_leaf.records_size_ < R_RECORDS_MAX){
-    chosen_leaf.records_.emplace_back(e);
-  } else {
-    // call split_node 
+  chosen_leaf.records_.emplace_back(e);
+  if(chosen_leaf.records_size_ > R_RECORDS_MAX){
+    // call linear_split on node of size R_RECORDS_MAX+1
 
-  
-  }
+  } 
+  // call adjust tree
+  adjust_tree();
 }
 
 Node& Rtree::choose_leaf(Node &n, const Rectangle &e)
@@ -50,3 +52,25 @@ Node& Rtree::choose_leaf(Node &n, const Rectangle &e)
   return choose_leaf(**ret_iter, e);
 }
 
+void Rtree::adjust_tree()
+{
+
+}
+
+// performs a split linearly on node &n and returns a reference to the split Node
+// TODO using `new` now but need to fix it using std::unique_ptr's
+Node& Rtree::linear_split(Node &n)
+{
+  // linear_pick_seeds
+  VertexArray arr;  
+  auto iter = n.children_.begin();
+  for(; iter!= n.children_.end(); ++iter){
+    
+  }
+  
+}
+
+void Rtree::linear_pick_seeds()
+{
+
+}
