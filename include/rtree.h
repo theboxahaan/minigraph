@@ -37,14 +37,19 @@ class Rectangle{
 class Node {
   private:
     //leaf nodes have nullptrs 
-    // FIXME use std::uniquq ptrs here later
+    // FIXME use std::unique ptrs here later
     typedef std::pair<Rectangle, Node*> IdxEntry;
     std::vector<IdxEntry> children_;
     Node *parent_ = nullptr;
     bool is_leaf_;
     friend class Rtree;
   public:
-    Node(bool is_leaf=false):is_leaf_{is_leaf} {}
+    Node(bool is_leaf=true):is_leaf_{is_leaf} {}
+    void push_back(IdxEntry &e) 
+    {
+      children_.emplace_back(e);
+    }
+    Rectangle compute_bounding_rectangle();
 };
 
 
@@ -67,7 +72,7 @@ class Rtree {
     void insert(const Node::IdxEntry& );
     void adjust_tree(Node& );
     void linear_pick_seeds();
-    Node& linear_split(Node& );
+    Node* linear_split(Node& );
 
 };
 

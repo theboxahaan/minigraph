@@ -18,6 +18,28 @@ int Rectangle::growth(const Rectangle &arg) const
   return t_area - area_;
 }
 
+
+Rectangle Node::compute_bounding_rectangle()
+{
+  VertexArray tmp;
+  std::array<int, R_DIM> ll, hh;
+  std::fill(ll.begin(), ll.end(), INT_MAX); 
+  std::fill(hh.begin(), hh.end(), INT_MIN);
+  
+  for(auto x=children_.begin(); x!=children_.end(); x++){
+    for(int i=0; i<R_DIM; ++i){
+      // check for the lowest low in the rectangles
+      if(x->first[i].first < ll[i]) ll[i] = x->first[i].first; 
+      // check for the highest high in the rectangles
+      if(x->first[i].second > hh[i]) hh[i] = x->first[i].second; 
+    }
+  }
+  for(int i=0; i<R_DIM; i++) tmp[i] = {ll[i], hh[i]};
+  return Rectangle(tmp);
+}
+
+
+
 void Rtree::insert(const Node::IdxEntry &e)
 {
   // invoke choose_leaf and add to leaf
@@ -34,7 +56,6 @@ Node& Rtree::choose_leaf(Node &n, const Node::IdxEntry &e)
 {
   if(n.is_leaf_) return n;
 
-  // compute least growth 
   auto next_idx = n.children_.begin();
   int min_inc =  INT_MAX;
   for(auto it=n.children_.begin(); it!=n.children_.end(); ++it){
@@ -55,12 +76,8 @@ void Rtree::adjust_tree(Node& n)
   
 }
 
-// takes a node n of size of R_RECORDS_MAX + 1 and sets the last entry in children_
-// to correspond to the child that needs to be adjusted. Should only be called if the 
-// size of the children_ vector > R_RECORDS_MAX
-Node& Rtree::linear_split(Node &n)
+Node* Rtree::linear_split(Node &n)
 {
-  auto nn = n.children_.end()-1;
   // linear_pick_seeds: for each dimension - 
   //  - find the lowest low, the highest high separation
   //  - find the lowest high and the highest low and the corresponding rectangles
@@ -88,7 +105,6 @@ Node& Rtree::linear_split(Node &n)
   int chosen_dim = 0;
   float max_norm_sep = 0.0;
   for(int i=0; i<R_DIM; ++i){
-    //calculate separation
     int sep = hl[i]->first[i].first - lh[i]->first[i].second;
     int dim_width = hh[i]->first[i].second  - ll[i]->first[i].first;
     float norm_sep = static_cast<float>(sep)/dim_width;
@@ -98,11 +114,31 @@ Node& Rtree::linear_split(Node &n)
     }
   }
   
-  // the dimension that has the max normalised separation and the two referenced rectangles
-  // are the seeds to the two split nodes 
+  // FIXME port to std::unique_ptr -- will it introduce overheads? Is the indexing step 
+  // performance critical
+  Node *nn = new Node(); 
+  //remove this IdxEntry from the children_ table of arg node.
+  nn->push_back(*hl[chosen_dim]);
+  n.children_.erase(hl[chosen_dim]);
+  //apart from lh[i] remove M/2 elements from n.children_ ~ linear next
+  for(auto it=n.children_.begin(); n.children_.size() > R_DIM/2 && it!=n.children_.end();){
+    if(it != lh[chosen_dim]){
+      nn->push_back(*it);
+      it = n.children_.erase(it);
+    } else {
+      ++it;
+    }
+  }
   
-
-
+  // finally have the split Nodes n and nn
+  // add the parent_ reference and return nn so that it can be added to the parent.children_,
+  nn->parent_ = n.parent_;
+  // compute bounding Rectangle for new node nn and adjust the bounding rectangle for the 
+  // old node n
+  
+  // TODO migrate this call to parent
+  // n.parent_->children_.emplace_back({nn->compute_bounding_rectangle(), nn});
+  return nn;
 }
 
 

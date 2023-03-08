@@ -29,3 +29,5 @@ Ideas
 -----
 1. Is a `NullType` even required? Removing it might get rid of code branches
 2. Look at using faster hashmaps like the robin_hood::unordered_map
+3. Is creating the Rtree index performance critical
+
