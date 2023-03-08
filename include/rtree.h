@@ -4,7 +4,7 @@
 #include <vector>
 #include <array>
 
-//compile time const to allocate space for R_DIM*2 constrains in the Node
+//compile time const to allocate space for R_DIM*2 constraints in the Node
 static const int R_DIM = 2; 
 static const int R_RECORDS_MAX = 9;
 typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
@@ -20,6 +20,11 @@ class Rectangle{
       int t_area = 1;
       for(auto &x : vertices) t_area *= (x.second - x.first);
       area_ = t_area;
+    }
+
+    std::pair<int ,int>& operator[](int index){
+      // FIXME PERFCHECK no bounds check here ---
+      return vertices_[index];
     }
 
     int growth(const Rectangle &r) const;
@@ -60,7 +65,7 @@ class Rtree {
     Node& search();
     Node& choose_leaf(Node&, const Node::IdxEntry& );
     void insert(const Node::IdxEntry& );
-    void adjust_tree();
+    void adjust_tree(Node& );
     void linear_pick_seeds();
     Node& linear_split(Node& );
 
