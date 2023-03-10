@@ -47,12 +47,12 @@ void Rtree::insert(const Node::IdxEntry &e)
   // TODO confirm here that a copy of the `Rectangle` is made and the pointer is copied
   chosen_leaf->second->children_.emplace_back(e);
   if(chosen_leaf->second->children_.size() > R_RECORDS_MAX){
-    linear_split(*(chosen_leaf->second));
+    linear_split(*chosen_leaf->second);
   }
   adjust_tree(*chosen_leaf->second); 
 }
 
-std::vector<Node::IdxEntry>::iterator Rtree::choose_leaf(std::vector<Node::IdxEntry>::iterator n, const Node::IdxEntry &e)
+Node::IdxEntryVector::iterator Rtree::choose_leaf(Node::IdxEntryVector::iterator n, const Node::IdxEntry &e)
 {
   if(n->second->is_leaf_) return n;
 
@@ -83,7 +83,7 @@ Node* Rtree::linear_split(Node &n)
   //  - find the lowest high and the highest low and the corresponding rectangles
   //  - normalise and store them
   // for the max normalised separation, select the two rectangles.
-  std::array<std::vector<Node::IdxEntry>::iterator, R_DIM> ll, hl, lh, hh;
+  std::array<Node::IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
   std::fill(ll.begin(), ll.end(), n.children_.begin() + 1); 
   std::fill(lh.begin(), lh.end(), n.children_.begin() + 1);
   std::fill(hh.begin(), hh.end(), n.children_.begin() + 1);

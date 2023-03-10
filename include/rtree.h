@@ -39,7 +39,8 @@ class Node {
     //leaf nodes have nullptrs 
     // FIXME use std::unique ptrs here later
     typedef std::pair<Rectangle, Node*> IdxEntry;
-    std::vector<IdxEntry> children_;
+    typedef std::vector<IdxEntry> IdxEntryVector;
+    IdxEntryVector children_;
     Node *parent_ = nullptr;
     bool is_leaf_;
     friend class Rtree;
@@ -62,7 +63,7 @@ class Node {
 
 class Rtree {
   private:
-    std::vector<Node::IdxEntry> root_;
+    Node::IdxEntryVector root_;
 
   public:
     Rtree()
@@ -75,7 +76,7 @@ class Rtree {
 
     Rtree build_tree();
     Node& search();
-    std::vector<Node::IdxEntry>::iterator choose_leaf(std::vector<Node::IdxEntry>::iterator , const Node::IdxEntry& );
+    Node::IdxEntryVector::iterator choose_leaf(Node::IdxEntryVector::iterator, const Node::IdxEntry& );
     void insert(const Node::IdxEntry& );
     void adjust_tree(Node& );
     void linear_pick_seeds();
