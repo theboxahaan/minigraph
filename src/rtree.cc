@@ -43,22 +43,22 @@ Rectangle Node::compute_bounding_rectangle()
 void Rtree::insert(const Node::IdxEntry &e)
 {
   // invoke choose_leaf and add to leaf
-  Node &chosen_leaf = choose_leaf(root_, e);
+  auto chosen_leaf = choose_leaf(root_.begin(), e);
   // TODO confirm here that a copy of the `Rectangle` is made and the pointer is copied
-  chosen_leaf.children_.emplace_back(e);
-  if(chosen_leaf.children_.size() > R_RECORDS_MAX){
-    linear_split(chosen_leaf);
+  chosen_leaf->second->children_.emplace_back(e);
+  if(chosen_leaf->second->children_.size() > R_RECORDS_MAX){
+    linear_split(*(chosen_leaf->second));
   }
-  adjust_tree(chosen_leaf); 
+  adjust_tree(*chosen_leaf->second); 
 }
 
-Node& Rtree::choose_leaf(Node &n, const Node::IdxEntry &e)
+std::vector<Node::IdxEntry>::iterator Rtree::choose_leaf(std::vector<Node::IdxEntry>::iterator n, const Node::IdxEntry &e)
 {
-  if(n.is_leaf_) return n;
+  if(n->second->is_leaf_) return n;
 
-  auto next_idx = n.children_.begin();
+  auto next_idx = n->second->children_.begin();
   int min_inc =  INT_MAX;
-  for(auto it=n.children_.begin(); it!=n.children_.end(); ++it){
+  for(auto it=n->second->children_.begin(); it!=n->second->children_.end(); ++it){
     int t_inc = it->first.growth(e.first);
     if(t_inc < min_inc){
       min_inc = t_inc;
@@ -67,7 +67,7 @@ Node& Rtree::choose_leaf(Node &n, const Node::IdxEntry &e)
         next_idx = next_idx->first.area() < it->first.area() ? next_idx:it;
     }
   }
-  return choose_leaf(*(next_idx->second), e);
+  return choose_leaf(next_idx, e);
 }
 
 // given a node with R_RECORDS_MAX + 1 entries, splits it into two node

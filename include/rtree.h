@@ -62,13 +62,20 @@ class Node {
 
 class Rtree {
   private:
-    Node &root_ ;
-    Rtree();
+    std::vector<Node::IdxEntry> root_;
 
   public:
+    Rtree()
+    {
+      VertexArray tmp;
+      std::fill(tmp.begin(), tmp.end(), std::pair<int, int>{0,0});
+      root_.emplace_back(Node::IdxEntry{Rectangle(tmp), new Node()});
+    }
+
+
     Rtree build_tree();
     Node& search();
-    Node& choose_leaf(Node&, const Node::IdxEntry& );
+    std::vector<Node::IdxEntry>::iterator choose_leaf(std::vector<Node::IdxEntry>::iterator , const Node::IdxEntry& );
     void insert(const Node::IdxEntry& );
     void adjust_tree(Node& );
     void linear_pick_seeds();
