@@ -44,7 +44,7 @@ class Node {
     friend class Rtree;
   public:
     Node(bool is_leaf=true):is_leaf_{is_leaf} {}
-    void push_back(std::pair<Rectangle, Node*> &e) 
+    void push_back(const std::pair<Rectangle, Node*> &e) 
     {
       children_.emplace_back(e);
     }
@@ -78,7 +78,7 @@ class Rtree {
     Node& search();
     IdxEntryVector::iterator choose_leaf(IdxEntryVector::iterator, const IdxEntry& );
     void insert(const IdxEntry& );
-    void adjust_tree(Node& );
+    Node* adjust_tree(Node*, Node*);
     void linear_pick_seeds();
     Node* linear_split(Node& );
 

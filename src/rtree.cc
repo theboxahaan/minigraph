@@ -48,7 +48,7 @@ void Rtree::insert(const IdxEntry &e)
   new_node = adjust_tree(chosen_leaf.parent_, new_node);
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
-    auto new_root = new Node(is_leaf=false);
+    auto new_root = new Node(false);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
     root_.begin()->second->parent_ = new_root;
     new_root->push_back(IdxEntry(*root_.begin()));
