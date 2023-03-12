@@ -33,3 +33,29 @@ Ideas
 1. Is a `NullType` even required? Removing it might get rid of code branches
 2. Look at using faster hashmaps like the robin_hood::unordered_map
 3. Is creating the Rtree index performance critical
+
+
+Heap File Layout
+----------------
+- A heap file is a sequence of blocks/pages of a fixed length (say 8K)
+  - A page manager adds a new page to the heap file when the file is full
+  - Each page is laid out as follows 
+    - Page header (fixed length)
+      - offset to end of line ptrs
+      - offset to beginning of newest heap tuple
+      - ptr to the end of a page for tables
+      - ptr for indexes
+    - Line pointers
+      - these point to a heap tuple
+      - are indexed using offsets
+    - Heap tuples
+      - Records data
+      - stacked from the bottom of the page.
+  - Shall assume for simplicity a max size of attributes?
+  - No overflow allowed, if a tuple doesn't fit, add it to the next page.
+
+  ---------------------------------------------------------------------------------------
+  | header | line pointers --> | ..........  free space  .......... | <-- heap tuples   |
+  ---------------------------------------------------------------------------------------
+
+  - A tuple identifier or a TID is (block_id, line_ptr offset)

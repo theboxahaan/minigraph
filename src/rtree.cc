@@ -2,8 +2,6 @@
 #include <vector>
 
 #include "include/rtree.h"
-// insert a new index entry (E) into the R-tree
-// E := std::array<std::pair<int, int>>, R_DIM>, tuple pointer
 
 int Rectangle::growth(const Rectangle &arg) const
 {
@@ -38,27 +36,33 @@ Rectangle Node::compute_bounding_rectangle()
   return Rectangle(tmp);
 }
 
-
-
-void Rtree::insert(const Node::IdxEntry &e)
+void Rtree::insert(const IdxEntry &e)
 {
-  // invoke choose_leaf and add to leaf
-  auto chosen_leaf = choose_leaf(root_.begin(), e);
-  // TODO confirm here that a copy of the `Rectangle` is made and the pointer is copied
-  chosen_leaf->second->children_.emplace_back(e);
-  if(chosen_leaf->second->children_.size() > R_RECORDS_MAX){
-    linear_split(*chosen_leaf->second);
+  auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
+  Node &chosen_leaf = *chosen_leaf_iter->second;
+  chosen_leaf.children_.emplace_back(e);
+  Node *new_node = nullptr;
+  if(chosen_leaf.children_.size() > R_RECORDS_MAX){
+    new_node = linear_split(chosen_leaf);
   }
-  adjust_tree(*chosen_leaf->second); 
+  new_node = adjust_tree(chosen_leaf.parent_, new_node);
+  if(new_node){
+    // root was split so create a new node and add it as the parent of the child nodes
+    auto new_root = new Node(is_leaf=false);
+    new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
+    root_.begin()->second->parent_ = new_root;
+    new_root->push_back(IdxEntry(*root_.begin()));
+    new_node->parent_ = new_root;
+  }
 }
 
-Node::IdxEntryVector::iterator Rtree::choose_leaf(Node::IdxEntryVector::iterator n, const Node::IdxEntry &e)
+IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const IdxEntry &e)
 {
-  if(n->second->is_leaf_) return n;
-
-  auto next_idx = n->second->children_.begin();
+  Node &cur_node = *n->second;
+  if(cur_node.is_leaf_) return n;
+  auto next_idx = cur_node.children_.begin();
   int min_inc =  INT_MAX;
-  for(auto it=n->second->children_.begin(); it!=n->second->children_.end(); ++it){
+  for(auto it=cur_node.children_.begin(); it!=cur_node.children_.end(); ++it){
     int t_inc = it->first.growth(e.first);
     if(t_inc < min_inc){
       min_inc = t_inc;
@@ -70,10 +74,17 @@ Node::IdxEntryVector::iterator Rtree::choose_leaf(Node::IdxEntryVector::iterator
   return choose_leaf(next_idx, e);
 }
 
-// given a node with R_RECORDS_MAX + 1 entries, splits it into two node
-void Rtree::adjust_tree(Node& n)
+// add nn to n and then propagate split as required
+Node* Rtree::adjust_tree(Node *n, Node *nn)
 {
-  
+  if(n == nullptr) return nn;
+  n->children_.emplace_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
+  if(n->children_.size() > R_RECORDS_MAX) {
+    nn = linear_split(*n);
+    return adjust_tree(n->parent_, nn);
+  } else {
+    return nullptr;
+  } 
 }
 
 Node* Rtree::linear_split(Node &n)
@@ -83,7 +94,7 @@ Node* Rtree::linear_split(Node &n)
   //  - find the lowest high and the highest low and the corresponding rectangles
   //  - normalise and store them
   // for the max normalised separation, select the two rectangles.
-  std::array<Node::IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
+  std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
   std::fill(ll.begin(), ll.end(), n.children_.begin() + 1); 
   std::fill(lh.begin(), lh.end(), n.children_.begin() + 1);
   std::fill(hh.begin(), hh.end(), n.children_.begin() + 1);

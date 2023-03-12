@@ -38,21 +38,21 @@ class Node {
   private:
     //leaf nodes have nullptrs 
     // FIXME use std::unique ptrs here later
-    typedef std::pair<Rectangle, Node*> IdxEntry;
-    typedef std::vector<IdxEntry> IdxEntryVector;
-    IdxEntryVector children_;
+    std::vector<std::pair<Rectangle, Node*>> children_;
     Node *parent_ = nullptr;
     bool is_leaf_;
     friend class Rtree;
   public:
     Node(bool is_leaf=true):is_leaf_{is_leaf} {}
-    void push_back(IdxEntry &e) 
+    void push_back(std::pair<Rectangle, Node*> &e) 
     {
       children_.emplace_back(e);
     }
     Rectangle compute_bounding_rectangle();
 };
 
+typedef std::pair<Rectangle, Node*> IdxEntry;
+typedef std::vector<IdxEntry> IdxEntryVector;
 
 // implementing the RTree paper by Guttman A. 
 // Ref - http://www-db.deis.unibo.it/courses/SI-LS/papers/Gut84.pdf
@@ -63,21 +63,21 @@ class Node {
 
 class Rtree {
   private:
-    Node::IdxEntryVector root_;
+    IdxEntryVector root_;
 
   public:
     Rtree()
     {
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<int, int>{0,0});
-      root_.emplace_back(Node::IdxEntry{Rectangle(tmp), new Node()});
+      root_.emplace_back(IdxEntry{Rectangle(tmp), new Node()});
     }
 
 
     Rtree build_tree();
     Node& search();
-    Node::IdxEntryVector::iterator choose_leaf(Node::IdxEntryVector::iterator, const Node::IdxEntry& );
-    void insert(const Node::IdxEntry& );
+    IdxEntryVector::iterator choose_leaf(IdxEntryVector::iterator, const IdxEntry& );
+    void insert(const IdxEntry& );
     void adjust_tree(Node& );
     void linear_pick_seeds();
     Node* linear_split(Node& );
