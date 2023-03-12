@@ -21,7 +21,6 @@ int main()
   
   // create the rtree
   auto rt = Rtree();
-  std::cout<< "rtree built" << std::endl;
   for(auto &x: input){
     rt.insert(IdxEntry(Rectangle(x), nullptr)); 
   }

@@ -3,11 +3,19 @@
 
 #include <vector>
 #include <array>
-#include <iostream>
+
+#ifdef DEBUG
+  #include <iostream>
+#endif
 
 //compile time const to allocate space for R_DIM*2 constraints in the Node
-static const int R_DIM = 2; 
-static const int R_RECORDS_MAX = 6; 
+#ifndef R_DIM 
+  static const int R_DIM = 2; 
+#endif
+
+#ifndef R_RECORDS_MAX
+  static const int R_RECORDS_MAX = 6; 
+#endif
 
 typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
 

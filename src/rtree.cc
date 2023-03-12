@@ -1,9 +1,12 @@
 #include <array>
 #include <vector>
+#include <climits>
+
+#ifdef DEBUG
+  #include <iostream>
+#endif
 
 #include "include/rtree.h"
-
-#include <iostream>
 
 int Rectangle::growth(const Rectangle &arg) const
 {
