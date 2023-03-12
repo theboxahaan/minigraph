@@ -3,10 +3,12 @@
 
 #include <vector>
 #include <array>
+#include <iostream>
 
 //compile time const to allocate space for R_DIM*2 constraints in the Node
 static const int R_DIM = 2; 
-static const int R_RECORDS_MAX = 2;
+static const int R_RECORDS_MAX = 4; 
+
 typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
 
 class Rectangle{
@@ -36,16 +38,23 @@ class Rectangle{
 
 class Node {
   private:
-    //leaf nodes have nullptrs 
-    // FIXME use std::unique ptrs here later
+    // FIXME leaf nodes have nullptrs 
     std::vector<std::pair<Rectangle, Node*>> children_;
-    Node *parent_ = nullptr;
     bool is_leaf_;
+    Node *parent_ = nullptr;
     friend class Rtree;
   public:
-    Node(bool is_leaf=true):is_leaf_{is_leaf} {}
+    Node(bool is_leaf=true, Node* parent=nullptr):is_leaf_{is_leaf}, parent_{parent}
+    {
+      #ifdef DEBUG
+        std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
+      #endif
+    }
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
+      #ifdef DEBUG
+       std::cout << "[child+] " << this << " <-- " << e.second << std::endl;
+      #endif
       children_.emplace_back(e);
     }
     Rectangle compute_bounding_rectangle();
@@ -56,10 +65,7 @@ typedef std::vector<IdxEntry> IdxEntryVector;
 
 // implementing the RTree paper by Guttman A. 
 // Ref - http://www-db.deis.unibo.it/courses/SI-LS/papers/Gut84.pdf
-// TODO add a proper citation to the comments.
-
 // TODO add minimum/maximum dimension checks
-
 
 class Rtree {
   private:
@@ -73,15 +79,13 @@ class Rtree {
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node()});
     }
 
-
-    Rtree build_tree();
     Node& search();
     IdxEntryVector::iterator choose_leaf(IdxEntryVector::iterator, const IdxEntry& );
     void insert(const IdxEntry& );
     Node* adjust_tree(Node*, Node*);
     void linear_pick_seeds();
     Node* linear_split(Node& );
-
+    // ~Rtree();
 };
 
 

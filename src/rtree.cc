@@ -4,8 +4,6 @@
 #include "include/rtree.h"
 
 #include <iostream>
-using std::cout;
-using std::endl;
 
 int Rectangle::growth(const Rectangle &arg) const
 {
@@ -42,32 +40,34 @@ Rectangle Node::compute_bounding_rectangle()
 
 void Rtree::insert(const IdxEntry &e)
 {
-  cout << "size of root: " << root_.begin()->second->children_.size() << endl;
   auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
+  #ifdef DEBUG
+    std::cout << "[insert] in leaf(size): " << chosen_leaf_iter->second 
+    << "(" << chosen_leaf_iter->second->children_.size() << ")" << std::endl;
+  #endif
   Node &chosen_leaf = *chosen_leaf_iter->second;
-  chosen_leaf.children_.emplace_back(e);
+  chosen_leaf.push_back(e);
   Node *new_node = nullptr;
-  cout << "added new child " << chosen_leaf.children_.size() <<  endl;
   if(chosen_leaf.children_.size() > R_RECORDS_MAX){
-    cout << "splitting now" << endl;
     new_node = linear_split(chosen_leaf);
-    cout << "after split the size of n/nn is: " << chosen_leaf.children_.size()<< ", " << new_node->children_.size() << endl;
+    new_node = adjust_tree(chosen_leaf.parent_, new_node);
   }
-  cout << "adjusting the bounding rect of chosen_leaf" << endl;
   chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
-  cout << "size of chosen leafs child after split" << chosen_leaf.children_.size() << endl;
-  new_node = adjust_tree(chosen_leaf.parent_, new_node);
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
-    cout << "splitting root now" << endl;
-    auto new_root = new Node(false);
+    auto new_root = new Node(false, nullptr);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
-    root_.begin()->second->parent_ = new_root;
     new_root->push_back(IdxEntry(*root_.begin()));
+    root_.begin()->second->parent_ = new_root;
     new_node->parent_ = new_root;
     root_.begin()->second = new_root;
     root_.begin()->first = new_root->compute_bounding_rectangle();
-    cout << "we have a new root with size: " << root_.begin()->second->children_.size() << endl;
+    #ifdef DEBUG
+      std::cout << "[nwroot] " << new_root << std::endl;
+      for(auto &x: new_root->children_){
+        std::cout << "\t[child_] " << x.second << std::endl;
+      }
+    #endif
   }
 }
 
@@ -92,10 +92,11 @@ IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const Id
 // add nn to n and then propagate split as required
 Node* Rtree::adjust_tree(Node *n, Node *nn)
 {
-  if(nn == nullptr) return nullptr;
-  if(n == nullptr){ cout << "parent is root - bye!"<<endl; return nn;}
-  cout << "call to adjust_tree" << endl;
-  n->children_.emplace_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
+  if(n == nullptr) return nn;
+  #ifdef DEBUG
+    std::cout << "[adjust] " << n << std::endl; 
+  #endif
+  n->push_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
   if(n->children_.size() > R_RECORDS_MAX) {
     nn = linear_split(*n);
     return adjust_tree(n->parent_, nn);
@@ -111,7 +112,7 @@ Node* Rtree::linear_split(Node &n)
   //  - find the lowest high and the highest low and the corresponding rectangles
   //  - normalise and store them
   // for the max normalised separation, select the two rectangles.
-  std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
+    std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
   std::fill(ll.begin(), ll.end(), n.children_.begin() + 1); 
   std::fill(lh.begin(), lh.end(), n.children_.begin() + 1);
   std::fill(hh.begin(), hh.end(), n.children_.begin() + 1);
@@ -142,32 +143,25 @@ Node* Rtree::linear_split(Node &n)
     }
   }
   
-  // FIXME port to std::unique_ptr -- will it introduce overheads? Is the indexing step 
-  // performance critical
-  Node *nn = new Node(); 
+  Node *nn = new Node(true, n.parent_); 
   //remove this IdxEntry from the children_ table of arg node.
   nn->push_back(*hl[chosen_dim]);
   n.children_.erase(hl[chosen_dim]);
   //apart from lh[i] remove M/2 elements from n.children_ ~ linear next
-  cout << "inside linear_split n/nn is: " << n.children_.size() << ", " << nn->children_.size() << endl;
   for(auto it=n.children_.begin(); n.children_.size() > R_RECORDS_MAX/2 && it!=n.children_.end();){
     if(it != lh[chosen_dim]){
       nn->push_back(*it);
-      cout << "erasing from original" << endl;
       it = n.children_.erase(it);
     } else {
       ++it;
     }
   }
   
-  // finally have the split Nodes n and nn
-  // add the parent_ reference and return nn so that it can be added to the parent.children_,
-  nn->parent_ = n.parent_;
-  // compute bounding Rectangle for new node nn and adjust the bounding rectangle for the 
-  // old node n
+  #ifdef DEBUG
+    std::cout << "[split_] " << &n << "(" << n.children_.size()
+    << ")" << " --> "<< nn << "(" << nn->children_.size()<<")" << std::endl;  
+  #endif
   
-  // TODO migrate this call to parent
-  // n.parent_->children_.emplace_back({nn->compute_bounding_rectangle(), nn});
   return nn;
 }
 
