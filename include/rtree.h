@@ -50,6 +50,7 @@ class Node {
     std::vector<std::pair<Rectangle, Node*>> children_;
     bool is_leaf_;
     Node *parent_ = nullptr;
+    size_t offset_;
     friend class Rtree;
     // TODO think of a better solution
     // private constructor for now to prevent init on the stack.
@@ -64,8 +65,9 @@ class Node {
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
       #ifdef DEBUG
-       std::cout << "[child+] " << this << " <-- " << e.second << std::endl;
+       std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_.size() << std::endl;
       #endif
+      if(e.second)e.second->offset_ = children_.size();
       children_.emplace_back(e);
     }
     Rectangle compute_bounding_rectangle();

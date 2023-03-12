@@ -52,12 +52,17 @@ void Rtree::insert(const IdxEntry &e)
   chosen_leaf.push_back(e);
   Node *new_node = nullptr;
   if(chosen_leaf.size() > R_RECORDS_MAX){
+    std::cout << "gonna split" << std::endl;
     new_node = linear_split(chosen_leaf);
-    new_node = adjust_tree(chosen_leaf.parent_, new_node);
   }
-  chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
+  // FIXME 
+  // chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
+  // new_node = adjust_tree(chosen_leaf.parent_, new_node);
+  new_node = adjust_tree(&chosen_leaf, new_node);
+
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
+    std::cout << "new root now" << std::endl;
     auto new_root = new Node(false, nullptr);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
     new_root->push_back(IdxEntry(*root_.begin()));
@@ -95,17 +100,20 @@ IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const Id
 // add nn to n and then propagate split as required
 Node* Rtree::adjust_tree(Node *n, Node *nn)
 {
-  if(n == nullptr) return nn;
+  // if(n == nullptr) return nn;
+  if(n->parent_ == nullptr) return nn;
   #ifdef DEBUG
     std::cout << "[adjust] " << n << std::endl; 
   #endif
-  n->push_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
-  if(n->size() > R_RECORDS_MAX) {
-    nn = linear_split(*n);
-    return adjust_tree(n->parent_, nn);
-  } else {
-    return nullptr;
-  } 
+  n->parent_->children_[n->offset_].first = n->compute_bounding_rectangle();
+  if(nn){
+    n->parent_->push_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
+    nn = nullptr;
+    if(n->parent_->size() > R_RECORDS_MAX) {
+      nn = linear_split(*n->parent_);
+    }
+  }
+  return adjust_tree(n->parent_, nn);
 }
 
 Node* Rtree::linear_split(Node &n)
