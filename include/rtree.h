@@ -6,7 +6,7 @@
 
 //compile time const to allocate space for R_DIM*2 constraints in the Node
 static const int R_DIM = 2; 
-static const int R_RECORDS_MAX = 2;
+static const int R_RECORDS_MAX = 10;
 typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
 
 class Rectangle{

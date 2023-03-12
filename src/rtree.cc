@@ -1,6 +1,6 @@
 #include <array>
 #include <vector>
-
+#include <climits>
 #include "include/rtree.h"
 
 #include <iostream>
