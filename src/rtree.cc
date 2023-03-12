@@ -3,6 +3,10 @@
 
 #include "include/rtree.h"
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 int Rectangle::growth(const Rectangle &arg) const
 {
   int t_area = 1;
@@ -23,7 +27,7 @@ Rectangle Node::compute_bounding_rectangle()
   std::array<int, R_DIM> ll, hh;
   std::fill(ll.begin(), ll.end(), INT_MAX); 
   std::fill(hh.begin(), hh.end(), INT_MIN);
-  
+ 
   for(auto x=children_.begin(); x!=children_.end(); x++){
     for(int i=0; i<R_DIM; ++i){
       // check for the lowest low in the rectangles
@@ -38,21 +42,32 @@ Rectangle Node::compute_bounding_rectangle()
 
 void Rtree::insert(const IdxEntry &e)
 {
+  cout << "size of root: " << root_.begin()->second->children_.size() << endl;
   auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
   Node &chosen_leaf = *chosen_leaf_iter->second;
   chosen_leaf.children_.emplace_back(e);
   Node *new_node = nullptr;
+  cout << "added new child " << chosen_leaf.children_.size() <<  endl;
   if(chosen_leaf.children_.size() > R_RECORDS_MAX){
+    cout << "splitting now" << endl;
     new_node = linear_split(chosen_leaf);
+    cout << "after split the size of n/nn is: " << chosen_leaf.children_.size()<< ", " << new_node->children_.size() << endl;
   }
+  cout << "adjusting the bounding rect of chosen_leaf" << endl;
+  chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
+  cout << "size of chosen leafs child after split" << chosen_leaf.children_.size() << endl;
   new_node = adjust_tree(chosen_leaf.parent_, new_node);
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
+    cout << "splitting root now" << endl;
     auto new_root = new Node(false);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
     root_.begin()->second->parent_ = new_root;
     new_root->push_back(IdxEntry(*root_.begin()));
     new_node->parent_ = new_root;
+    root_.begin()->second = new_root;
+    root_.begin()->first = new_root->compute_bounding_rectangle();
+    cout << "we have a new root with size: " << root_.begin()->second->children_.size() << endl;
   }
 }
 
@@ -77,7 +92,9 @@ IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const Id
 // add nn to n and then propagate split as required
 Node* Rtree::adjust_tree(Node *n, Node *nn)
 {
-  if(n == nullptr) return nn;
+  if(nn == nullptr) return nullptr;
+  if(n == nullptr){ cout << "parent is root - bye!"<<endl; return nn;}
+  cout << "call to adjust_tree" << endl;
   n->children_.emplace_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
   if(n->children_.size() > R_RECORDS_MAX) {
     nn = linear_split(*n);
@@ -132,9 +149,11 @@ Node* Rtree::linear_split(Node &n)
   nn->push_back(*hl[chosen_dim]);
   n.children_.erase(hl[chosen_dim]);
   //apart from lh[i] remove M/2 elements from n.children_ ~ linear next
-  for(auto it=n.children_.begin(); n.children_.size() > R_DIM/2 && it!=n.children_.end();){
+  cout << "inside linear_split n/nn is: " << n.children_.size() << ", " << nn->children_.size() << endl;
+  for(auto it=n.children_.begin(); n.children_.size() > R_RECORDS_MAX/2 && it!=n.children_.end();){
     if(it != lh[chosen_dim]){
       nn->push_back(*it);
+      cout << "erasing from original" << endl;
       it = n.children_.erase(it);
     } else {
       ++it;
