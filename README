@@ -1,5 +1,8 @@
 ToDos
 -----
+[-] Convert the use of raw pointers to smart pointers -- consider the tradeoff w/ perf.
+    First make sure the damn thing works properly.
+
 [-] Recreate the Rtree using a page level layout of the arch.
   [ ] Look at the internals of PostgreSQL to figure out how the data is actually stored
   [ ] Make a dummy parser if required for the "spatial" attributes of the the heap file.

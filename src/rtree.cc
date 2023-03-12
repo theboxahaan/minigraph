@@ -43,12 +43,12 @@ void Rtree::insert(const IdxEntry &e)
   auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
   #ifdef DEBUG
     std::cout << "[insert] in leaf(size): " << chosen_leaf_iter->second 
-    << "(" << chosen_leaf_iter->second->children_.size() << ")" << std::endl;
+    << "(" << chosen_leaf_iter->second->size() << ")" << std::endl;
   #endif
   Node &chosen_leaf = *chosen_leaf_iter->second;
   chosen_leaf.push_back(e);
   Node *new_node = nullptr;
-  if(chosen_leaf.children_.size() > R_RECORDS_MAX){
+  if(chosen_leaf.size() > R_RECORDS_MAX){
     new_node = linear_split(chosen_leaf);
     new_node = adjust_tree(chosen_leaf.parent_, new_node);
   }
@@ -97,7 +97,7 @@ Node* Rtree::adjust_tree(Node *n, Node *nn)
     std::cout << "[adjust] " << n << std::endl; 
   #endif
   n->push_back(IdxEntry(nn->compute_bounding_rectangle(), nn));
-  if(n->children_.size() > R_RECORDS_MAX) {
+  if(n->size() > R_RECORDS_MAX) {
     nn = linear_split(*n);
     return adjust_tree(n->parent_, nn);
   } else {
@@ -148,7 +148,7 @@ Node* Rtree::linear_split(Node &n)
   nn->push_back(*hl[chosen_dim]);
   n.children_.erase(hl[chosen_dim]);
   //apart from lh[i] remove M/2 elements from n.children_ ~ linear next
-  for(auto it=n.children_.begin(); n.children_.size() > R_RECORDS_MAX/2 && it!=n.children_.end();){
+  for(auto it=n.children_.begin(); n.size() > R_RECORDS_MAX/2 && it!=n.children_.end();){
     if(it != lh[chosen_dim]){
       nn->push_back(*it);
       it = n.children_.erase(it);
@@ -158,8 +158,8 @@ Node* Rtree::linear_split(Node &n)
   }
   
   #ifdef DEBUG
-    std::cout << "[split_] " << &n << "(" << n.children_.size()
-    << ")" << " --> "<< nn << "(" << nn->children_.size()<<")" << std::endl;  
+    std::cout << "[split_] " << &n << "(" << n.size()
+    << ")" << " --> "<< nn << "(" << nn->size()<<")" << std::endl;  
   #endif
   
   return nn;

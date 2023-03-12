@@ -7,7 +7,7 @@
 
 //compile time const to allocate space for R_DIM*2 constraints in the Node
 static const int R_DIM = 2; 
-static const int R_RECORDS_MAX = 4; 
+static const int R_RECORDS_MAX = 6; 
 
 typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
 
@@ -31,7 +31,7 @@ class Rectangle{
 
     int growth(const Rectangle &r) const;
     void enlarge(const Rectangle &r);
-    int area() { return area_;}
+    inline int area() { return area_;}
 
 };
 
@@ -43,13 +43,16 @@ class Node {
     bool is_leaf_;
     Node *parent_ = nullptr;
     friend class Rtree;
-  public:
+    // TODO think of a better solution
+    // private constructor for now to prevent init on the stack.
+    // nobody should need to initialise a node
     Node(bool is_leaf=true, Node* parent=nullptr):is_leaf_{is_leaf}, parent_{parent}
     {
       #ifdef DEBUG
         std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
       #endif
     }
+  public:
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
       #ifdef DEBUG
@@ -58,6 +61,17 @@ class Node {
       children_.emplace_back(e);
     }
     Rectangle compute_bounding_rectangle();
+    
+    inline size_t size() const { return children_.size(); }
+
+    ~Node()
+    {
+      #ifdef DEBUG
+        std::cout << "[dstroy] " << this << std::endl;
+      #endif
+      for(auto &x: children_)if(x.second)delete x.second;
+      children_.clear();
+    }
 };
 
 typedef std::pair<Rectangle, Node*> IdxEntry;
@@ -74,6 +88,9 @@ class Rtree {
   public:
     Rtree()
     {
+      #ifdef DEBUG
+        std::cout << "[rtree] create" << std::endl;
+      #endif
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<int, int>{0,0});
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node()});
@@ -85,7 +102,14 @@ class Rtree {
     Node* adjust_tree(Node*, Node*);
     void linear_pick_seeds();
     Node* linear_split(Node& );
-    // ~Rtree();
+    ~Rtree()
+    {
+      #ifdef DEBUG
+        std::cout << "[rtree] destroy" << std::endl;
+      #endif
+      for(auto &x: root_) delete x.second;
+      root_.clear();
+    }
 };
 
 
