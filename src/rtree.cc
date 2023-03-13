@@ -1,6 +1,9 @@
 #include <array>
 #include <vector>
 #include <climits>
+#include <fstream>
+#include <stack>
+#include <unordered_set>
 
 #ifdef DEBUG
   #include <iostream>
@@ -179,4 +182,28 @@ Node* Rtree::linear_split(Node &n)
   return nn;
 }
 
+void Rtree::walk() const
+{
+  // do a dfs
+  std::ofstream file;
+  std::cout << "[opning] rec.log" << std::endl;
+  file.open("rec.log", std::ios::out | std::ios::app);
+  
+  std::unordered_set<Node *> visited;
+  std::stack<Node *> s;
+  s.push(root_.begin()->second);
+  
+  while(!s.empty()){
+    Node *cur = s.top();
+    s.pop();
+    if(visited.find(cur) == visited.end()){
+      for(auto &child: cur->children_){
+        child.first.dump_to_stream(file);
+        if(child.second)s.push(child.second);
+      }
+      visited.insert(cur);
+    }
 
+  }
+  file.close();
+}

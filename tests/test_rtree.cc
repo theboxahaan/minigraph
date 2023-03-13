@@ -29,8 +29,8 @@ int main()
 
 
 
-  int numPoints = 80;
-  int rand_mod = 300;
+  int numPoints = 100;
+  int rand_mod = 600;
   for(int iter = 0; iter < 1; iter++){
     srand(time(NULL));
 
@@ -51,8 +51,9 @@ int main()
       // std::cout << "insert" << std::endl; 
     }
     
-    rand_mod = rand_mod * 2;
-    numPoints = numPoints * 2;
+    //rand_mod = rand_mod * 2;
+    //numPoints = numPoints * 2;
+    rt.walk();
   }
 
   return 0;

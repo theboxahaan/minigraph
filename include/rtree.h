@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <array>
+#include <fstream>
 
 #ifdef DEBUG
   #include <iostream>
@@ -39,8 +40,14 @@ class Rectangle{
 
     int growth(const Rectangle &r) const;
     void enlarge(const Rectangle &r);
-    inline int area() { return area_;}
-
+    inline int area() {return area_;}
+    void dump_to_stream(std::ofstream &fd) const
+    {
+      for(auto &x: vertices_){
+        fd << x.first << "," << x.second - x.first << ",";
+      }
+      fd << "\n" ;
+    }
 };
 
 
@@ -120,6 +127,9 @@ class Rtree {
       for(auto &x: root_) delete x.second;
       root_.clear();
     }
+
+    void walk() const;
+
 };
 
 
