@@ -9,7 +9,9 @@
   #include <iostream>
 #endif
 
-//compile time const to allocate space for R_DIM*2 constraints in the Node
+typedef int Dim;
+typedef unsigned int UDim;
+
 #ifndef R_DIM 
   static const int R_DIM = 2; 
 #endif
@@ -18,29 +20,29 @@
   static const int R_RECORDS_MAX = 6; 
 #endif
 
-typedef std::array<std::pair<int, int>, R_DIM> VertexArray;
+typedef std::array<std::pair<Dim, Dim>, R_DIM> VertexArray;
 
 class Rectangle{
   private:
     VertexArray vertices_;
-    int area_;
+    UDim area_;
   public:
     Rectangle(const VertexArray &vertices) :
       vertices_{vertices} 
     {
-      int t_area = 1;
+      UDim t_area = 1;
       for(auto &x : vertices) t_area *= (x.second - x.first);
       area_ = t_area;
     }
 
-    std::pair<int ,int>& operator[](int index){
+    std::pair<Dim, Dim>& operator[](size_t index){
       // FIXME PERFCHECK no bounds check here ---
       return vertices_[index];
     }
 
-    int growth(const Rectangle &r) const;
+    UDim growth(const Rectangle &r) const;
     void enlarge(const Rectangle &r);
-    inline int area() {return area_;}
+    inline UDim area() {return area_;}
     void dump_to_stream(std::ofstream &fd) const
     {
       for(auto &x: vertices_){
@@ -72,7 +74,7 @@ class Node {
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
       #ifdef DEBUG
-       std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_.size() << std::endl;
+        std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_.size() << std::endl;
       #endif
       if(e.second)e.second->offset_ = children_.size();
       children_.emplace_back(e);
@@ -109,7 +111,7 @@ class Rtree {
         std::cout << "[rtree] create" << std::endl;
       #endif
       VertexArray tmp;
-      std::fill(tmp.begin(), tmp.end(), std::pair<int, int>{0,0});
+      std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node()});
     }
 

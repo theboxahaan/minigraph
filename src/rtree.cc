@@ -4,6 +4,7 @@
 #include <fstream>
 #include <stack>
 #include <unordered_set>
+#include <limits>
 
 #ifdef DEBUG
   #include <iostream>
@@ -11,14 +12,14 @@
 
 #include "include/rtree.h"
 
-int Rectangle::growth(const Rectangle &arg) const
+UDim Rectangle::growth(const Rectangle &arg) const
 {
-  int t_area = 1;
+  UDim t_area = 1;
   for( auto r_iter=vertices_.cbegin(), arg_iter = arg.vertices_.cbegin();
       r_iter != vertices_.end() && arg_iter != arg.vertices_.end();
       ++r_iter, ++arg_iter){
     
-    int dim = std::max(r_iter->second, arg_iter->second) - std::min(r_iter->first, arg_iter->first);
+    Dim dim = std::max(r_iter->second, arg_iter->second) - std::min(r_iter->first, arg_iter->first);
     t_area *= dim;
   }
   return t_area - area_;
@@ -28,9 +29,9 @@ int Rectangle::growth(const Rectangle &arg) const
 Rectangle Node::compute_bounding_rectangle()
 {
   VertexArray tmp;
-  std::array<int, R_DIM> ll, hh;
-  std::fill(ll.begin(), ll.end(), INT_MAX); 
-  std::fill(hh.begin(), hh.end(), INT_MIN);
+  std::array<Dim, R_DIM> ll, hh;
+  std::fill(ll.begin(), ll.end(), std::numeric_limits<Dim>::max()); 
+  std::fill(hh.begin(), hh.end(), std::numeric_limits<Dim>::min());
  
   for(auto x=children_.begin(); x!=children_.end(); x++){
     for(int i=0; i<R_DIM; ++i){
@@ -55,7 +56,6 @@ void Rtree::insert(const IdxEntry &e)
   chosen_leaf.push_back(e);
   Node *new_node = nullptr;
   if(chosen_leaf.size() > R_RECORDS_MAX){
-    std::cout << "gonna split" << std::endl;
     new_node = linear_split(chosen_leaf);
   }
   // FIXME 
@@ -65,7 +65,6 @@ void Rtree::insert(const IdxEntry &e)
 
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
-    std::cout << "new root now" << std::endl;
     auto new_root = new Node(false, nullptr);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
     new_root->push_back(IdxEntry(*root_.begin()));
@@ -87,9 +86,9 @@ IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const Id
   Node &cur_node = *n->second;
   if(cur_node.is_leaf_) return n;
   auto next_idx = cur_node.children_.begin();
-  int min_inc =  INT_MAX;
+  UDim min_inc =  std::numeric_limits<UDim>::max();
   for(auto it=cur_node.children_.begin(); it!=cur_node.children_.end(); ++it){
-    int t_inc = it->first.growth(e.first);
+    UDim t_inc = it->first.growth(e.first);
     if(t_inc < min_inc){
       min_inc = t_inc;
       next_idx = it;
@@ -126,7 +125,7 @@ Node* Rtree::linear_split(Node &n)
   //  - find the lowest high and the highest low and the corresponding rectangles
   //  - normalise and store them
   // for the max normalised separation, select the two rectangles.
-    std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
+  std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
   std::fill(ll.begin(), ll.end(), n.children_.begin() + 1); 
   std::fill(lh.begin(), lh.end(), n.children_.begin() + 1);
   std::fill(hh.begin(), hh.end(), n.children_.begin() + 1);
@@ -148,8 +147,8 @@ Node* Rtree::linear_split(Node &n)
   int chosen_dim = 0;
   float max_norm_sep = 0.0;
   for(int i=0; i<R_DIM; ++i){
-    int sep = hl[i]->first[i].first - lh[i]->first[i].second;
-    int dim_width = hh[i]->first[i].second  - ll[i]->first[i].first;
+    Dim sep = hl[i]->first[i].first - lh[i]->first[i].second;
+    Dim dim_width = hh[i]->first[i].second  - ll[i]->first[i].first;
     float norm_sep = static_cast<float>(sep)/dim_width;
     if( norm_sep >  max_norm_sep){
       max_norm_sep = norm_sep;

@@ -34,13 +34,13 @@ int main()
   for(int iter = 0; iter < 1; iter++){
     srand(time(NULL));
 
-    std::vector<std::array<std::pair<int ,int>, 2>> input;
+    std::vector<std::array<std::pair<Dim, Dim>, 2>> input;
     
     for(int i = 0; i < numPoints; i++){
       int x1 = rand() % rand_mod;
       int y1 = rand() % rand_mod;
-      input.push_back(std::array<std::pair<int ,int>, 2>({std::pair<int ,int>({x1, (x1 + rand() % 100) + 1}), 
-                                                          std::pair<int ,int>({y1, (y1 + rand() % 100) + 1})}));
+      input.push_back(std::array<std::pair<Dim, Dim>, 2>({std::pair<Dim, Dim>({x1, (x1 + rand() % 100) + 1}), 
+                                                          std::pair<Dim, Dim>({y1, (y1 + rand() % 100) + 1})}));
     }
 
 
