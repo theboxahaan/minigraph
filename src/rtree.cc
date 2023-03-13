@@ -154,6 +154,7 @@ Node* Rtree::linear_split(Node &n)
     }
   }
   
+  // FIXME offsets_ need to change for both node children
   Node *nn = new Node(true, n.parent_); 
   //remove this IdxEntry from the children_ table of arg node.
   nn->push_back(*hl[chosen_dim]);
@@ -167,7 +168,9 @@ Node* Rtree::linear_split(Node &n)
       ++it;
     }
   }
-  
+  for(size_t i=0; i<n.children_.size(); ++i){
+    if(!n.is_leaf_) n.children_[i].second->offset_ = i;
+  } 
   #ifdef DEBUG
     std::cout << "[split_] " << &n << "(" << n.size()
     << ")" << " --> "<< nn << "(" << nn->size()<<")" << std::endl;  

@@ -50,7 +50,7 @@ class Node {
     std::vector<std::pair<Rectangle, Node*>> children_;
     bool is_leaf_;
     Node *parent_ = nullptr;
-    size_t offset_;
+    size_t offset_;   // reverse ptr to the index in the children_ array
     friend class Rtree;
     // TODO think of a better solution
     // private constructor for now to prevent init on the stack.
