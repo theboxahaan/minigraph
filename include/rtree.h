@@ -6,18 +6,18 @@
 #include <fstream>
 
 #ifdef DEBUG
-  #include <iostream>
+#include <iostream>
 #endif
 
 typedef int Dim;
 typedef unsigned int UDim;
 
 #ifndef R_DIM 
-  static const int R_DIM = 2; 
+static const int R_DIM = 2; 
 #endif
 
 #ifndef R_RECORDS_MAX
-  static const int R_RECORDS_MAX = 6; 
+static const int R_RECORDS_MAX = 6; 
 #endif
 
 typedef std::array<std::pair<Dim, Dim>, R_DIM> VertexArray;
@@ -67,14 +67,14 @@ class Node {
     Node(bool is_leaf=true, Node* parent=nullptr):is_leaf_{is_leaf}, parent_{parent}
     {
       #ifdef DEBUG
-        std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
+      std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
       #endif
     }
   public:
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
       #ifdef DEBUG
-        std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_.size() << std::endl;
+      std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_.size() << std::endl;
       #endif
       if(e.second)e.second->offset_ = children_.size();
       children_.emplace_back(e);
@@ -86,7 +86,7 @@ class Node {
     ~Node()
     {
       #ifdef DEBUG
-        std::cout << "[dstroy] " << this << std::endl;
+      std::cout << "[dstroy] " << this << std::endl;
       #endif
       for(auto &x: children_)if(x.second)delete x.second;
       children_.clear();
@@ -108,7 +108,7 @@ class Rtree {
     Rtree()
     {
       #ifdef DEBUG
-        std::cout << "[rtree] create" << std::endl;
+      std::cout << "[rtree] create" << std::endl;
       #endif
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
@@ -124,7 +124,7 @@ class Rtree {
     ~Rtree()
     {
       #ifdef DEBUG
-        std::cout << "[rtree] destroy" << std::endl;
+      std::cout << "[rtree] destroy" << std::endl;
       #endif
       for(auto &x: root_) delete x.second;
       root_.clear();
@@ -136,4 +136,3 @@ class Rtree {
 
 
 #endif
-

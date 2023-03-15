@@ -7,7 +7,7 @@
 #include <limits>
 
 #ifdef DEBUG
-  #include <iostream>
+#include <iostream>
 #endif
 
 #include "include/rtree.h"
@@ -49,8 +49,8 @@ void Rtree::insert(const IdxEntry &e)
 {
   auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
   #ifdef DEBUG
-    std::cout << "[insert] in leaf(size): " << chosen_leaf_iter->second 
-    << "(" << chosen_leaf_iter->second->size() << ")" << std::endl;
+  std::cout << "[insert] in leaf(size): " << chosen_leaf_iter->second 
+  << "(" << chosen_leaf_iter->second->size() << ")" << std::endl;
   #endif
   Node &chosen_leaf = *chosen_leaf_iter->second;
   chosen_leaf.push_back(e);
@@ -73,10 +73,10 @@ void Rtree::insert(const IdxEntry &e)
     root_.begin()->second = new_root;
     root_.begin()->first = new_root->compute_bounding_rectangle();
     #ifdef DEBUG
-      std::cout << "[nwroot] " << new_root << std::endl;
-      for(auto &x: new_root->children_){
-        std::cout << "\t[child_] " << x.second << std::endl;
-      }
+    std::cout << "[nwroot] " << new_root << std::endl;
+    for(auto &x: new_root->children_){
+      std::cout << "\t[child_] " << x.second << std::endl;
+    }
     #endif
   }
 }
@@ -105,7 +105,7 @@ Node* Rtree::adjust_tree(Node *n, Node *nn)
   // if(n == nullptr) return nn;
   if(n->parent_ == nullptr) return nn;
   #ifdef DEBUG
-    std::cout << "[adjust] " << n << std::endl; 
+  std::cout << "[adjust] " << n << std::endl; 
   #endif
   n->parent_->children_[n->offset_].first = n->compute_bounding_rectangle();
   if(nn){
@@ -174,8 +174,8 @@ Node* Rtree::linear_split(Node &n)
     if(!n.is_leaf_) n.children_[i].second->offset_ = i;
   } 
   #ifdef DEBUG
-    std::cout << "[split_] " << &n << "(" << n.size()
-    << ")" << " --> "<< nn << "(" << nn->size()<<")" << std::endl;  
+  std::cout << "[split_] " << &n << "(" << n.size()
+  << ")" << " --> "<< nn << "(" << nn->size()<<")" << std::endl;  
   #endif
   
   return nn;
