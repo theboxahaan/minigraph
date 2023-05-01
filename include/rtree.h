@@ -26,6 +26,7 @@ class Rectangle{
   private:
     VertexArray vertices_;
     UDim area_;
+    
   public:
     Rectangle(const VertexArray &vertices) :
       vertices_{vertices} 
@@ -53,23 +54,36 @@ class Rectangle{
 };
 
 
+extern std::ofstream db_out;
+extern std::ifstream db_in;
+
 class Node {
   private:
     // FIXME leaf nodes have nullptrs 
+    size_t tid_;
+    size_t num_children_=0;
+
     std::vector<std::pair<Rectangle, Node*>> children_;
+    std::vector<std::pair<Rectangle, size_t>> children_d_;
+
     bool is_leaf_;
+    bool is_leaf_d_;
+
     Node *parent_ = nullptr;
+    size_t parent_d_=0;
+    
     size_t offset_;   // reverse ptr to the index in the children_ array
+    size_t offset_d_;
+
     friend class Rtree;
+    friend class PageMaker;
     // TODO think of a better solution
     // private constructor for now to prevent init on the stack.
     // nobody should need to initialise a node
-    Node(bool is_leaf=true, Node* parent=nullptr):is_leaf_{is_leaf}, parent_{parent}
-    {
-      #ifdef DEBUG
-      std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
-      #endif
-    }
+
+    Node(Node* parent, bool is_leaf=true);
+    size_t Node_d(size_t parent_d, bool is_leaf_d=true);
+
   public:
     void push_back(const std::pair<Rectangle, Node*> &e) 
     {
@@ -83,6 +97,7 @@ class Node {
     
     inline size_t size() const { return children_.size(); }
 
+  
     ~Node()
     {
       #ifdef DEBUG
@@ -94,7 +109,12 @@ class Node {
 };
 
 typedef std::pair<Rectangle, Node*> IdxEntry;
+typedef std::pair<Rectangle, size_t> IdxEntryD;
+
 typedef std::vector<IdxEntry> IdxEntryVector;
+typedef std::vector<IdxEntryD> IdxEntryVectorD;
+
+
 
 // implementing the RTree paper by Guttman A. 
 // Ref - http://www-db.deis.unibo.it/courses/SI-LS/papers/Gut84.pdf
@@ -103,6 +123,7 @@ typedef std::vector<IdxEntry> IdxEntryVector;
 class Rtree {
   private:
     IdxEntryVector root_;
+    IdxEntryVectorD root_d_;
 
   public:
     Rtree()
@@ -112,7 +133,8 @@ class Rtree {
       #endif
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
-      root_.emplace_back(IdxEntry{Rectangle(tmp), new Node()});
+      root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
+      
     }
 
     Node& search();
@@ -131,6 +153,7 @@ class Rtree {
     }
 
     void walk() const;
+    Node* read_from_offset(size_t p) const;
 
 };
 

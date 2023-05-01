@@ -12,6 +12,85 @@
 
 #include "include/rtree.h"
 
+std::ofstream db_out("base.db", std::ios_base::trunc);
+std::ifstream db_in("base.db");
+
+Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
+{
+  #ifdef DEBUG
+  std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
+  #endif
+  if(parent_) Node_d(parent_->tid_, is_leaf_);
+  else Node_d(0, is_leaf_);
+}
+
+size_t Node::Node_d(size_t parent_d, bool is_leaf)
+{
+  is_leaf_d_=is_leaf; 
+  parent_d_=parent_d;
+  tid_ = db_out.tellp();
+  #ifdef DEBUG2
+  std::cout << "[Create] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+  #endif
+  // write the node def to the heap file
+  // offset:size_t
+  // is_leaf: bool
+  // parent: size_t // ftell() value of the parent node can be 0 for root
+  // on a new line a csv for each dimension  of the rectangle
+  db_out << tid_ << std::endl;
+  db_out << is_leaf_d_ << std::endl;
+  db_out << parent_d_ << std::endl;
+  db_out << num_children_ << std::endl;
+  // FIXME variable number of children for now and only 2 dimensions
+  // non point in entering anything because the number of children in zero in any case
+
+  // for(auto &x: children_d_){
+  //   db_out << x.first[0].first << " " << x.first[0].second << " " 
+  //   << x.first[1].first << " " << x.first[1].second << " "
+  //   << x.second << std::endl;
+  // }
+
+  for(int i=0; i<R_RECORDS_MAX; i++)db_out << 0 << " " << 0 << " " << 0 << " " << 0 
+  << " " << 0 << std::endl;
+
+  db_out << "========" << std::endl;
+  db_out.flush();
+
+  return tid_;
+}
+
+
+
+Node* Rtree::read_from_offset(size_t p) const
+{
+  // allocates a new node on the heap
+  db_in.seekg(p);
+  size_t offset;
+  bool is_leaf;
+  size_t parent_offset;
+  size_t children_size;
+  std::array<std::pair<int, int>, 2> inp;
+
+  // parse the structure on file
+
+  db_in >> offset;
+
+  if(offset != p) return nullptr;
+
+  db_in >> is_leaf;
+  db_in >> parent_offset;
+  db_in >> children_size;
+  for(int i=0; i<children_size; i++){
+    db_in >> inp[0].first >> inp[0].second;
+    db_in >> inp[1].first >> inp[1].second;
+
+  }
+
+  std::cout << "offset: " << offset << ", is_leaf: " << is_leaf << std::endl;
+
+
+}
+
 UDim Rectangle::growth(const Rectangle &arg) const
 {
   UDim t_area = 1;
@@ -65,7 +144,7 @@ void Rtree::insert(const IdxEntry &e)
 
   if(new_node){
     // root was split so create a new node and add it as the parent of the child nodes
-    auto new_root = new Node(false, nullptr);
+    auto new_root = new Node(nullptr, false);
     new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
     new_root->push_back(IdxEntry(*root_.begin()));
     root_.begin()->second->parent_ = new_root;
@@ -120,11 +199,11 @@ Node* Rtree::adjust_tree(Node *n, Node *nn)
 
 Node* Rtree::linear_split(Node &n)
 {
-  // linear_pick_seeds: for each dimension - 
-  //  - find the lowest low, the highest high separation
-  //  - find the lowest high and the highest low and the corresponding rectangles
-  //  - normalise and store them
-  // for the max normalised separation, select the two rectangles.
+  //  linear_pick_seeds: for each dimension - 
+  //    - find the lowest low, the highest high separation
+  //    - find the lowest high and the highest low and the corresponding rectangles
+  //    - normalise and store them
+  //  for the max normalised separation, select the two rectangles.
   std::array<IdxEntryVector::iterator, R_DIM> ll, hl, lh, hh;
   std::fill(ll.begin(), ll.end(), n.children_.begin() + 1); 
   std::fill(lh.begin(), lh.end(), n.children_.begin() + 1);
@@ -157,7 +236,7 @@ Node* Rtree::linear_split(Node &n)
   }
   
   // FIXME offsets_ need to change for both node children
-  Node *nn = new Node(true, n.parent_); 
+  Node *nn = new Node(n.parent_, true);
   //remove this IdxEntry from the children_ table of arg node.
   nn->push_back(*hl[chosen_dim]);
   n.children_.erase(hl[chosen_dim]);

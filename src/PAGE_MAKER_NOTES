@@ -21,8 +21,22 @@ Index File Layout
   - Shall assume for simplicity a max size of attributes?
   - No overflow allowed, if a tuple doesn't fit, add it to the next page.
 
-   -------------------------------------------------------------------------
-  | header | line pointers --> | .....  free space  ..... | <-- heap tuples |
-   -------------------------------------------------------------------------
+   -----------------------------------------------------------------------------------
+  | header | line pointers --> | .....  free space  ..... | <-- heap tuples | indexes |
+   -----------------------------------------------------------------------------------
 
   - A tuple identifier or a TID is (block_id, line_ptr offset)
+
+
+Header Structure
+----------------
+
+   --------------------------------------------------------
+  | free_space_ptr_beg | free_space_ptr_end | index_offset |  
+   --------------------------------------------------------
+
+
+
+Interface for accessing Pages
+-----------------------------
+  - Common interface that can work with the existing implementation.
