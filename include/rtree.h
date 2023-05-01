@@ -134,11 +134,12 @@ class Rtree {
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
+      root_d_.emplace_back(IdxEntryD{Rectangle(tmp), 0});
       
     }
 
     Node& search();
-    IdxEntryVector::iterator choose_leaf(IdxEntryVector::iterator, const IdxEntry& );
+    Node& choose_leaf(Node &, const IdxEntry& );
     void insert(const IdxEntry& );
     Node* adjust_tree(Node*, Node*);
     void linear_pick_seeds();

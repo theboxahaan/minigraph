@@ -44,13 +44,7 @@ size_t Node::Node_d(size_t parent_d, bool is_leaf)
   // FIXME variable number of children for now and only 2 dimensions
   // non point in entering anything because the number of children in zero in any case
 
-  // for(auto &x: children_d_){
-  //   db_out << x.first[0].first << " " << x.first[0].second << " " 
-  //   << x.first[1].first << " " << x.first[1].second << " "
-  //   << x.second << std::endl;
-  // }
-
-  for(int i=0; i<R_RECORDS_MAX; i++)db_out << 0 << " " << 0 << " " << 0 << " " << 0 
+  for(int i=0; i<R_RECORDS_MAX; i++)db_out << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " " << static_cast<Dim>(0) 
   << " " << 0 << std::endl;
 
   db_out << "========" << std::endl;
@@ -126,12 +120,13 @@ Rectangle Node::compute_bounding_rectangle()
 
 void Rtree::insert(const IdxEntry &e)
 {
-  auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
+  // auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
+  Node &chosen_leaf = choose_leaf(*root_[0].second, e);
   #ifdef DEBUG
-  std::cout << "[insert] in leaf(size): " << chosen_leaf_iter->second 
-  << "(" << chosen_leaf_iter->second->size() << ")" << std::endl;
+  std::cout << "[insert] in leaf(size): " << &chosen_leaf
+  << "(" << chosen_leaf.size() << ")" << std::endl;
   #endif
-  Node &chosen_leaf = *chosen_leaf_iter->second;
+  // Node &chosen_leaf = *chosen_leaf_iter->second;
   chosen_leaf.push_back(e);
   Node *new_node = nullptr;
   if(chosen_leaf.size() > R_RECORDS_MAX){
@@ -160,9 +155,11 @@ void Rtree::insert(const IdxEntry &e)
   }
 }
 
-IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const IdxEntry &e)
+Node& Rtree::choose_leaf(Node &n, const IdxEntry &e)
 {
-  Node &cur_node = *n->second;
+  Node &cur_node = n;
+  // get n->second from file
+
   if(cur_node.is_leaf_) return n;
   auto next_idx = cur_node.children_.begin();
   UDim min_inc =  std::numeric_limits<UDim>::max();
@@ -175,7 +172,7 @@ IdxEntryVector::iterator Rtree::choose_leaf(IdxEntryVector::iterator n, const Id
         next_idx = next_idx->first.area() < it->first.area() ? next_idx:it;
     }
   }
-  return choose_leaf(next_idx, e);
+  return choose_leaf(*next_idx->second, e);
 }
 
 // add nn to n and then propagate split as required
