@@ -3179,7 +3179,7 @@ type: road
 neighbours: 163 164 165 
 ---next---
 tid: 318
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9161928, 40.4198167 
@@ -3189,7 +3189,7 @@ type: university
 neighbours: 
 ---next---
 tid: 319
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9160409, 40.4192381 
@@ -3199,7 +3199,7 @@ type: university
 neighbours: 
 ---next---
 tid: 320
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9215549, 40.4263298 
@@ -3209,7 +3209,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 321
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9209039, 40.4270504 
@@ -3219,7 +3219,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 322
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.9205502, 40.4265483 
@@ -3229,7 +3229,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 323
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9163514, 40.4337315 
@@ -3239,7 +3239,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 324
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9149266, 40.428271 
@@ -3249,7 +3249,7 @@ type: university
 neighbours: 
 ---next---
 tid: 325
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9132656, 40.4300359 
@@ -3259,7 +3259,7 @@ type: university
 neighbours: 
 ---next---
 tid: 326
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9171681, 40.4327668 
@@ -3269,7 +3269,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 327
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38016894
 source_coords: -86.9176153, 40.4319867 
@@ -3279,7 +3279,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 328
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9170563, 40.4327478 
@@ -3289,7 +3289,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 329
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9142532, 40.4282649 
@@ -3299,7 +3299,7 @@ type: university
 neighbours: 
 ---next---
 tid: 330
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38001228
 source_coords: -86.9190511, 40.432792 
@@ -3309,7 +3309,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 331
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38001228
 source_coords: -86.9180275, 40.4327856 
@@ -3319,7 +3319,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 332
-length: 2.14748e+09
+length: 0
 source: 38012192
 target: 6660569603
 source_coords: -86.9177589, 40.4271494 
@@ -3329,7 +3329,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 333
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9097804, 40.4223448 
@@ -3339,7 +3339,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 334
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9123741, 40.4267271 
@@ -3349,7 +3349,7 @@ type: university
 neighbours: 
 ---next---
 tid: 335
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9154122, 40.4308044 
@@ -3359,7 +3359,7 @@ type: university
 neighbours: 
 ---next---
 tid: 336
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 37997160
 source_coords: -86.9163837, 40.4298577 
@@ -3369,7 +3369,7 @@ type: school
 neighbours: 
 ---next---
 tid: 337
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9108673, 40.424915 
@@ -3379,7 +3379,7 @@ type: school
 neighbours: 
 ---next---
 tid: 338
-length: 2.14748e+09
+length: 0
 source: 38001849
 target: 5688563733
 source_coords: -86.9135057, 40.4254535 
@@ -3389,7 +3389,7 @@ type: university
 neighbours: 
 ---next---
 tid: 339
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9123886, 40.4261575 
@@ -3399,7 +3399,7 @@ type: university
 neighbours: 
 ---next---
 tid: 340
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 37997160
 source_coords: -86.9164044, 40.430602 
@@ -3409,7 +3409,7 @@ type: school
 neighbours: 
 ---next---
 tid: 341
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9109236, 40.4273769 
@@ -3419,7 +3419,7 @@ type: university
 neighbours: 
 ---next---
 tid: 342
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9152749, 40.4293709 
@@ -3429,7 +3429,7 @@ type: university
 neighbours: 
 ---next---
 tid: 343
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9126438, 40.4262141 
@@ -3439,7 +3439,7 @@ type: university
 neighbours: 
 ---next---
 tid: 344
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9107191, 40.4246043 
@@ -3449,7 +3449,7 @@ type: university
 neighbours: 
 ---next---
 tid: 345
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9149459, 40.429202 
@@ -3459,7 +3459,7 @@ type: university
 neighbours: 
 ---next---
 tid: 346
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9109148, 40.4263759 
@@ -3469,7 +3469,7 @@ type: university
 neighbours: 
 ---next---
 tid: 347
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9141462, 40.4300563 
@@ -3479,7 +3479,7 @@ type: university
 neighbours: 
 ---next---
 tid: 348
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9143657, 40.429707 
@@ -3489,7 +3489,7 @@ type: university
 neighbours: 
 ---next---
 tid: 349
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38013089
 source_coords: -86.9153506, 40.4255592 
@@ -3499,7 +3499,7 @@ type: university
 neighbours: 
 ---next---
 tid: 350
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9165447, 40.4270597 
@@ -3509,7 +3509,7 @@ type: university
 neighbours: 
 ---next---
 tid: 351
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9126892, 40.4276797 
@@ -3519,7 +3519,7 @@ type: university
 neighbours: 
 ---next---
 tid: 352
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9165741, 40.4276135 
@@ -3529,7 +3529,7 @@ type: university
 neighbours: 
 ---next---
 tid: 353
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38013089
 source_coords: -86.9162288, 40.4249296 
@@ -3539,7 +3539,7 @@ type: university
 neighbours: 
 ---next---
 tid: 354
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9150033, 40.4269337 
@@ -3549,7 +3549,7 @@ type: university
 neighbours: 
 ---next---
 tid: 355
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38013089
 source_coords: -86.9161547, 40.4252364 
@@ -3559,7 +3559,7 @@ type: university
 neighbours: 
 ---next---
 tid: 356
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38012192
 source_coords: -86.9158711, 40.4263725 
@@ -3569,7 +3569,7 @@ type: university
 neighbours: 
 ---next---
 tid: 357
-length: 2.14748e+09
+length: 0
 source: 38014492
 target: 5688563733
 source_coords: -86.9150629, 40.4249101 
@@ -3579,7 +3579,7 @@ type: university
 neighbours: 
 ---next---
 tid: 358
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9106323, 40.4233656 
@@ -3589,7 +3589,7 @@ type: university
 neighbours: 
 ---next---
 tid: 359
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9115367, 40.4223801 
@@ -3599,7 +3599,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 360
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 38001849
 source_coords: -86.9135293, 40.4228171 
@@ -3609,7 +3609,7 @@ type: university
 neighbours: 
 ---next---
 tid: 361
-length: 2.14748e+09
+length: 0
 source: 37968548
 target: 37968547
 source_coords: -86.9158046, 40.421856 
@@ -3619,7 +3619,7 @@ type: university
 neighbours: 
 ---next---
 tid: 362
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 37968552
 source_coords: -86.9150278, 40.4229121 
@@ -3629,7 +3629,7 @@ type: university
 neighbours: 
 ---next---
 tid: 363
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9129045, 40.4237921 
@@ -3639,7 +3639,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 364
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9101186, 40.4234942 
@@ -3649,7 +3649,7 @@ type: school
 neighbours: 
 ---next---
 tid: 365
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.92053, 40.4215544 
@@ -3659,7 +3659,7 @@ type: university
 neighbours: 
 ---next---
 tid: 366
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9190954, 40.4232342 
@@ -3669,7 +3669,7 @@ type: university
 neighbours: 
 ---next---
 tid: 367
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9207614, 40.4233205 
@@ -3679,7 +3679,7 @@ type: university
 neighbours: 
 ---next---
 tid: 368
-length: 2.14748e+09
+length: 0
 source: 38013089
 target: 38014497
 source_coords: -86.9164605, 40.423504 
@@ -3689,7 +3689,7 @@ type: university
 neighbours: 
 ---next---
 tid: 369
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9201685, 40.422945 
@@ -3699,7 +3699,7 @@ type: university
 neighbours: 
 ---next---
 tid: 370
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9211261, 40.423033 
@@ -3709,7 +3709,7 @@ type: university
 neighbours: 
 ---next---
 tid: 371
-length: 2.14748e+09
+length: 0
 source: 37968548
 target: 37968554
 source_coords: -86.9163952, 40.4231425 
@@ -3719,7 +3719,7 @@ type: university
 neighbours: 
 ---next---
 tid: 372
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 38001849
 source_coords: -86.9140485, 40.4231703 
@@ -3729,7 +3729,7 @@ type: university
 neighbours: 
 ---next---
 tid: 373
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 38001849
 source_coords: -86.9142589, 40.4230173 
@@ -3739,7 +3739,7 @@ type: school
 neighbours: 
 ---next---
 tid: 374
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9190166, 40.4236999 
@@ -3749,7 +3749,7 @@ type: university
 neighbours: 
 ---next---
 tid: 375
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9178923, 40.4227331 
@@ -3759,7 +3759,7 @@ type: university
 neighbours: 
 ---next---
 tid: 376
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9213857, 40.4233201 
@@ -3769,7 +3769,7 @@ type: university
 neighbours: 
 ---next---
 tid: 377
-length: 2.14748e+09
+length: 0
 source: 38001849
 target: 5688563733
 source_coords: -86.9136424, 40.4239487 
@@ -3779,7 +3779,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 378
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 37968552
 source_coords: -86.9153725, 40.42253 
@@ -3789,7 +3789,7 @@ type: university
 neighbours: 
 ---next---
 tid: 379
-length: 2.14748e+09
+length: 0
 source: 37968547
 target: 38001852
 source_coords: -86.9148101, 40.4215327 
@@ -3799,7 +3799,7 @@ type: university
 neighbours: 
 ---next---
 tid: 380
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9102647, 40.4244296 
@@ -3809,7 +3809,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 381
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9209691, 40.4224457 
@@ -3819,7 +3819,7 @@ type: university
 neighbours: 
 ---next---
 tid: 382
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9112521, 40.4234736 
@@ -3829,7 +3829,7 @@ type: university
 neighbours: 
 ---next---
 tid: 383
-length: 2.14748e+09
+length: 0
 source: 37968547
 target: 38001852
 source_coords: -86.9145964, 40.4213062 
@@ -3839,7 +3839,7 @@ type: university
 neighbours: 
 ---next---
 tid: 384
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9095612, 40.4241021 
@@ -3849,7 +3849,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 385
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9105223, 40.4216454 
@@ -3859,7 +3859,7 @@ type: school
 neighbours: 
 ---next---
 tid: 386
-length: 2.14748e+09
+length: 0
 source: 37968548
 target: 37968547
 source_coords: -86.9169552, 40.421955 
@@ -3869,7 +3869,7 @@ type: university
 neighbours: 
 ---next---
 tid: 387
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9268482, 40.4268661 
@@ -3879,7 +3879,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 388
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.925467, 40.426144 
@@ -3889,7 +3889,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 389
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9211183, 40.4259481 
@@ -3899,7 +3899,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 390
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.923808, 40.4267579 
@@ -3909,7 +3909,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 391
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9229455, 40.4284412 
@@ -3919,7 +3919,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 392
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9208353, 40.426995 
@@ -3929,7 +3929,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 393
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.917225, 40.4361697 
@@ -3939,7 +3939,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 394
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.916477, 40.432607 
@@ -3949,7 +3949,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 395
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9169623, 40.4343857 
@@ -3959,7 +3959,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 396
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9228583, 40.4292884 
@@ -3969,7 +3969,7 @@ type: university
 neighbours: 
 ---next---
 tid: 397
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9254733, 40.4271182 
@@ -3979,7 +3979,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 398
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9127917, 40.4297041 
@@ -3989,7 +3989,7 @@ type: university
 neighbours: 
 ---next---
 tid: 399
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9125317, 40.4288006 
@@ -3999,7 +3999,7 @@ type: university
 neighbours: 
 ---next---
 tid: 400
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9133246, 40.4282994 
@@ -4009,7 +4009,7 @@ type: university
 neighbours: 
 ---next---
 tid: 401
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9128418, 40.4246182 
@@ -4019,7 +4019,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 402
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38013089
 source_coords: -86.9153046, 40.4254638 
@@ -4029,7 +4029,7 @@ type: university
 neighbours: 
 ---next---
 tid: 403
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9094112, 40.4255968 
@@ -4039,7 +4039,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 404
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9234831, 40.4271825 
@@ -4049,7 +4049,7 @@ type: university
 neighbours: 
 ---next---
 tid: 405
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38033647
 source_coords: -86.9197077, 40.427649 
@@ -4059,7 +4059,7 @@ type: university
 neighbours: 
 ---next---
 tid: 406
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9241246, 40.4278032 
@@ -4069,7 +4069,7 @@ type: university
 neighbours: 
 ---next---
 tid: 407
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9235871, 40.423184 
@@ -4079,7 +4079,7 @@ type: university
 neighbours: 
 ---next---
 tid: 408
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 2871626207
 source_coords: -86.9252544, 40.4230409 
@@ -4089,7 +4089,7 @@ type: university
 neighbours: 
 ---next---
 tid: 409
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38033643
 source_coords: -86.9171572, 40.428163 
@@ -4099,7 +4099,7 @@ type: university
 neighbours: 
 ---next---
 tid: 410
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9228933, 40.4232506 
@@ -4109,7 +4109,7 @@ type: university
 neighbours: 
 ---next---
 tid: 411
-length: 2.14748e+09
+length: 0
 source: 38013089
 target: 38014497
 source_coords: -86.9168017, 40.4242866 
@@ -4119,7 +4119,7 @@ type: university
 neighbours: 
 ---next---
 tid: 412
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38013089
 source_coords: -86.9172362, 40.4252796 
@@ -4129,7 +4129,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 413
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9229853, 40.4239498 
@@ -4139,7 +4139,7 @@ type: university
 neighbours: 
 ---next---
 tid: 414
-length: 2.14748e+09
+length: 0
 source: 38012190
 target: 38012192
 source_coords: -86.917206, 40.4259314 
@@ -4149,7 +4149,7 @@ type: university
 neighbours: 
 ---next---
 tid: 415
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9224429, 40.4225692 
@@ -4159,7 +4159,7 @@ type: university
 neighbours: 
 ---next---
 tid: 416
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.919437, 40.4227784 
@@ -4169,7 +4169,7 @@ type: university
 neighbours: 
 ---next---
 tid: 417
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38033647
 source_coords: -86.9203288, 40.4286835 
@@ -4179,7 +4179,7 @@ type: university
 neighbours: 
 ---next---
 tid: 418
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9187785, 40.4305585 
@@ -4189,7 +4189,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 419
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9165968, 40.4336015 
@@ -4199,7 +4199,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 420
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 3059938751
 source_coords: -86.9272436, 40.432126 
@@ -4209,7 +4209,7 @@ type: house
 neighbours: 
 ---next---
 tid: 421
-length: 2.14748e+09
+length: 0
 source: 38042233
 target: 38042235
 source_coords: -86.9238625, 40.4347477 
@@ -4219,7 +4219,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 422
-length: 2.14748e+09
+length: 0
 source: 38008442
 target: 38014541
 source_coords: -86.9295809, 40.4256515 
@@ -4229,7 +4229,7 @@ type: commercial
 neighbours: 
 ---next---
 tid: 423
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9266804, 40.4405958 
@@ -4239,7 +4239,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 424
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9272814, 40.4401775 
@@ -4249,7 +4249,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 425
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9271707, 40.4394492 
@@ -4259,7 +4259,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 426
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9269423, 40.4395844 
@@ -4269,7 +4269,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 427
-length: 2.14748e+09
+length: 0
 source: 38008430
 target: 8518175812
 source_coords: -86.9387479, 40.436854 
@@ -4279,7 +4279,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 428
-length: 2.14748e+09
+length: 0
 source: 37970918
 target: 38014514
 source_coords: -86.9214089, 40.4213952 
@@ -4289,7 +4289,7 @@ type: university
 neighbours: 
 ---next---
 tid: 429
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 2871626207
 source_coords: -86.922854, 40.4213771 
@@ -4299,7 +4299,7 @@ type: university
 neighbours: 
 ---next---
 tid: 430
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 2871626207
 source_coords: -86.923804, 40.420528 
@@ -4309,7 +4309,7 @@ type: university
 neighbours: 
 ---next---
 tid: 431
-length: 2.14748e+09
+length: 0
 source: 7811729441
 target: 7811729442
 source_coords: -86.9274791, 40.4229294 
@@ -4319,7 +4319,7 @@ type: university
 neighbours: 
 ---next---
 tid: 432
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9253513, 40.4252161 
@@ -4329,7 +4329,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 433
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9249161, 40.4251246 
@@ -4339,7 +4339,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 434
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9240147, 40.4251475 
@@ -4349,7 +4349,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 435
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.922583, 40.4248906 
@@ -4359,7 +4359,7 @@ type: university
 neighbours: 
 ---next---
 tid: 436
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9224324, 40.4251553 
@@ -4369,7 +4369,7 @@ type: university
 neighbours: 
 ---next---
 tid: 437
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9245201, 40.4288444 
@@ -4379,7 +4379,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 438
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38044476
 source_coords: -86.9198403, 40.4325214 
@@ -4389,7 +4389,7 @@ type: university
 neighbours: 
 ---next---
 tid: 439
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9256513, 40.4294318 
@@ -4399,7 +4399,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 440
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38029391
 source_coords: -86.9225255, 40.4320484 
@@ -4409,7 +4409,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 441
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9118503, 40.4301226 
@@ -4419,7 +4419,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 442
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 38008442
 source_coords: -86.9300827, 40.4255376 
@@ -4429,7 +4429,7 @@ type: commercial
 neighbours: 
 ---next---
 tid: 443
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 38008442
 source_coords: -86.9300905, 40.4249346 
@@ -4439,7 +4439,7 @@ type: commercial
 neighbours: 
 ---next---
 tid: 444
-length: 2.14748e+09
+length: 0
 source: 38008439
 target: 38020619
 source_coords: -86.9296031, 40.4262016 
@@ -4449,7 +4449,7 @@ type: commercial
 neighbours: 
 ---next---
 tid: 445
-length: 2.14748e+09
+length: 0
 source: 37968547
 target: 38001852
 source_coords: -86.9135815, 40.4217753 
@@ -4459,7 +4459,7 @@ type: university
 neighbours: 
 ---next---
 tid: 446
-length: 2.14748e+09
+length: 0
 source: 37968547
 target: 38001852
 source_coords: -86.9135884, 40.4213904 
@@ -4469,7 +4469,7 @@ type: university
 neighbours: 
 ---next---
 tid: 447
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9125834, 40.42099 
@@ -4479,7 +4479,7 @@ type: university
 neighbours: 
 ---next---
 tid: 448
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9126974, 40.4217577 
@@ -4489,7 +4489,7 @@ type: university
 neighbours: 
 ---next---
 tid: 449
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9127258, 40.4214421 
@@ -4499,7 +4499,7 @@ type: university
 neighbours: 
 ---next---
 tid: 450
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9120258, 40.4214425 
@@ -4509,7 +4509,7 @@ type: university
 neighbours: 
 ---next---
 tid: 451
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9158409, 40.4202067 
@@ -4519,7 +4519,7 @@ type: university
 neighbours: 
 ---next---
 tid: 452
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9161367, 40.4190281 
@@ -4529,7 +4529,7 @@ type: university
 neighbours: 
 ---next---
 tid: 453
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.915704, 40.4188182 
@@ -4539,7 +4539,7 @@ type: university
 neighbours: 
 ---next---
 tid: 454
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.9146197, 40.4187936 
@@ -4549,7 +4549,7 @@ type: university
 neighbours: 
 ---next---
 tid: 455
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9161895, 40.4184794 
@@ -4559,7 +4559,7 @@ type: university
 neighbours: 
 ---next---
 tid: 456
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9153577, 40.4180921 
@@ -4569,7 +4569,7 @@ type: university
 neighbours: 
 ---next---
 tid: 457
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.9144338, 40.4176699 
@@ -4579,7 +4579,7 @@ type: university
 neighbours: 
 ---next---
 tid: 458
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.914427, 40.4187906 
@@ -4589,7 +4589,7 @@ type: university
 neighbours: 
 ---next---
 tid: 459
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 6621267309
 source_coords: -86.9125734, 40.4180322 
@@ -4599,7 +4599,7 @@ type: university
 neighbours: 
 ---next---
 tid: 460
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.9135727, 40.4173055 
@@ -4609,7 +4609,7 @@ type: university
 neighbours: 
 ---next---
 tid: 461
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9145242, 40.4143437 
@@ -4619,7 +4619,7 @@ type: university
 neighbours: 
 ---next---
 tid: 462
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9136336, 40.4143137 
@@ -4629,7 +4629,7 @@ type: university
 neighbours: 
 ---next---
 tid: 463
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9144612, 40.4139797 
@@ -4639,7 +4639,7 @@ type: school
 neighbours: 
 ---next---
 tid: 464
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 6621267309
 source_coords: -86.911355, 40.4160037 
@@ -4649,7 +4649,7 @@ type: university
 neighbours: 
 ---next---
 tid: 465
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 6621267309
 source_coords: -86.9111717, 40.415572 
@@ -4659,7 +4659,7 @@ type: school
 neighbours: 
 ---next---
 tid: 466
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9116997, 40.4157375 
@@ -4669,7 +4669,7 @@ type: university
 neighbours: 
 ---next---
 tid: 467
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9116615, 40.4154092 
@@ -4679,7 +4679,7 @@ type: university
 neighbours: 
 ---next---
 tid: 468
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.913079, 40.4174044 
@@ -4689,7 +4689,7 @@ type: university
 neighbours: 
 ---next---
 tid: 469
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 6621267309
 source_coords: -86.9118104, 40.4172446 
@@ -4699,7 +4699,7 @@ type: university
 neighbours: 
 ---next---
 tid: 470
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9110575, 40.4195367 
@@ -4709,7 +4709,7 @@ type: school
 neighbours: 
 ---next---
 tid: 471
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.910591, 40.4196982 
@@ -4719,7 +4719,7 @@ type: school
 neighbours: 
 ---next---
 tid: 472
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9120252, 40.4201633 
@@ -4729,7 +4729,7 @@ type: university
 neighbours: 
 ---next---
 tid: 473
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9118319, 40.4200974 
@@ -4739,7 +4739,7 @@ type: university
 neighbours: 
 ---next---
 tid: 474
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9114456, 40.4201652 
@@ -4749,7 +4749,7 @@ type: university
 neighbours: 
 ---next---
 tid: 475
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9110441, 40.4201597 
@@ -4759,7 +4759,7 @@ type: school
 neighbours: 
 ---next---
 tid: 476
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9106699, 40.4201612 
@@ -4769,7 +4769,7 @@ type: school
 neighbours: 
 ---next---
 tid: 477
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9275384, 40.4185563 
@@ -4779,7 +4779,7 @@ type: school
 neighbours: 
 ---next---
 tid: 478
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9261812, 40.4188197 
@@ -4789,7 +4789,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 479
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9254254, 40.4188142 
@@ -4799,7 +4799,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 480
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9273141, 40.4199011 
@@ -4809,7 +4809,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 481
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.926105, 40.4200913 
@@ -4819,7 +4819,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 482
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.9261548, 40.4203882 
@@ -4829,7 +4829,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 483
-length: 2.14748e+09
+length: 0
 source: 38033093
 target: 38040124
 source_coords: -86.9270344, 40.4204749 
@@ -4839,7 +4839,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 484
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.9260914, 40.4207787 
@@ -4849,7 +4849,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 485
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.9257076, 40.4206574 
@@ -4859,7 +4859,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 486
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 38033085
 source_coords: -86.925133, 40.4206667 
@@ -4869,7 +4869,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 487
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9120221, 40.4206837 
@@ -4879,7 +4879,7 @@ type: university
 neighbours: 
 ---next---
 tid: 488
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9116127, 40.4206312 
@@ -4889,7 +4889,7 @@ type: university
 neighbours: 
 ---next---
 tid: 489
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9112087, 40.4206137 
@@ -4899,7 +4899,7 @@ type: school
 neighbours: 
 ---next---
 tid: 490
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.912043, 40.423871 
@@ -4909,7 +4909,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 491
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9189065, 40.4255675 
@@ -4919,7 +4919,7 @@ type: university
 neighbours: 
 ---next---
 tid: 492
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.9188803, 40.4260792 
@@ -4929,7 +4929,7 @@ type: university
 neighbours: 
 ---next---
 tid: 493
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38012192
 source_coords: -86.9182999, 40.4261114 
@@ -4939,7 +4939,7 @@ type: university
 neighbours: 
 ---next---
 tid: 494
-length: 2.14748e+09
+length: 0
 source: 38012192
 target: 6660569603
 source_coords: -86.918427, 40.4270266 
@@ -4949,7 +4949,7 @@ type: university
 neighbours: 
 ---next---
 tid: 495
-length: 2.14748e+09
+length: 0
 source: 38012192
 target: 6660569603
 source_coords: -86.9184383, 40.4268804 
@@ -4959,7 +4959,7 @@ type: university
 neighbours: 
 ---next---
 tid: 496
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38012192
 source_coords: -86.9184466, 40.4265766 
@@ -4969,7 +4969,7 @@ type: university
 neighbours: 
 ---next---
 tid: 497
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37998873
 source_coords: -86.9189235, 40.4312119 
@@ -4979,7 +4979,7 @@ type: school
 neighbours: 
 ---next---
 tid: 498
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38016894
 source_coords: -86.9184859, 40.4312267 
@@ -4989,7 +4989,7 @@ type: school
 neighbours: 
 ---next---
 tid: 499
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9140651, 40.4273144 
@@ -4999,7 +4999,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 500
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 38016885
 source_coords: -86.9176774, 40.4249304 
@@ -5009,7 +5009,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 501
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9177105, 40.4244991 
@@ -5019,7 +5019,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 502
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9188936, 40.4247124 
@@ -5029,7 +5029,7 @@ type: university
 neighbours: 
 ---next---
 tid: 503
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 38016885
 source_coords: -86.9185043, 40.4249669 
@@ -5039,7 +5039,7 @@ type: university
 neighbours: 
 ---next---
 tid: 504
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38001228
 source_coords: -86.9190889, 40.4334844 
@@ -5049,7 +5049,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 505
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9196267, 40.4302172 
@@ -5059,7 +5059,7 @@ type: school
 neighbours: 
 ---next---
 tid: 506
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9196315, 40.4300665 
@@ -5069,7 +5069,7 @@ type: school
 neighbours: 
 ---next---
 tid: 507
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37998872
 source_coords: -86.9196434, 40.4297365 
@@ -5079,7 +5079,7 @@ type: school
 neighbours: 
 ---next---
 tid: 508
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37998872
 source_coords: -86.9197085, 40.4291943 
@@ -5089,7 +5089,7 @@ type: school
 neighbours: 
 ---next---
 tid: 509
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38033647
 source_coords: -86.9188372, 40.4281424 
@@ -5099,7 +5099,7 @@ type: university
 neighbours: 
 ---next---
 tid: 510
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 38033643
 source_coords: -86.9184583, 40.4281505 
@@ -5109,7 +5109,7 @@ type: university
 neighbours: 
 ---next---
 tid: 511
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 9943184833
 source_coords: -86.9184451, 40.4276624 
@@ -5119,7 +5119,7 @@ type: university
 neighbours: 
 ---next---
 tid: 512
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37998872
 source_coords: -86.9189578, 40.4290736 
@@ -5129,7 +5129,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 513
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9184342, 40.4288344 
@@ -5139,7 +5139,7 @@ type: school
 neighbours: 
 ---next---
 tid: 514
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 38033643
 source_coords: -86.9176635, 40.4286275 
@@ -5149,7 +5149,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 515
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9183773, 40.4296285 
@@ -5159,7 +5159,7 @@ type: school
 neighbours: 
 ---next---
 tid: 516
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9172086, 40.4296889 
@@ -5169,7 +5169,7 @@ type: school
 neighbours: 
 ---next---
 tid: 517
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9172356, 40.4294827 
@@ -5179,7 +5179,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 518
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38016894
 source_coords: -86.9175984, 40.4311525 
@@ -5189,7 +5189,7 @@ type: school
 neighbours: 
 ---next---
 tid: 519
-length: 2.14748e+09
+length: 0
 source: 37997161
 target: 37997160
 source_coords: -86.9176466, 40.4307366 
@@ -5199,7 +5199,7 @@ type: school
 neighbours: 
 ---next---
 tid: 520
-length: 2.14748e+09
+length: 0
 source: 37997160
 target: 38003797
 source_coords: -86.9170712, 40.4312229 
@@ -5209,7 +5209,7 @@ type: school
 neighbours: 
 ---next---
 tid: 521
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 37997160
 source_coords: -86.9171874, 40.4306814 
@@ -5219,7 +5219,7 @@ type: school
 neighbours: 
 ---next---
 tid: 522
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 37997160
 source_coords: -86.917209, 40.4301117 
@@ -5229,7 +5229,7 @@ type: school
 neighbours: 
 ---next---
 tid: 523
-length: 2.14748e+09
+length: 0
 source: 38014725
 target: 3059938751
 source_coords: -86.9264559, 40.4318624 
@@ -5239,7 +5239,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 524
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9271312, 40.432807 
@@ -5249,7 +5249,7 @@ type: school
 neighbours: 
 ---next---
 tid: 525
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.926652, 40.4337016 
@@ -5259,7 +5259,7 @@ type: school
 neighbours: 
 ---next---
 tid: 526
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9260614, 40.4338825 
@@ -5269,7 +5269,7 @@ type: school
 neighbours: 
 ---next---
 tid: 527
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9256251, 40.4329997 
@@ -5279,7 +5279,7 @@ type: school
 neighbours: 
 ---next---
 tid: 528
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9269043, 40.4344404 
@@ -5289,7 +5289,7 @@ type: school
 neighbours: 
 ---next---
 tid: 529
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9250295, 40.4342489 
@@ -5299,7 +5299,7 @@ type: school
 neighbours: 
 ---next---
 tid: 530
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9240995, 40.4337189 
@@ -5309,7 +5309,7 @@ type: school
 neighbours: 
 ---next---
 tid: 531
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9252791, 40.4343883 
@@ -5319,7 +5319,7 @@ type: school
 neighbours: 
 ---next---
 tid: 532
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9246194, 40.43468 
@@ -5329,7 +5329,7 @@ type: school
 neighbours: 
 ---next---
 tid: 533
-length: 2.14748e+09
+length: 0
 source: 38042233
 target: 38042235
 source_coords: -86.9238816, 40.4341347 
@@ -5339,7 +5339,7 @@ type: school
 neighbours: 
 ---next---
 tid: 534
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9263175, 40.4348951 
@@ -5349,7 +5349,7 @@ type: school
 neighbours: 
 ---next---
 tid: 535
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9257996, 40.4352633 
@@ -5359,7 +5359,7 @@ type: school
 neighbours: 
 ---next---
 tid: 536
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9250943, 40.4360696 
@@ -5369,7 +5369,7 @@ type: school
 neighbours: 
 ---next---
 tid: 537
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9256548, 40.4356989 
@@ -5379,7 +5379,7 @@ type: school
 neighbours: 
 ---next---
 tid: 538
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9241793, 40.43548 
@@ -5389,7 +5389,7 @@ type: school
 neighbours: 
 ---next---
 tid: 539
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9245717, 40.4349981 
@@ -5399,7 +5399,7 @@ type: school
 neighbours: 
 ---next---
 tid: 540
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 8537043819
 source_coords: -86.9235249, 40.4353988 
@@ -5409,7 +5409,7 @@ type: school
 neighbours: 
 ---next---
 tid: 541
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 8537043819
 source_coords: -86.9223267, 40.4345599 
@@ -5419,7 +5419,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 542
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 8537043819
 source_coords: -86.9220079, 40.4350281 
@@ -5429,7 +5429,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 543
-length: 2.14748e+09
+length: 0
 source: 38042233
 target: 38042235
 source_coords: -86.9228707, 40.4339261 
@@ -5439,7 +5439,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 544
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 38050143
 source_coords: -86.922019, 40.4342714 
@@ -5449,7 +5449,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 545
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 38050143
 source_coords: -86.9216631, 40.4342164 
@@ -5459,7 +5459,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 546
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 38042242
 source_coords: -86.9220145, 40.4337871 
@@ -5469,7 +5469,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 547
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 38042242
 source_coords: -86.9216819, 40.4336939 
@@ -5479,7 +5479,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 548
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 38042242
 source_coords: -86.9214329, 40.4339643 
@@ -5489,7 +5489,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 549
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9212323, 40.4342832 
@@ -5499,7 +5499,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 550
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9211546, 40.4353361 
@@ -5509,7 +5509,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 551
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.921066, 40.4349687 
@@ -5519,7 +5519,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 552
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9206734, 40.4351972 
@@ -5529,7 +5529,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 553
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 38050143
 source_coords: -86.9212643, 40.4345288 
@@ -5539,7 +5539,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 554
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9206013, 40.435599 
@@ -5549,7 +5549,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 555
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9209243, 40.4357841 
@@ -5559,7 +5559,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 556
-length: 2.14748e+09
+length: 0
 source: 852354791
 target: 3059946653
 source_coords: -86.9208795, 40.436207 
@@ -5569,7 +5569,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 557
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9203501, 40.435638 
@@ -5579,7 +5579,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 558
-length: 2.14748e+09
+length: 0
 source: 852354791
 target: 3059946653
 source_coords: -86.9203282, 40.4359392 
@@ -5589,7 +5589,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 559
-length: 2.14748e+09
+length: 0
 source: 852354791
 target: 3059946653
 source_coords: -86.9205412, 40.4363387 
@@ -5599,7 +5599,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 560
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9206609, 40.4347589 
@@ -5609,7 +5609,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 561
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9201427, 40.4353332 
@@ -5619,7 +5619,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 562
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9201365, 40.4349668 
@@ -5629,7 +5629,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 563
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9201564, 40.4346208 
@@ -5639,7 +5639,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 564
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9209445, 40.4340308 
@@ -5649,7 +5649,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 565
-length: 2.14748e+09
+length: 0
 source: 38044476
 target: 38050140
 source_coords: -86.9206864, 40.433723 
@@ -5659,7 +5659,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 566
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9206495, 40.4344359 
@@ -5669,7 +5669,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 567
-length: 2.14748e+09
+length: 0
 source: 38050130
 target: 852354791
 source_coords: -86.9201375, 40.4342944 
@@ -5679,7 +5679,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 568
-length: 2.14748e+09
+length: 0
 source: 38044476
 target: 38050140
 source_coords: -86.9198825, 40.4340712 
@@ -5689,7 +5689,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 569
-length: 2.14748e+09
+length: 0
 source: 38044476
 target: 38050140
 source_coords: -86.9203741, 40.4334534 
@@ -5699,7 +5699,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 570
-length: 2.14748e+09
+length: 0
 source: 38044476
 target: 38050140
 source_coords: -86.920011, 40.4336151 
@@ -5709,7 +5709,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 571
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38042233
 source_coords: -86.9228652, 40.4335122 
@@ -5719,7 +5719,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 572
-length: 2.14748e+09
+length: 0
 source: 38042235
 target: 38042242
 source_coords: -86.9221559, 40.433401 
@@ -5729,7 +5729,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 573
-length: 2.14748e+09
+length: 0
 source: 38014725
 target: 3059938751
 source_coords: -86.9261332, 40.4305057 
@@ -5739,7 +5739,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 574
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9255061, 40.4276338 
@@ -5749,7 +5749,7 @@ type: university
 neighbours: 
 ---next---
 tid: 575
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9429136, 40.4162419 
@@ -5759,7 +5759,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 576
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.941133, 40.4157383 
@@ -5769,7 +5769,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 577
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9416295, 40.416339 
@@ -5779,7 +5779,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 578
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9407681, 40.4158842 
@@ -5789,7 +5789,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 579
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9417358, 40.4167716 
@@ -5799,7 +5799,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 580
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9415442, 40.4166317 
@@ -5809,7 +5809,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 581
-length: 2.14748e+09
+length: 0
 source: 8645903504
 target: 10083005009
 source_coords: -86.9396602, 40.4148776 
@@ -5819,7 +5819,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 582
-length: 2.14748e+09
+length: 0
 source: 8645903504
 target: 10083005009
 source_coords: -86.9392863, 40.4149299 
@@ -5829,7 +5829,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 583
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.9389108, 40.4177255 
@@ -5839,7 +5839,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 584
-length: 2.14748e+09
+length: 0
 source: 8645903504
 target: 10083005009
 source_coords: -86.9387813, 40.4173879 
@@ -5849,7 +5849,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 585
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38012192
 source_coords: -86.9176313, 40.4257814 
@@ -5859,7 +5859,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 586
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 38016885
 source_coords: -86.918378, 40.425532 
@@ -5869,7 +5869,7 @@ type: university
 neighbours: 
 ---next---
 tid: 587
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38012192
 source_coords: -86.9183024, 40.4258425 
@@ -5879,7 +5879,7 @@ type: university
 neighbours: 
 ---next---
 tid: 588
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9196175, 40.4251179 
@@ -5889,7 +5889,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 589
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9189184, 40.4249838 
@@ -5899,7 +5899,7 @@ type: university
 neighbours: 
 ---next---
 tid: 590
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9189433, 40.4251148 
@@ -5909,7 +5909,7 @@ type: university
 neighbours: 
 ---next---
 tid: 591
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9196721, 40.4244778 
@@ -5919,7 +5919,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 592
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9108919, 40.4288217 
@@ -5929,7 +5929,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 593
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9110618, 40.4290693 
@@ -5939,7 +5939,7 @@ type: church
 neighbours: 
 ---next---
 tid: 594
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9107302, 40.4290123 
@@ -5949,7 +5949,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 595
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.910748, 40.4291957 
@@ -5959,7 +5959,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 596
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9128049, 40.4309096 
@@ -5969,7 +5969,7 @@ type: university
 neighbours: 
 ---next---
 tid: 597
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9182946, 40.4291786 
@@ -5979,7 +5979,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 598
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9183228, 40.4290496 
@@ -5989,7 +5989,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 599
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9177303, 40.4291753 
@@ -5999,7 +5999,7 @@ type: university
 neighbours: 
 ---next---
 tid: 600
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9170442, 40.4291568 
@@ -6009,7 +6009,7 @@ type: university
 neighbours: 
 ---next---
 tid: 601
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9177192, 40.4290503 
@@ -6019,7 +6019,7 @@ type: university
 neighbours: 
 ---next---
 tid: 602
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9176975, 40.4296132 
@@ -6029,7 +6029,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 603
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9174968, 40.429609 
@@ -6039,7 +6039,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 604
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.918913, 40.4267351 
@@ -6049,7 +6049,7 @@ type: university
 neighbours: 
 ---next---
 tid: 605
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.9189538, 40.4265876 
@@ -6059,7 +6059,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 606
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 9943184833
 source_coords: -86.9176948, 40.4275075 
@@ -6069,7 +6069,7 @@ type: house
 neighbours: 
 ---next---
 tid: 607
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 38033643
 source_coords: -86.9177273, 40.4278951 
@@ -6079,7 +6079,7 @@ type: university
 neighbours: 
 ---next---
 tid: 608
-length: 2.14748e+09
+length: 0
 source: 38016888
 target: 38033643
 source_coords: -86.917724, 40.4280883 
@@ -6089,7 +6089,7 @@ type: house
 neighbours: 
 ---next---
 tid: 609
-length: 2.14748e+09
+length: 0
 source: 37968551
 target: 37968552
 source_coords: -86.9148736, 40.4230315 
@@ -6099,7 +6099,7 @@ type: university
 neighbours: 
 ---next---
 tid: 610
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9135705, 40.4209274 
@@ -6109,7 +6109,7 @@ type: university
 neighbours: 
 ---next---
 tid: 611
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9135724, 40.4208065 
@@ -6119,7 +6119,7 @@ type: university
 neighbours: 
 ---next---
 tid: 612
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9135906, 40.4206852 
@@ -6129,7 +6129,7 @@ type: university
 neighbours: 
 ---next---
 tid: 613
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9136033, 40.4205603 
@@ -6139,7 +6139,7 @@ type: university
 neighbours: 
 ---next---
 tid: 614
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9131723, 40.4206281 
@@ -6149,7 +6149,7 @@ type: university
 neighbours: 
 ---next---
 tid: 615
-length: 2.14748e+09
+length: 0
 source: 38001852
 target: 5030755874
 source_coords: -86.9135663, 40.4211593 
@@ -6159,7 +6159,7 @@ type: university
 neighbours: 
 ---next---
 tid: 616
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9094674, 40.4223283 
@@ -6169,7 +6169,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 617
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.915309, 40.4265105 
@@ -6179,7 +6179,7 @@ type: university
 neighbours: 
 ---next---
 tid: 618
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9152881, 40.4267406 
@@ -6189,7 +6189,7 @@ type: university
 neighbours: 
 ---next---
 tid: 619
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9216621, 40.4275221 
@@ -6199,7 +6199,7 @@ type: university
 neighbours: 
 ---next---
 tid: 620
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9206554, 40.4276545 
@@ -6209,7 +6209,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 621
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9303156, 40.4420453 
@@ -6219,7 +6219,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 622
-length: 2.14748e+09
+length: 0
 source: 38008430
 target: 8518175812
 source_coords: -86.9393257, 40.438127 
@@ -6229,7 +6229,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 623
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.920113, 40.4269771 
@@ -6239,7 +6239,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 624
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9135779, 40.4277872 
@@ -6249,7 +6249,7 @@ type: university
 neighbours: 
 ---next---
 tid: 625
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.9196301, 40.4261419 
@@ -6259,7 +6259,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 626
-length: 2.14748e+09
+length: 0
 source: 5030755870
 target: 5030761074
 source_coords: -86.9178554, 40.4214304 
@@ -6269,7 +6269,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 627
-length: 2.14748e+09
+length: 0
 source: 5030755870
 target: 5030761074
 source_coords: -86.9177164, 40.4219712 
@@ -6279,7 +6279,7 @@ type: university
 neighbours: 
 ---next---
 tid: 628
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.9241317, 40.4383694 
@@ -6289,7 +6289,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 629
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9201615, 40.4225055 
@@ -6299,7 +6299,7 @@ type: university
 neighbours: 
 ---next---
 tid: 630
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.9187678, 40.4233669 
@@ -6309,7 +6309,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 631
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 38014500
 source_coords: -86.918776, 40.423084 
@@ -6319,7 +6319,7 @@ type: greenhouse
 neighbours: 
 ---next---
 tid: 632
-length: 2.14748e+09
+length: 0
 source: 10083004942
 target: 10083004948
 source_coords: -86.940609, 40.4237811 
@@ -6329,7 +6329,7 @@ type: industrial
 neighbours: 
 ---next---
 tid: 633
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38033647
 source_coords: -86.9189879, 40.4276734 
@@ -6339,7 +6339,7 @@ type: university
 neighbours: 
 ---next---
 tid: 634
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 2871626207
 source_coords: -86.9238114, 40.4211137 
@@ -6349,7 +6349,7 @@ type: university
 neighbours: 
 ---next---
 tid: 635
-length: 2.14748e+09
+length: 0
 source: 38014525
 target: 7811729441
 source_coords: -86.9272675, 40.4241365 
@@ -6359,7 +6359,7 @@ type: university
 neighbours: 
 ---next---
 tid: 636
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.924019, 40.42568 
@@ -6369,7 +6369,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 637
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.910633, 40.4272672 
@@ -6379,7 +6379,7 @@ type: university
 neighbours: 
 ---next---
 tid: 638
-length: 2.14748e+09
+length: 0
 source: 3589787544
 target: 5889478643
 source_coords: -86.9177822, 40.4105874 
@@ -6389,7 +6389,7 @@ type: university
 neighbours: 
 ---next---
 tid: 639
-length: 2.14748e+09
+length: 0
 source: 3589787544
 target: 5889478643
 source_coords: -86.9161056, 40.4110666 
@@ -6399,7 +6399,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 640
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9185431, 40.4119893 
@@ -6409,7 +6409,7 @@ type: shed
 neighbours: 
 ---next---
 tid: 641
-length: 2.14748e+09
+length: 0
 source: 3589787544
 target: 5889478643
 source_coords: -86.9178638, 40.4120045 
@@ -6419,7 +6419,7 @@ type: shed
 neighbours: 
 ---next---
 tid: 642
-length: 2.14748e+09
+length: 0
 source: 3589787544
 target: 5889478643
 source_coords: -86.9185451, 40.4117751 
@@ -6429,7 +6429,7 @@ type: shed
 neighbours: 
 ---next---
 tid: 643
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38033643
 source_coords: -86.9160038, 40.4285529 
@@ -6439,7 +6439,7 @@ type: university
 neighbours: 
 ---next---
 tid: 644
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 10083004930
 source_coords: -86.9334478, 40.4255383 
@@ -6449,7 +6449,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 645
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 10083004930
 source_coords: -86.9332494, 40.4251872 
@@ -6459,7 +6459,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 646
-length: 2.14748e+09
+length: 0
 source: 38008430
 target: 8518175812
 source_coords: -86.9420594, 40.4383803 
@@ -6469,7 +6469,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 647
-length: 2.14748e+09
+length: 0
 source: 37997466
 target: 5030761074
 source_coords: -86.9193599, 40.4214541 
@@ -6479,7 +6479,7 @@ type: university
 neighbours: 
 ---next---
 tid: 648
-length: 2.14748e+09
+length: 0
 source: 5030755870
 target: 5030761074
 source_coords: -86.9171862, 40.4212503 
@@ -6489,7 +6489,7 @@ type: university
 neighbours: 
 ---next---
 tid: 649
-length: 2.14748e+09
+length: 0
 source: 37968548
 target: 5030760843
 source_coords: -86.915539, 40.4212534 
@@ -6499,7 +6499,7 @@ type: university
 neighbours: 
 ---next---
 tid: 650
-length: 2.14748e+09
+length: 0
 source: 37998869
 target: 38033647
 source_coords: -86.9195558, 40.4287205 
@@ -6509,7 +6509,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 651
-length: 2.14748e+09
+length: 0
 source: 37987601
 target: 38016891
 source_coords: -86.9172714, 40.4291861 
@@ -6519,7 +6519,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 652
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9126856, 40.4280093 
@@ -6529,7 +6529,7 @@ type: university
 neighbours: 
 ---next---
 tid: 653
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.921112, 40.4256661 
@@ -6539,7 +6539,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 654
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9232654, 40.4285783 
@@ -6549,7 +6549,7 @@ type: roof
 neighbours: 
 ---next---
 tid: 655
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9255093, 40.4288248 
@@ -6559,7 +6559,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 656
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9264597, 40.4275666 
@@ -6569,7 +6569,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 657
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9233172, 40.4275588 
@@ -6579,7 +6579,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 658
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 2871626207
 source_coords: -86.9240297, 40.4227029 
@@ -6589,7 +6589,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 659
-length: 2.14748e+09
+length: 0
 source: 37968547
 target: 38001852
 source_coords: -86.9141174, 40.4213659 
@@ -6599,7 +6599,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 660
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9105042, 40.4237118 
@@ -6609,7 +6609,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 661
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9113862, 40.4236076 
@@ -6619,7 +6619,7 @@ type: university
 neighbours: 
 ---next---
 tid: 662
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.9134939, 40.4171518 
@@ -6629,7 +6629,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 663
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9173194, 40.4135335 
@@ -6639,7 +6639,7 @@ type: university
 neighbours: 
 ---next---
 tid: 664
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9146489, 40.4135564 
@@ -6649,7 +6649,7 @@ type: university
 neighbours: 
 ---next---
 tid: 665
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9202563, 40.4164613 
@@ -6659,7 +6659,7 @@ type: university
 neighbours: 
 ---next---
 tid: 666
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9199816, 40.415285 
@@ -6669,7 +6669,7 @@ type: university
 neighbours: 
 ---next---
 tid: 667
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9193333, 40.415679 
@@ -6679,7 +6679,7 @@ type: university
 neighbours: 
 ---next---
 tid: 668
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9190561, 40.415054 
@@ -6689,7 +6689,7 @@ type: university
 neighbours: 
 ---next---
 tid: 669
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5889478643
 source_coords: -86.9183328, 40.4151592 
@@ -6699,7 +6699,7 @@ type: university
 neighbours: 
 ---next---
 tid: 670
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9174715, 40.4151423 
@@ -6709,7 +6709,7 @@ type: university
 neighbours: 
 ---next---
 tid: 671
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 37998869
 source_coords: -86.9189133, 40.4271722 
@@ -6719,7 +6719,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 672
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9232064, 40.4249335 
@@ -6729,7 +6729,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 673
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.923209, 40.4249003 
@@ -6739,7 +6739,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 674
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9230344, 40.4250842 
@@ -6749,7 +6749,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 675
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9130275, 40.429753 
@@ -6759,7 +6759,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 676
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9123111, 40.4291269 
@@ -6769,7 +6769,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 677
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9146463, 40.4281487 
@@ -6779,7 +6779,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 678
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38034695
 source_coords: -86.9225991, 40.4294055 
@@ -6789,7 +6789,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 679
-length: 2.14748e+09
+length: 0
 source: 38014725
 target: 3059938751
 source_coords: -86.9254368, 40.4300375 
@@ -6799,7 +6799,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 680
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9269059, 40.4198677 
@@ -6809,7 +6809,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 681
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9268595, 40.4201398 
@@ -6819,7 +6819,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 682
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.9259419, 40.4197655 
@@ -6829,7 +6829,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 683
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 3059842682
 source_coords: -86.9257815, 40.4199533 
@@ -6839,7 +6839,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 684
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9272589, 40.4191271 
@@ -6849,7 +6849,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 685
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9259327, 40.4192142 
@@ -6859,7 +6859,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 686
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9254739, 40.4198175 
@@ -6869,7 +6869,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 687
-length: 2.14748e+09
+length: 0
 source: 38021346
 target: 38033093
 source_coords: -86.9269684, 40.4188068 
@@ -6879,7 +6879,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 688
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9263548, 40.4183988 
@@ -6889,7 +6889,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 689
-length: 2.14748e+09
+length: 0
 source: 38033085
 target: 38033088
 source_coords: -86.9248136, 40.418407 
@@ -6899,7 +6899,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 690
-length: 2.14748e+09
+length: 0
 source: 37998868
 target: 38016885
 source_coords: -86.9184876, 40.4255368 
@@ -6909,7 +6909,7 @@ type: garage
 neighbours: 
 ---next---
 tid: 691
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9095445, 40.4247482 
@@ -6919,7 +6919,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 692
-length: 2.14748e+09
+length: 0
 source: 38009100
 target: 5266032297
 source_coords: -86.9097449, 40.4245561 
@@ -6929,7 +6929,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 693
-length: 2.14748e+09
+length: 0
 source: 38014712
 target: 38014722
 source_coords: -86.924565, 40.439401 
@@ -6939,7 +6939,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 694
-length: 2.14748e+09
+length: 0
 source: 38008430
 target: 8518175812
 source_coords: -86.9395091, 40.4366924 
@@ -6949,7 +6949,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 695
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9225851, 40.4247798 
@@ -6959,7 +6959,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 696
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9184543, 40.4360995 
@@ -6969,7 +6969,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 697
-length: 2.14748e+09
+length: 0
 source: 37994983
 target: 38033085
 source_coords: -86.924156, 40.4220853 
@@ -6979,7 +6979,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 698
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9126955, 40.4212596 
@@ -6989,7 +6989,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 699
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 37998868
 source_coords: -86.9189128, 40.4253555 
@@ -6999,7 +6999,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 700
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38029391
 source_coords: -86.9234999, 40.4299468 
@@ -7009,7 +7009,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 701
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38029391
 source_coords: -86.9233974, 40.431018 
@@ -7019,7 +7019,7 @@ type: shed
 neighbours: 
 ---next---
 tid: 702
-length: 2.14748e+09
+length: 0
 source: 852354791
 target: 3059946653
 source_coords: -86.919906, 40.4370077 
@@ -7029,7 +7029,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 703
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9196975, 40.4347956 
@@ -7039,7 +7039,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 704
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9195722, 40.4352083 
@@ -7049,7 +7049,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 705
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.918963, 40.4356235 
@@ -7059,7 +7059,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 706
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9184103, 40.4358727 
@@ -7069,7 +7069,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 707
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9179645, 40.4354002 
@@ -7079,7 +7079,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 708
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9176532, 40.4350871 
@@ -7089,7 +7089,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 709
-length: 2.14748e+09
+length: 0
 source: 38001235
 target: 38003811
 source_coords: -86.9175271, 40.4347228 
@@ -7099,7 +7099,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 710
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9174426, 40.4344843 
@@ -7109,7 +7109,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 711
-length: 2.14748e+09
+length: 0
 source: 38001228
 target: 38003808
 source_coords: -86.9173186, 40.4340375 
@@ -7119,7 +7119,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 712
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9225447, 40.4250965 
@@ -7129,7 +7129,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 713
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 10083004930
 source_coords: -86.9329129, 40.4240793 
@@ -7139,7 +7139,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 714
-length: 2.14748e+09
+length: 0
 source: 10083014317
 target: 10083014325
 source_coords: -86.9323688, 40.4239184 
@@ -7149,7 +7149,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 715
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 38008442
 source_coords: -86.9308122, 40.4239127 
@@ -7159,7 +7159,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 716
-length: 2.14748e+09
+length: 0
 source: 37991898
 target: 38008442
 source_coords: -86.9307636, 40.4238295 
@@ -7169,7 +7169,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 717
-length: 2.14748e+09
+length: 0
 source: 10083014320
 target: 10083014326
 source_coords: -86.9307322, 40.4222925 
@@ -7179,7 +7179,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 718
-length: 2.14748e+09
+length: 0
 source: 38008442
 target: 10083014326
 source_coords: -86.93075, 40.4229027 
@@ -7189,7 +7189,7 @@ type: residential
 neighbours: 
 ---next---
 tid: 719
-length: 2.14748e+09
+length: 0
 source: 38003797
 target: 3059897876
 source_coords: -86.9118843, 40.4296534 
@@ -7199,7 +7199,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 720
-length: 2.14748e+09
+length: 0
 source: 37970189
 target: 37977166
 source_coords: -86.9133628, 40.4183948 
@@ -7209,7 +7209,7 @@ type: university
 neighbours: 
 ---next---
 tid: 721
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9107783, 40.4178671 
@@ -7219,7 +7219,7 @@ type: university
 neighbours: 
 ---next---
 tid: 722
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38001228
 source_coords: -86.9185418, 40.4337999 
@@ -7229,7 +7229,7 @@ type: stadium
 neighbours: 
 ---next---
 tid: 723
-length: 2.14748e+09
+length: 0
 source: 37970938
 target: 5030755901
 source_coords: -86.9147563, 40.417262 
@@ -7239,7 +7239,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 724
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9115457, 40.4195254 
@@ -7249,7 +7249,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 725
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9114862, 40.4194479 
@@ -7259,7 +7259,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 726
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9113145, 40.4194443 
@@ -7269,7 +7269,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 727
-length: 2.14748e+09
+length: 0
 source: 38012626
 target: 5266032296
 source_coords: -86.9110823, 40.42075 
@@ -7279,7 +7279,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 728
-length: 2.14748e+09
+length: 0
 source: 37968554
 target: 38014495
 source_coords: -86.9157821, 40.4246555 
@@ -7289,7 +7289,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 729
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38041247
 source_coords: -86.9243174, 40.4281337 
@@ -7299,7 +7299,7 @@ type: yes
 neighbours: 
 ---next---
 tid: 730
-length: 2.14748e+09
+length: 0
 source: 37977406
 target: 9945870150
 source_coords: -86.9146901, 40.4266412 
@@ -7309,7 +7309,7 @@ type: university
 neighbours: 
 ---next---
 tid: 731
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9194589, 40.4306507 
@@ -7319,7 +7319,7 @@ type: university
 neighbours: 
 ---next---
 tid: 732
-length: 2.14748e+09
+length: 0
 source: 37998873
 target: 38001228
 source_coords: -86.9191258, 40.4336716 
@@ -7329,7 +7329,7 @@ type: stadium
 neighbours: 
 ---next---
 tid: 733
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38014525
 source_coords: -86.9252841, 40.4240453 
@@ -7339,7 +7339,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 734
-length: 2.14748e+09
+length: 0
 source: 38012485
 target: 38014525
 source_coords: -86.9247513, 40.4234596 
@@ -7349,7 +7349,7 @@ type: apartments
 neighbours: 
 ---next---
 tid: 735
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9203421, 40.4298069 
@@ -7359,7 +7359,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 736
-length: 2.14748e+09
+length: 0
 source: 37997163
 target: 37997161
 source_coords: -86.9204928, 40.4304044 
@@ -7369,7 +7369,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 737
-length: 2.14748e+09
+length: 0
 source: 38029391
 target: 38034705
 source_coords: -86.9209167, 40.4324752 
@@ -7379,7 +7379,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 738
-length: 2.14748e+09
+length: 0
 source: 37987011
 target: 38012485
 source_coords: -86.9268926, 40.4252717 
@@ -7389,7 +7389,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 739
-length: 2.14748e+09
+length: 0
 source: 38014525
 target: 7811729441
 source_coords: -86.9277288, 40.425329 
@@ -7399,7 +7399,7 @@ type: dormitory
 neighbours: 
 ---next---
 tid: 740
-length: 2.14748e+09
+length: 0
 source: 37968548
 target: 37968554
 source_coords: -86.9171468, 40.4224665 
@@ -7409,7 +7409,7 @@ type: university
 neighbours: 
 ---next---
 tid: 741
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9151079, 40.4200909 
@@ -7419,7 +7419,7 @@ type: university
 neighbours: 
 ---next---
 tid: 742
-length: 2.14748e+09
+length: 0
 source: 3066644666
 target: 5030760841
 source_coords: -86.9159528, 40.4200015 
@@ -7429,7 +7429,7 @@ type: university
 neighbours: 
 ---next---
 tid: 743
-length: 2.14748e+09
+length: 0
 source: 38008439
 target: 38020619
 source_coords: -86.9286616, 40.4271218 
@@ -7439,7 +7439,7 @@ type: parking
 neighbours: 
 ---next---
 tid: 744
-length: 2.14748e+09
+length: 0
 source: 7811729441
 target: 7811729442
 source_coords: -86.9278896, 40.4231996 
