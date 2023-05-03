@@ -20,7 +20,7 @@ static const int R_DIM = 2;
 #endif
 
 #ifndef R_RECORDS_MAX
-static const int R_RECORDS_MAX = 6; 
+static const int R_RECORDS_MAX = 12; 
 #endif
 
 typedef std::array<std::pair<Dim, Dim>, R_DIM> VertexArray;
@@ -100,7 +100,7 @@ class Node_d {
     ~Node_d()
     {
       #ifdef DEBUG
-      std::cout << "[dstroy] " << this << std::endl;
+      // std::cout << "[dstroy] " << this << std::endl;
       #endif
       // for(auto &x: children_d_)if(x.second)delete x.second;
       // children_d_.clear();
@@ -211,8 +211,8 @@ class Rtree {
       #ifdef DEBUG
       std::cout << "[rtree] destroy" << std::endl;
       #endif
-      for(auto &x: root_) delete x.second;
-      root_.clear();
+      // for(auto &x: root_) delete x.second;
+      // root_.clear();
     }
 
     void walk() const;

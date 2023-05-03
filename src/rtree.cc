@@ -24,9 +24,9 @@ Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
 
 Node_d::Node_d(size_t parent, bool is_leaf): is_leaf_d_{is_leaf}, parent_d_{parent}
 {
-  #ifdef DEBUG
-  std::cout << "[create] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
-  #endif
+  // #ifdef DEBUG
+  // std::cout << "[create] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+  // #endif
 }
 
 Node* Rtree::read_from_offset(size_t p) const
@@ -140,17 +140,14 @@ void Rtree::insert_d(const IdxEntryD &e)
   << "(" << chosen_leaf.size() << ")" << std::endl;
   #endif
   
-  
   chosen_leaf.push_back_d(e);
-  chosen_leaf.write_node();
-  // std::cout << "pushing back" << std::endl;
-  // chosen_leaf.push_back_d(e);
-  // chosne leaf has changed need to write it back to the file
-  
+  chosen_leaf.write_node(true);
+
   // Node *new_node = nullptr;
-  // if(chosen_leaf.size() > R_RECORDS_MAX){
-  //   new_node = linear_split(chosen_leaf);
-  // }
+  if(chosen_leaf.size() > R_RECORDS_MAX){
+    new_node = linear_split_d(chosen_leaf);
+
+  }
   // // FIXME 
   // // chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
   // // new_node = adjust_tree(chosen_leaf.parent_, new_node);
@@ -208,7 +205,7 @@ void Node_d::parse_node(size_t p)
   db_in >> is_leaf_d_;
   db_in >> parent_d_;
   db_in >> num_children;
-  std::cout << "reading->" << is_leaf_d_ <<","<< parent_d_ <<","<< num_children <<"," << std::endl;
+  db_in >> offset_d_;
 
   for(int i=0; i<num_children; i++){
     inp.push_back({ Rectangle({{{0, 0},{0,0}}}), 0});
@@ -225,23 +222,32 @@ void Node_d::parse_node(size_t p)
 void Node_d::write_node(bool eph)
 {
   size_t init = db_out.tellp();
-  if(tid_) db_out.seekp(tid_);
-  db_out << tid_ << std::endl;
+  if(eph) db_out.seekp(tid_);
+  db_out << db_out.tellp() << std::endl;
   db_out << is_leaf_d_ << std::endl;
   db_out << parent_d_ << std::endl;
+  db_out << children_d_.size() << std::endl;
   db_out  << offset_d_ << std::endl;
   
   for(auto &x : children_d_){
     db_out  << x.first[0].first << " "  << x.first[0].second << " "  << 
     x.first[1].first << " "  << x.first[1].second << " " << x.second << std::endl;
   }
-  
-  for(int i=0; i<R_RECORDS_MAX - children_d_.size(); i++)db_out  << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) 
+
+  // an extra place for adding a record that will be removed during linear split
+  for(int i=0; i<R_RECORDS_MAX+1 - children_d_.size(); i++)db_out  << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) 
   << " "  << 0 << std::endl;
 
   db_out << "\n" << std::endl;
   db_out.flush();
   if(eph) db_out.seekp(init);
+
+  #ifdef DEBUG
+  if(!eph)
+  std::cout << "[fwrite] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+  #endif
+
+
 }
 
 size_t Rtree::choose_leaf_d(size_t offset_n, const IdxEntryD &e)
