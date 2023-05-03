@@ -8,9 +8,14 @@ public:
     float length;
     std::string source;
     std::string target;
+    std::string source_coords; 
+    std::string target_coords; 
+    std::string name;
+    std::string type;
     std::vector<unsigned int> neighbours;
     Edge(unsigned int tid_, float l, std::string s, std::string t) : tid{tid_}, length{l}, source{s}, target{t} {}
     Edge() : tid{0}, length{0}, source{""}, target{""} {}
+    
 
 
     bool operator==(const Edge &other) const {
