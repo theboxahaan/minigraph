@@ -115,6 +115,96 @@ std::vector<Edge> dijs(int stid, int dtid) {
     return ans;
 }
 
+std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
+    std::vector<std::vector<Edge>> ans;
+
+    std::set<std::pair<double, Edge>> openList;
+    std::set<Edge> closedList;
+    std::unordered_map<Edge, double, EdgeHash> dist;
+    std::unordered_map<Edge, Edge, EdgeHash> cameFrom;
+
+    Edge start = readEdgeFromFile(stid);
+
+    openList.insert({0, start});
+    dist[start] = 0;
+    
+    while(!openList.empty()) {
+        std::pair<double, Edge> p = *(openList.begin());
+        openList.erase(openList.begin());
+
+        Edge u = p.second;
+        if(u.type == type) {
+            ans.push_back(consPath(cameFrom, u));
+            continue;
+        }
+        if(dist[u] > range) continue;
+        
+        for(auto &vtid : u.neighbours) {
+            Edge v = readEdgeFromFile(vtid);
+            if(closedList.find(u) != closedList.end()) continue;
+
+            if(dist.find(v) == dist.end()) {
+                dist[v] = dist[u] + v.length;
+                openList.insert({dist[v], v});
+                cameFrom[v] = u;
+
+            } else if(dist[v] > dist[u] + v.length) {
+                openList.erase(openList.find({dist[v], v}));
+                dist[v] = dist[u] + v.length;
+                openList.insert({dist[v], v});
+                cameFrom[v] = u;
+            }
+        }
+        closedList.insert(u);
+    }
+
+    return ans;
+}
+
+std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
+    std::vector<std::vector<Edge>> ans;
+
+    std::set<std::pair<double, Edge>> openList;
+    std::set<Edge> closedList;
+    std::unordered_map<Edge, double, EdgeHash> dist;
+    std::unordered_map<Edge, Edge, EdgeHash> cameFrom;
+
+    Edge start = readEdgeFromFile(stid);
+
+    openList.insert({0, start});
+    dist[start] = 0;
+    
+    while(!openList.empty() && nreq > 0) {
+        std::pair<double, Edge> p = *(openList.begin());
+        openList.erase(openList.begin());
+
+        Edge u = p.second;
+        if(u.type == type) {
+            ans.push_back(consPath(cameFrom, u));
+            nreq--;
+            continue;
+        }
+        for(auto &vtid : u.neighbours) {
+            Edge v = readEdgeFromFile(vtid);
+            if(closedList.find(u) != closedList.end()) continue;
+
+            if(dist.find(v) == dist.end()) {
+                dist[v] = dist[u] + v.length;
+                openList.insert({dist[v], v});
+                cameFrom[v] = u;
+
+            } else if(dist[v] > dist[u] + v.length) {
+                openList.erase(openList.find({dist[v], v}));
+                dist[v] = dist[u] + v.length;
+                openList.insert({dist[v], v});
+                cameFrom[v] = u;
+            }
+        }
+        closedList.insert(u);
+    }
+
+    return ans;
+}
 
 // std::list<DNode*> genGraph(DNode *st) {
 //     int ct = 10000;
@@ -149,14 +239,28 @@ std::vector<Edge> dijs(int stid, int dtid) {
 // }
 int main() {
 
-    Edge e = readEdgeFromFile(17);
+    // Edge e = readEdgeFromFile(17);
 
-    std::cout<<e.length<<std::endl;
+    // std::cout<<e.length<<std::endl;
 
-    std::vector<Edge> sn = dijs(1, 328);
+    // std::vector<Edge> sn = dijs(1, 328);
 
-    for(auto &e : sn) {
-        std::cout<<e.tid<<std::endl;
+    // for(auto &e : sn) {
+    //     std::cout<<e.tid<<std::endl;
+    // }
+
+    // int knn = 10;
+    int rn = 200;
+    // std::vector<std::vector<Edge>> eds = KNN(112, knn, "university");
+    std::vector<std::vector<Edge>> eds = range(112, rn, "university");
+
+    int i=0;
+    for(auto &vs : eds) {
+        std::cout<<i++<<std::endl;
+        for(auto &v : vs) {
+            std::cout<<v.tid<<" ";
+        }
+        std::cout<<std::endl;
     }
     // DNode *s = new DNode();
     // s->name = "a";
