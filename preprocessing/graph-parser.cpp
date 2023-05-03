@@ -7,16 +7,9 @@
 #include <cstring>
 #include <set>
 #include "rapidxml-1.13/rapidxml.hpp"
+#include "../include/edge.h"
+#include <algorithm>
 
-class Edge{
-public:
-	unsigned int tid;
-	float length;
-	std::string source;
-	std::string target;
-	std::vector<unsigned int> neighbours;
-	Edge(unsigned int tid_, float l, std::string s, std::string t): tid{tid_},length{l},source{s},target{t} {}
-};
 void writeEdgeToFile(Edge edge, const std::string& filename, const std::string& filename_offset) {
     std::ofstream file(filename, std::ios_base::app); //
     std::ofstream tid_to_offset(filename_offset, std::ios_base::app);
@@ -27,6 +20,10 @@ void writeEdgeToFile(Edge edge, const std::string& filename, const std::string& 
         file << "length: " << edge.length << "\n";
         file << "source: " << edge.source << "\n";
         file << "target: " << edge.target << "\n";
+        file << "source_coords: " << edge.source_coords << "\n";
+        file << "target_coords: " << edge.target_coords << "\n";
+        file << "name: " << edge.name << "\n";
+        file << "type: " << edge.type << "\n";
         file << "neighbours: ";
         for (unsigned int neighbour : edge.neighbours) {
             file << neighbour << " ";
@@ -98,7 +95,7 @@ int main(void)
     std::remove("edge.txt");
 	std::remove("tid_offset.txt");
     // Read the graphml file
-    std::ifstream theFile ("graph.graphml");
+    std::ifstream theFile ("mynetwork.graphml");
     std::vector<char> buffer((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
     buffer.push_back('\0');
    
@@ -116,20 +113,73 @@ int main(void)
 			
 			// std::cout << "\n edge source =   "<<edge_node->first_attribute("source")->value();
 			// std::cout << "\n edge target =   "<<edge_node->first_attribute("target")->value();
-			xml_node<> * d14_node = edge_node->first_node("data");
-			while(strcmp(d14_node->first_attribute("key")->value(), "d14")){
+			
+            
+            xml_node<> * d9_node = edge_node->first_node("data");
+            while(strcmp(d9_node->first_attribute("key")->value(), "d9") && d9_node->next_sibling()){
+				d9_node = d9_node->next_sibling();
+			}
+            
+            std::string name_d10;
+            if(!strcmp(d9_node->first_attribute("key")->value(), "d9"))
+			    name_d10 = d9_node->value();
+            else
+                name_d10 = "";
+
+
+
+
+            xml_node<> * d14_node = edge_node->first_node("data");
+            while(strcmp(d14_node->first_attribute("key")->value(), "d14")){
 				d14_node = d14_node->next_sibling();
 			}
 			// std::cout << "\n edge weight =   "<<std::stof(d14_node->value());
 			// std::cout << std::endl;
 			float l = std::stof(d14_node->value());
+
+            xml_node<> * d15_node = edge_node->first_node("data");
+			while(strcmp(d15_node->first_attribute("key")->value(), "d15") && d15_node->next_sibling()){
+                // std::cout<<d15_node->first_attribute("key")->value()<<std::endl<<std::flush;
+				d15_node = d15_node->next_sibling();
+			}
+            std::string str;
+            if(!strcmp(d15_node->first_attribute("key")->value(), "d15"))
+			    str = d15_node->value();
+            else
+                continue;
+			// std::cout<<str<<std::endl;
+			size_t start = str.find("(");
+    		size_t end = str.find(")");
+			std::string coords_str = str.substr(start + 1, end - start - 1);
+
+			// Split the substring into individual coordinate pairs
+			std::vector<std::string> coords;
+			std::stringstream ss(coords_str);
+			std::string coord_str;
+			while (getline(ss, coord_str, ',')) {
+				coords.push_back(coord_str);
+			}
+
+			// Extract the first and last coordinate pairs
+            std::replace(coords[0].begin(), coords[0].end(), ' ', ',');
+            std::replace(coords[coords.size() - 1].begin() + 1, coords[coords.size() - 1].end(), ' ', ','); //+1 to ignore space in beginning of str
+			std::string first_coord_pair_str = coords[0];
+			std::string last_coord_pair_str = coords[coords.size() - 1];
+
+			// std::cout << "\tFirst coordinate pair: " << first_coord_pair_str << std::endl;
+			// std::cout << "\tLast coordinate pair: " << last_coord_pair_str << std::endl;
 			std::string s = edge_node->first_attribute("source")->value();
 			std::string t = edge_node->first_attribute("target")->value();
 			Edge newest_edge(tid_last,l,s,t);
+            newest_edge.source_coords = first_coord_pair_str;
+            newest_edge.target_coords = last_coord_pair_str;
+            newest_edge.name = name_d10;
+            newest_edge.type = "road";
 			source_map[s].push_back(tid_last);
 			target_map[t].push_back(tid_last);
-			// target_map[t].push_back(tid_last);
+			
 			edges.push_back(newest_edge);
+            
 			++tid_last;
 		}
     }
@@ -141,23 +191,8 @@ int main(void)
 		}
 	}
 
-	// for(int i = 0; i < edges.size(); i++){
-	// 	std::cout<<"i:"<<i<<std::endl;
-	// 	std::cout<<"\tsource:"<<edges[i].source<<"\ttarget:"<<edges[i].target<<"\tlen:"<<edges[i].length<<std::endl<<"\t";
-	// 	for(auto n : edges[i].neighbours){
-	// 		std::cout<<n<<" ";
-	// 	}
-	// 	std::cout<<std::endl;
-	// }
-	
 	for(auto edge: edges){
 		writeEdgeToFile(edge, "edge.txt", "tid_offset.txt");
-		// std::cout<<"edge written:"<<std::endl;
-		// std::cout<<"\tsource:"<<edge.source<<"\ttarget:"<<edge.target<<"\tlen:"<<edge.length<<std::endl<<"\t";
-		// for(auto n : edge.neighbours){
-		// 	std::cout<<n<<" ";
-		// }
-		// std::cout<<std::endl;
 	}
 
 
