@@ -11,51 +11,8 @@
 
 #include "../include/edge.h"
 
+const std::string tidFile = "../preprocessing/edge_final.txt";
 
-
-// class DNode {
-//     public:
-//     std::string name;
-//     std::unordered_map<DNode*, double> neighs;
-//     std::unordered_set<std::string> tags;
-//     std::pair<double, double> loc;
-// };
-
-
-// std::unordered_map<DNode*, double> A_star(DNode *start, DNode *end, bool sssp) { 
-//     std::set<std::pair<double, DNode*>> openList;
-//     std::set<DNode*> closedList;
-//     std::unordered_map<DNode*, double> dist;
-//     std::unordered_map<DNode*, DNode*> cameFrom;
-
-//     openList.insert({0, start});
-//     dist[start] = 0;
-    
-//     while(!openList.empty()) {
-//         std::pair<double, DNode*> p = *(openList.begin());
-//         openList.erase(openList.begin());
-
-//         DNode* u = p.second;
-//         for(auto &v : u->neighs) {
-//             if(closedList.find(u) != closedList.end()) continue;
-
-//             if(dist.find(v.first) == dist.end()) {
-//                 dist[v.first] = dist[u] + v.second;
-//                 openList.insert({dist[v.first], v.first});
-//                 cameFrom[v.first] = u;
-
-//             } else if(dist[v.first] > dist[u] + v.second) {
-//                 openList.erase(openList.find({dist[v.first], v.first}));
-//                 dist[v.first] = dist[u] + v.second;
-//                 openList.insert({dist[v.first], v.first});
-//                 cameFrom[v.first] = u;
-//             }
-
-//         }
-//         closedList.insert(u);
-//     }
-//     return dist;
-// }
 
 std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, Edge &ed) {
     std::vector<Edge> ans;
@@ -72,6 +29,10 @@ std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, E
 
 
 std::vector<Edge> dijs(int stid, int dtid) {
+
+    std::unordered_map<int, int> offs = prepOffset();
+    std::ifstream file(tidFile);
+
     std::vector<Edge> ans;
 
     std::set<std::pair<double, Edge>> openList;
@@ -79,8 +40,8 @@ std::vector<Edge> dijs(int stid, int dtid) {
     std::unordered_map<Edge, double, EdgeHash> dist;
     std::unordered_map<Edge, Edge, EdgeHash> cameFrom;
 
-    Edge start = readEdgeFromFile(stid);
-    Edge end = readEdgeFromFile(dtid);
+    Edge start = getEdge(offs, file, stid);
+    Edge end = getEdge(offs, file, dtid);
 
     openList.insert({0, start});
     dist[start] = 0;
@@ -91,10 +52,11 @@ std::vector<Edge> dijs(int stid, int dtid) {
 
         Edge u = p.second;
         if(u.tid == dtid) {
+            if(file.is_open()) file.close();
             return consPath(cameFrom, u);
         }
         for(auto &vtid : u.neighbours) {
-            Edge v = readEdgeFromFile(vtid);
+            Edge v = getEdge(offs, file, vtid);
             if(closedList.find(u) != closedList.end()) continue;
 
             if(dist.find(v) == dist.end()) {
@@ -111,11 +73,14 @@ std::vector<Edge> dijs(int stid, int dtid) {
         }
         closedList.insert(u);
     }
-
+    if(file.is_open()) file.close();
     return ans;
 }
 
 std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
+    std::unordered_map<int, int> offs = prepOffset();
+    std::ifstream file(tidFile);
+
     std::vector<std::vector<Edge>> ans;
 
     std::set<std::pair<double, Edge>> openList;
@@ -123,7 +88,7 @@ std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
     std::unordered_map<Edge, double, EdgeHash> dist;
     std::unordered_map<Edge, Edge, EdgeHash> cameFrom;
 
-    Edge start = readEdgeFromFile(stid);
+    Edge start = getEdge(offs, file, stid);
 
     openList.insert({0, start});
     dist[start] = 0;
@@ -140,7 +105,7 @@ std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
         if(dist[u] > range) continue;
         
         for(auto &vtid : u.neighbours) {
-            Edge v = readEdgeFromFile(vtid);
+            Edge v = getEdge(offs, file, vtid);
             if(closedList.find(u) != closedList.end()) continue;
 
             if(dist.find(v) == dist.end()) {
@@ -157,11 +122,15 @@ std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
         }
         closedList.insert(u);
     }
-
+    if(file.is_open()) file.close();
     return ans;
 }
 
 std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
+
+    std::unordered_map<int, int> offs = prepOffset();
+    std::ifstream file(tidFile);
+
     std::vector<std::vector<Edge>> ans;
 
     std::set<std::pair<double, Edge>> openList;
@@ -169,7 +138,7 @@ std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
     std::unordered_map<Edge, double, EdgeHash> dist;
     std::unordered_map<Edge, Edge, EdgeHash> cameFrom;
 
-    Edge start = readEdgeFromFile(stid);
+    Edge start = getEdge(offs, file, stid);
 
     openList.insert({0, start});
     dist[start] = 0;
@@ -185,7 +154,7 @@ std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
             continue;
         }
         for(auto &vtid : u.neighbours) {
-            Edge v = readEdgeFromFile(vtid);
+            Edge v = getEdge(offs, file, vtid);
             if(closedList.find(u) != closedList.end()) continue;
 
             if(dist.find(v) == dist.end()) {
@@ -202,57 +171,31 @@ std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
         }
         closedList.insert(u);
     }
-
+    if(file.is_open()) file.close();
     return ans;
 }
 
-// std::list<DNode*> genGraph(DNode *st) {
-//     int ct = 10000;
-//     std::list<DNode*> nodes;
-//     nodes.push_back(st);
-//     for(int i=1; i<ct; ++i) {
-//         DNode* u = new DNode;
-//         char n = 'a' + i;
-//         u->name = std::string(1, n);
-//         nodes.push_back(u);
-//     }
 
-//     int edct = 20000;
-//     std::random_device dev;
-//     std::mt19937 rng(dev());
-//     std::uniform_int_distribution<std::mt19937::result_type> dist6(-100, 100);
-
-//     std::list<DNode*>::iterator it;
-//     for(int i=0; i<edct; ++i) {
-//         it = nodes.begin();
-//         std::advance(it, dist6(rng));
-//         DNode *v1 = *it;
-
-//         std::advance(it, dist6(rng));
-//         DNode *v2 = *it;
-//         int dist = dist6(rng);
-
-//         v1->neighs[v2] = dist;
-//         v2->neighs[v1] = dist;
-//     }
-//     return nodes;
-// }
 int main() {
 
     // Edge e = readEdgeFromFile(17);
 
     // std::cout<<e.length<<std::endl;
 
-    // std::vector<Edge> sn = dijs(1, 328);
+    std::vector<Edge> sn = dijs(1, 328);
+    std::cout<<"Dijkstra"<<std::endl;
 
-    // for(auto &e : sn) {
-    //     std::cout<<e.tid<<std::endl;
-    // }
+    for(auto &e : sn) {
+        std::cout<<e.tid<<" ";
+    }
+    std::cout<<std::endl;
 
-    // int knn = 10;
+    int knn = 10;
     int rn = 200;
-    // std::vector<std::vector<Edge>> eds = KNN(112, knn, "university");
-    std::vector<std::vector<Edge>> eds = range(112, rn, "university");
+
+    std::cout<<"KNN"<<std::endl;
+
+    std::vector<std::vector<Edge>> eds = KNN(112, knn, "university");
 
     int i=0;
     for(auto &vs : eds) {
@@ -262,27 +205,18 @@ int main() {
         }
         std::cout<<std::endl;
     }
-    // DNode *s = new DNode();
-    // s->name = "a";
-    // std::list<DNode*> nodes = genGraph(s);
 
-    // // for(auto &v : nodes) {
-    // //     std::cout<<v->name<<"->";
-    // //     for(auto &u : v->neighs) {
-    // //         std::cout<<u.first->name<<","<<u.second<<"; ";
-    // //     }
-    // //     std::cout<<std::endl;
-    // // }
-    // std::cout<<"Graph generated"<<std::endl;
-    // std::unordered_map<DNode*, double> dist = A_star(s, nodes.front());
+    std::cout<<"Range"<<std::endl;
 
-    // // for(auto &p : dist) {
-    // //     std::cout<<p.first->name<<","<<p.second<<std::endl;
-    // // }
+    eds = range(112, rn, "university");
 
-    // for(auto &v : nodes) {
-    //     delete v;
-    // }
-    // return 0;
+    i = 0;
+    for(auto &vs : eds) {
+        std::cout<<i++<<std::endl;
+        for(auto &v : vs) {
+            std::cout<<v.tid<<" ";
+        }
+        std::cout<<std::endl;
+    }
 
 }
