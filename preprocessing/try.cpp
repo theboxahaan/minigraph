@@ -113,7 +113,7 @@ int main(){
 	for(auto &x : edges){
 		if(x.type != "road"){
 			edges[x.neighbours[0]].neighbours.push_back(x.tid);
-            x.length = INT32_MAX;
+            x.length = 0;
 			x.source = edges[x.neighbours[0]].source;
 			x.target = edges[x.neighbours[0]].target;
 			// std::cout<<x.tid<<std::endl<<std::flush;
