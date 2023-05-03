@@ -5,6 +5,8 @@
 #include <stack>
 #include <unordered_set>
 #include <limits>
+#include <iomanip>
+
 
 #ifdef DEBUG
 #include <iostream>
@@ -518,6 +520,35 @@ void Rtree::walk() const
     s.pop();
     if(visited.find(cur) == visited.end()){
       for(auto &child: cur->children_){
+        child.first.dump_to_stream(file);
+        if(child.second)s.push(child.second);
+      }
+      visited.insert(cur);
+    }
+
+  }
+  file.close();
+}
+
+
+void Rtree::walk_d() const
+{
+  // do a dfs
+  std::ofstream file;
+  std::cout << "[opning] rec.log" << std::endl;
+  file.open("rec.log", std::ios::out | std::ios::app);
+  
+  std::unordered_set<size_t> visited;
+  std::stack<size_t> s;
+  s.push(root_d_.begin()->second);
+  
+  while(!s.empty()){
+    size_t cur = s.top();
+    auto cur_node = Node_d(0);
+    cur_node.parse_node(cur);
+    s.pop();
+    if(visited.find(cur) == visited.end()){
+      for(auto &child: cur_node.children_d_){
         child.first.dump_to_stream(file);
         if(child.second)s.push(child.second);
       }

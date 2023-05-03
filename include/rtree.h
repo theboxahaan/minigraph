@@ -4,15 +4,16 @@
 #include <vector>
 #include <array>
 #include <fstream>
+#include <iomanip>
 
 #ifdef DEBUG
 #include <iostream>
 #endif
 
-typedef int Dim;
-typedef unsigned int UDim;
+typedef float Dim;
+typedef float UDim;
 
-static const int R_WIDTH = 9;
+static const int R_WIDTH = 16;
 
 
 #ifndef R_DIM 
@@ -223,6 +224,7 @@ class Rtree {
     }
 
     void walk() const;
+    void walk_d() const;
     Node* read_from_offset(size_t p) const;
 
 };
