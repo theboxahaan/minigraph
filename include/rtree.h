@@ -9,10 +9,10 @@
 #include <iostream>
 #endif
 
-typedef float Dim;
-typedef float UDim;
+typedef int Dim;
+typedef unsigned int UDim;
 
-static const int R_WIDTH = 4;
+static const int R_WIDTH = 9;
 
 
 #ifndef R_DIM 
@@ -78,7 +78,7 @@ class Node_d {
     void push_back_d(const std::pair<Rectangle, size_t> &e) 
     {
       #ifdef DEBUG
-      std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_d_.size() << std::endl;
+      std::cout << "[child+] " << tid_ << " <-- " << e.second << " @ " << children_d_.size() << std::endl;
       #endif
       // update the reverse pointer from child to the corresponding item of the children_d_ array
       if(e.second){
@@ -86,11 +86,12 @@ class Node_d {
         auto n = Node_d(0, false);
         n.parse_node(e.second);
         n.offset_d_ = children_d_.size();
-        n.write_node();
+        n.write_node(true);
         // exit();
       }
 
       children_d_.emplace_back(e);
+      write_node(true);
     }
 
     Rectangle compute_bounding_rectangle();
@@ -184,12 +185,14 @@ class Rtree {
       #endif
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
-      root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
+      // root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
       //create root Node_d
       std::ofstream gdb_out("base.db", std::ios_base::trunc);
       // gdb_out << "";
-      Node_d(0, true).write_node();
-      root_d_.emplace_back(IdxEntryD{Rectangle(tmp), 0});
+      db_out << "HEADER" << std::endl;
+      Node_d r = Node_d(0, true);
+      r.write_node();
+      root_d_.emplace_back(IdxEntryD{Rectangle(tmp), r.tid_});
       
     }
 
@@ -203,8 +206,12 @@ class Rtree {
     void insert_d(const IdxEntryD& );
 
     Node* adjust_tree(Node*, Node*);
+    size_t adjust_tree_d(size_t, size_t);
+
     void linear_pick_seeds();
+    
     Node* linear_split(Node& );
+    size_t linear_split_d(size_t );
 
     ~Rtree()
     {

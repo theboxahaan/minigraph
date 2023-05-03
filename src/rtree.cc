@@ -22,7 +22,7 @@ Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
   #endif
 }
 
-Node_d::Node_d(size_t parent, bool is_leaf): is_leaf_d_{is_leaf}, parent_d_{parent}
+Node_d::Node_d(size_t parent, bool is_leaf):tid_{static_cast<size_t>(db_out.tellp())}, is_leaf_d_{is_leaf}, parent_d_{parent}
 {
   // #ifdef DEBUG
   // std::cout << "[create] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
@@ -91,6 +91,27 @@ Rectangle Node::compute_bounding_rectangle()
   return Rectangle(tmp);
 }
 
+Rectangle Node_d::compute_bounding_rectangle()
+{
+  VertexArray tmp;
+  std::array<Dim, R_DIM> ll, hh;
+  std::fill(ll.begin(), ll.end(), std::numeric_limits<Dim>::max()); 
+  std::fill(hh.begin(), hh.end(), std::numeric_limits<Dim>::min());
+ 
+  for(auto x=children_d_.begin(); x!=children_d_.end(); x++){
+    for(int i=0; i<R_DIM; ++i){
+      // check for the lowest low in the rectangles
+      if(x->first[i].first < ll[i]) ll[i] = x->first[i].first; 
+      // check for the highest high in the rectangles
+      if(x->first[i].second > hh[i]) hh[i] = x->first[i].second; 
+    }
+  }
+  for(int i=0; i<R_DIM; i++) tmp[i] = {ll[i], hh[i]};
+  return Rectangle(tmp);
+}
+
+
+
 void Rtree::insert(const IdxEntry &e)
 {
 
@@ -136,39 +157,53 @@ void Rtree::insert_d(const IdxEntryD &e)
   size_t chosen_offset = choose_leaf_d(root_d_[0].second, e);
   chosen_leaf.parse_node(chosen_offset);
   #ifdef DEBUG
-  std::cout << "[insert] in leaf(size): " << &chosen_leaf
+  std::cout << "[insert] in leaf(size): " << chosen_leaf.tid_
   << "(" << chosen_leaf.size() << ")" << std::endl;
   #endif
   
   chosen_leaf.push_back_d(e);
-  chosen_leaf.write_node(true);
-
   // Node *new_node = nullptr;
+  size_t new_node_off = 0;
   if(chosen_leaf.size() > R_RECORDS_MAX){
-    new_node = linear_split_d(chosen_leaf);
-
+    new_node_off = linear_split_d(chosen_offset);
   }
   // // FIXME 
   // // chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
   // // new_node = adjust_tree(chosen_leaf.parent_, new_node);
-  // new_node = adjust_tree(&chosen_leaf, new_node);
+  new_node_off = adjust_tree_d(chosen_offset, new_node_off);
 
-  // if(new_node){
-  //   // root was split so create a new node and add it as the parent of the child nodes
-  //   auto new_root = new Node(nullptr, false);
-  //   new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
-  //   new_root->push_back(IdxEntry(*root_.begin()));
-  //   root_.begin()->second->parent_ = new_root;
-  //   new_node->parent_ = new_root;
-  //   root_.begin()->second = new_root;
-  //   root_.begin()->first = new_root->compute_bounding_rectangle();
-  //   #ifdef DEBUG
-  //   std::cout << "[nwroot] " << new_root << std::endl;
-  //   for(auto &x: new_root->children_){
-  //     std::cout << "\t[child_] " << x.second << std::endl;
-  //   }
-  //   #endif
-  // }
+  if(new_node_off){
+    // root was split so create a new node and add it as the parent of the child nodes
+    auto new_node = Node_d(0);
+    new_node.parse_node(new_node_off);
+
+    auto new_root = Node_d(0, false);
+    new_root.write_node();
+
+    new_root.push_back_d(IdxEntryD(new_node.compute_bounding_rectangle(), new_node.tid_));
+
+    auto old_root = Node_d(0);
+    old_root.parse_node(root_d_.begin()->second);
+
+
+    new_root.push_back_d(IdxEntryD(old_root.compute_bounding_rectangle(), old_root.tid_));
+    
+    old_root.parent_d_ = new_root.tid_;
+    old_root.write_node(true);
+
+    new_node.parent_d_ = new_root.tid_;
+    new_node.write_node(true);
+
+    root_d_.begin()->second = new_root.tid_;
+    root_d_.begin()->first = new_root.compute_bounding_rectangle();
+    new_root.write_node(true);
+    #ifdef DEBUG
+    std::cout << "[nwroot] " << new_root.tid_ << std::endl;
+    for(auto &x: new_root.children_d_){
+      std::cout << "\t[child_] " << x.second << std::endl;
+    }
+    #endif
+  }
 }
 
 Node& Rtree::choose_leaf(Node &n, const IdxEntry &e)
@@ -223,20 +258,20 @@ void Node_d::write_node(bool eph)
 {
   size_t init = db_out.tellp();
   if(eph) db_out.seekp(tid_);
-  db_out << db_out.tellp() << std::endl;
-  db_out << is_leaf_d_ << std::endl;
-  db_out << parent_d_ << std::endl;
-  db_out << children_d_.size() << std::endl;
-  db_out  << offset_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) <<  tid_ << std::endl;
+  db_out << std::setw(R_WIDTH) << is_leaf_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) <<  parent_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) << children_d_.size() << std::endl;
+  db_out  << std::setw(R_WIDTH) << offset_d_ << std::endl;
   
   for(auto &x : children_d_){
-    db_out  << x.first[0].first << " "  << x.first[0].second << " "  << 
-    x.first[1].first << " "  << x.first[1].second << " " << x.second << std::endl;
+    db_out  << std::setw(R_WIDTH) << x.first[0].first << " "  << std::setw(R_WIDTH) << x.first[0].second << " "  << std::setw(R_WIDTH) <<  
+    x.first[1].first << " "  << std::setw(R_WIDTH) <<  x.first[1].second << " " << std::setw(R_WIDTH) <<  x.second << std::endl;
   }
 
   // an extra place for adding a record that will be removed during linear split
-  for(int i=0; i<R_RECORDS_MAX+1 - children_d_.size(); i++)db_out  << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) 
-  << " "  << 0 << std::endl;
+  for(int i=0; i<R_RECORDS_MAX+1 - children_d_.size(); i++)db_out  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " " << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) 
+  << " "  << std::setw(R_WIDTH) <<  0 << std::endl;
 
   db_out << "\n" << std::endl;
   db_out.flush();
@@ -244,7 +279,7 @@ void Node_d::write_node(bool eph)
 
   #ifdef DEBUG
   if(!eph)
-  std::cout << "[fwrite] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+  std::cout << "[fwrite] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
   #endif
 
 
@@ -292,6 +327,37 @@ Node* Rtree::adjust_tree(Node *n, Node *nn)
   }
   return adjust_tree(n->parent_, nn);
 }
+
+// add nn to n and then propagate split as required
+size_t Rtree::adjust_tree_d(size_t p, size_t pp)
+{
+  // if(n == nullptr) return nn;
+  Node_d n = Node_d(0); 
+  if(p) n.parse_node(p);
+  Node_d nn = Node_d(0); 
+  if(pp) nn.parse_node(pp);
+
+  if(n.parent_d_ == 0) return pp;
+  #ifdef DEBUG
+  std::cout << "[adjust] " << n.tid_  << std::endl; 
+  #endif
+
+  // //materialize n parent
+  auto npare = Node_d(0);
+  npare.parse_node(n.parent_d_);
+
+  npare.children_d_[n.offset_d_].first = n.compute_bounding_rectangle();
+  if(pp){
+    npare.push_back_d(IdxEntryD(nn.compute_bounding_rectangle(), nn.tid_));
+    pp = 0;
+    if(npare.size() > R_RECORDS_MAX) {
+      pp = linear_split_d(n.parent_d_);
+    }
+  }
+  return adjust_tree_d(n.parent_d_, pp);
+}
+
+
 
 Node* Rtree::linear_split(Node &n)
 {
@@ -355,6 +421,86 @@ Node* Rtree::linear_split(Node &n)
   
   return nn;
 }
+
+size_t Rtree::linear_split_d(size_t p)
+{
+  //  linear_pick_seeds: for each dimension - 
+  //    - find the lowest low, the highest high separation
+  //    - find the lowest high and the highest low and the corresponding rectangles
+  //    - normalise and store them
+  //  for the max normalised separation, select the two rectangles.
+
+  // materialize node 
+
+  Node_d n = Node_d(0);
+  n.parse_node(p);
+  std::array<IdxEntryVectorD::iterator, R_DIM> ll, hl, lh, hh;
+  std::fill(ll.begin(), ll.end(), n.children_d_.begin() + 1); 
+  std::fill(lh.begin(), lh.end(), n.children_d_.begin() + 1);
+  std::fill(hh.begin(), hh.end(), n.children_d_.begin() + 1);
+  std::fill(hl.begin(), hl.end(), n.children_d_.begin() + 1);
+  
+  for(auto x=n.children_d_.begin(); x!=n.children_d_.end(); x++){
+    for(int i=0; i<R_DIM; ++i){
+      // check for the lowest low in the rectangles
+      if(x->first[i].first < ll[i]->first[i].first) ll[i] = x; 
+      // check for the lowest high in the rectangles
+      if(x->first[i].second < lh[i]->first[i].second) lh[i] = x; 
+      // check for the highest low in the rectangles
+      if(x->first[i].first > hl[i]->first[i].first) hl[i] = x; 
+      // check for the highest high in the rectangles
+      if(x->first[i].second > hh[i]->first[i].second) hh[i] = x; 
+    }
+  }
+
+  int chosen_dim = 0;
+  float max_norm_sep = 0.0;
+  for(int i=0; i<R_DIM; ++i){
+    Dim sep = hl[i]->first[i].first - lh[i]->first[i].second;
+    Dim dim_width = hh[i]->first[i].second  - ll[i]->first[i].first;
+    float norm_sep = static_cast<float>(sep)/dim_width;
+    if( norm_sep >  max_norm_sep){
+      max_norm_sep = norm_sep;
+      chosen_dim = i;
+    }
+  }
+  
+  // FIXME offsets_ need to change for both node children
+  // create a new node here and write to file later
+  Node_d nn = Node_d(n.parent_d_, true);
+  nn.write_node();
+
+  //remove this IdxEntry from the children_ table of arg node.
+  nn.push_back_d(*hl[chosen_dim]);
+  n.children_d_.erase(hl[chosen_dim]);
+  //apart from lh[i] remove M/2 elements from n.children_ ~ linear next
+  for(auto it=n.children_d_.begin(); n.size() > R_RECORDS_MAX/2 && it!=n.children_d_.end();){
+    if(it != lh[chosen_dim]){
+      nn.push_back_d(*it);
+      it = n.children_d_.erase(it);
+    } else {
+      ++it;
+    }
+  }
+  for(size_t i=0; i<n.children_d_.size(); ++i){
+    if(!n.is_leaf_d_) {
+      // materialize
+      auto tmp = Node_d(0);
+      tmp.parse_node(n.children_d_[i].second);
+      tmp.offset_d_ = i;
+      tmp.write_node(true);
+    }
+  } 
+  #ifdef DEBUG
+  std::cout << "[split_] " << n.tid_ << "(" << n.size()
+  << ")" << " --> "<< nn.tid_ << "(" << nn.size()<<")" << std::endl;  
+  #endif
+  nn.write_node(true);
+  n.write_node(true);
+  return nn.tid_;
+}
+
+
 
 void Rtree::walk() const
 {
