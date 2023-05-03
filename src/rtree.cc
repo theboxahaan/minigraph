@@ -12,7 +12,6 @@
 
 #include "include/rtree.h"
 
-std::ofstream gdb_out("base.db", std::ios_base::trunc);
 std::ofstream db_out("base.db");
 std::ifstream db_in("base.db");
 
@@ -29,35 +28,6 @@ Node_d::Node_d(size_t parent, bool is_leaf): is_leaf_d_{is_leaf}, parent_d_{pare
   std::cout << "[create] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
   #endif
 }
-
-// size_t Node::Node_d(size_t parent_d, bool is_leaf)
-// {
-//   is_leaf_d_=is_leaf; 
-//   parent_d_=parent_d;
-//   tid_ = db_out.tellp();
-//   #ifdef DEBUG2
-//   std::cout << "[Create] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
-//   #endif
-//   // write the node def to the heap file
-//   // offset:size_t
-//   // is_leaf: bool
-//   // parent: size_t // ftell() value of the parent node can be 0 for root
-//   // on a new line a csv for each dimension  of the rectangle
-//   db_out << std::setw(R_WIDTH)<< tid_ << std::endl;
-//   db_out << std::setw(R_WIDTH)<< is_leaf_d_ << std::endl;
-//   db_out << std::setw(R_WIDTH)<< parent_d_ << std::endl;
-//   db_out << std::setw(R_WIDTH) << num_children_ << std::endl;
-//   // FIXME variable number of children for now and only 2 dimensions
-//   // non point in entering anything because the number of children in zero in any case
-
-//   for(int i=0; i<R_RECORDS_MAX; i++)db_out << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) 
-//   << " " << std::setw(R_WIDTH) << 0 << std::endl;
-
-//   db_out << "========" << std::endl;
-//   db_out.flush();
-
-// //   return tid_;
-// }
 
 Node* Rtree::read_from_offset(size_t p) const
 {
@@ -172,6 +142,8 @@ void Rtree::insert_d(const IdxEntryD &e)
   
   
   chosen_leaf.push_back_d(e);
+  chosen_leaf.write_node();
+  // std::cout << "pushing back" << std::endl;
   // chosen_leaf.push_back_d(e);
   // chosne leaf has changed need to write it back to the file
   
@@ -253,12 +225,11 @@ void Node_d::parse_node(size_t p)
 void Node_d::write_node(bool eph)
 {
   size_t init = db_out.tellp();
-  db_out.seekp(tid_);
-  db_out << 16 << std::endl;
+  if(tid_) db_out.seekp(tid_);
+  db_out << tid_ << std::endl;
   db_out << is_leaf_d_ << std::endl;
   db_out << parent_d_ << std::endl;
-  db_out  << 0 << std::endl;
-  std::cout << "init -----------" << children_d_.size() << std::endl;
+  db_out  << offset_d_ << std::endl;
   
   for(auto &x : children_d_){
     db_out  << x.first[0].first << " "  << x.first[0].second << " "  << 
@@ -268,7 +239,7 @@ void Node_d::write_node(bool eph)
   for(int i=0; i<R_RECORDS_MAX - children_d_.size(); i++)db_out  << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) 
   << " "  << 0 << std::endl;
 
-  db_out << "========" << std::endl;
+  db_out << "\n" << std::endl;
   db_out.flush();
   if(eph) db_out.seekp(init);
 }

@@ -63,11 +63,11 @@ extern std::ifstream db_in;
 class Node_d {
   private:
     // FIXME leaf nodes have nullptrs 
-    size_t tid_;
+    size_t tid_=0;
     std::vector<std::pair<Rectangle, size_t>> children_d_;
     bool is_leaf_d_;
     size_t parent_d_=0;
-    size_t offset_d_;
+    size_t offset_d_=0;
     friend class Rtree;
     Node_d(size_t parent, bool is_leaf=true);
 
@@ -87,6 +87,7 @@ class Node_d {
         n.parse_node(e.second);
         n.offset_d_ = children_d_.size();
         n.write_node();
+        // exit();
       }
 
       children_d_.emplace_back(e);
@@ -185,6 +186,8 @@ class Rtree {
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
       //create root Node_d
+      std::ofstream gdb_out("base.db", std::ios_base::trunc);
+      // gdb_out << "";
       Node_d(0, true).write_node();
       root_d_.emplace_back(IdxEntryD{Rectangle(tmp), 0});
       
