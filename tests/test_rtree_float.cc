@@ -33,7 +33,7 @@ int main()
   int rand_mod = 9000;
   int dim_diff = 200;
 
-  for(int iter = 0; iter < 10; iter++){
+  for(int iter = 0; iter < 1; iter++){
     srand(time(NULL));
 
     std::vector<std::array<std::pair<Dim, Dim>, 2>> input;
