@@ -9,8 +9,11 @@
 #include <iostream>
 #endif
 
-typedef int Dim;
-typedef unsigned int UDim;
+typedef float Dim;
+typedef float UDim;
+
+static const int R_WIDTH = 4;
+
 
 #ifndef R_DIM 
 static const int R_DIM = 2; 
@@ -57,6 +60,52 @@ class Rectangle{
 extern std::ofstream db_out;
 extern std::ifstream db_in;
 
+class Node_d {
+  private:
+    // FIXME leaf nodes have nullptrs 
+    size_t tid_;
+    std::vector<std::pair<Rectangle, size_t>> children_d_;
+    bool is_leaf_d_;
+    size_t parent_d_=0;
+    size_t offset_d_;
+    friend class Rtree;
+    Node_d(size_t parent, bool is_leaf=true);
+
+  public:
+    void parse_node(size_t);
+    void write_node(bool eph=false);
+
+    void push_back_d(const std::pair<Rectangle, size_t> &e) 
+    {
+      #ifdef DEBUG
+      std::cout << "[child+] " << this << " <-- " << e.second << " @ " << children_d_.size() << std::endl;
+      #endif
+      // update the reverse pointer from child to the corresponding item of the children_d_ array
+      if(e.second){
+        // read the child from disk
+        auto n = Node_d(0, false);
+        n.parse_node(e.second);
+        n.offset_d_ = children_d_.size();
+        n.write_node();
+      }
+
+      children_d_.emplace_back(e);
+    }
+
+    Rectangle compute_bounding_rectangle();
+    
+    inline size_t size() const { return children_d_.size(); }
+
+    ~Node_d()
+    {
+      #ifdef DEBUG
+      std::cout << "[dstroy] " << this << std::endl;
+      #endif
+      // for(auto &x: children_d_)if(x.second)delete x.second;
+      // children_d_.clear();
+    }
+};
+
 class Node {
   private:
     // FIXME leaf nodes have nullptrs 
@@ -82,7 +131,7 @@ class Node {
     // nobody should need to initialise a node
 
     Node(Node* parent, bool is_leaf=true);
-    size_t Node_d(size_t parent_d, bool is_leaf_d=true);
+    // size_t Node_d(size_t parent_d, bool is_leaf_d=true);
 
   public:
     void push_back(const std::pair<Rectangle, Node*> &e) 
@@ -92,6 +141,7 @@ class Node {
       #endif
       if(e.second)e.second->offset_ = children_.size();
       children_.emplace_back(e);
+      num_children_++;
     }
     Rectangle compute_bounding_rectangle();
     
@@ -134,16 +184,25 @@ class Rtree {
       VertexArray tmp;
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
       root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
+      //create root Node_d
+      Node_d(0, true).write_node();
       root_d_.emplace_back(IdxEntryD{Rectangle(tmp), 0});
       
     }
 
     Node& search();
+
     Node& choose_leaf(Node &, const IdxEntry& );
+    size_t choose_leaf_d(size_t, const IdxEntryD& );
+    
+    
     void insert(const IdxEntry& );
+    void insert_d(const IdxEntryD& );
+
     Node* adjust_tree(Node*, Node*);
     void linear_pick_seeds();
     Node* linear_split(Node& );
+
     ~Rtree()
     {
       #ifdef DEBUG

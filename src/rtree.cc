@@ -12,7 +12,8 @@
 
 #include "include/rtree.h"
 
-std::ofstream db_out("base.db", std::ios_base::trunc);
+std::ofstream gdb_out("base.db", std::ios_base::trunc);
+std::ofstream db_out("base.db");
 std::ifstream db_in("base.db");
 
 Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
@@ -20,40 +21,43 @@ Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
   #ifdef DEBUG
   std::cout << "[create] " << this << "(leaf=" << is_leaf_ << ", parent=" << parent_ <<")" <<  std::endl;
   #endif
-  if(parent_) Node_d(parent_->tid_, is_leaf_);
-  else Node_d(0, is_leaf_);
 }
 
-size_t Node::Node_d(size_t parent_d, bool is_leaf)
+Node_d::Node_d(size_t parent, bool is_leaf): is_leaf_d_{is_leaf}, parent_d_{parent}
 {
-  is_leaf_d_=is_leaf; 
-  parent_d_=parent_d;
-  tid_ = db_out.tellp();
-  #ifdef DEBUG2
-  std::cout << "[Create] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+  #ifdef DEBUG
+  std::cout << "[create] " << this << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
   #endif
-  // write the node def to the heap file
-  // offset:size_t
-  // is_leaf: bool
-  // parent: size_t // ftell() value of the parent node can be 0 for root
-  // on a new line a csv for each dimension  of the rectangle
-  db_out << tid_ << std::endl;
-  db_out << is_leaf_d_ << std::endl;
-  db_out << parent_d_ << std::endl;
-  db_out << num_children_ << std::endl;
-  // FIXME variable number of children for now and only 2 dimensions
-  // non point in entering anything because the number of children in zero in any case
-
-  for(int i=0; i<R_RECORDS_MAX; i++)db_out << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " " << static_cast<Dim>(0) 
-  << " " << 0 << std::endl;
-
-  db_out << "========" << std::endl;
-  db_out.flush();
-
-  return tid_;
 }
 
+// size_t Node::Node_d(size_t parent_d, bool is_leaf)
+// {
+//   is_leaf_d_=is_leaf; 
+//   parent_d_=parent_d;
+//   tid_ = db_out.tellp();
+//   #ifdef DEBUG2
+//   std::cout << "[Create] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
+//   #endif
+//   // write the node def to the heap file
+//   // offset:size_t
+//   // is_leaf: bool
+//   // parent: size_t // ftell() value of the parent node can be 0 for root
+//   // on a new line a csv for each dimension  of the rectangle
+//   db_out << std::setw(R_WIDTH)<< tid_ << std::endl;
+//   db_out << std::setw(R_WIDTH)<< is_leaf_d_ << std::endl;
+//   db_out << std::setw(R_WIDTH)<< parent_d_ << std::endl;
+//   db_out << std::setw(R_WIDTH) << num_children_ << std::endl;
+//   // FIXME variable number of children for now and only 2 dimensions
+//   // non point in entering anything because the number of children in zero in any case
 
+//   for(int i=0; i<R_RECORDS_MAX; i++)db_out << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) << " " << std::setw(R_WIDTH) << static_cast<Dim>(0) 
+//   << " " << std::setw(R_WIDTH) << 0 << std::endl;
+
+//   db_out << "========" << std::endl;
+//   db_out.flush();
+
+// //   return tid_;
+// }
 
 Node* Rtree::read_from_offset(size_t p) const
 {
@@ -98,7 +102,6 @@ UDim Rectangle::growth(const Rectangle &arg) const
   return t_area - area_;
 }
 
-
 Rectangle Node::compute_bounding_rectangle()
 {
   VertexArray tmp;
@@ -120,14 +123,15 @@ Rectangle Node::compute_bounding_rectangle()
 
 void Rtree::insert(const IdxEntry &e)
 {
-  // auto chosen_leaf_iter = choose_leaf(root_.begin(), e);
+
   Node &chosen_leaf = choose_leaf(*root_[0].second, e);
   #ifdef DEBUG
   std::cout << "[insert] in leaf(size): " << &chosen_leaf
   << "(" << chosen_leaf.size() << ")" << std::endl;
   #endif
-  // Node &chosen_leaf = *chosen_leaf_iter->second;
+
   chosen_leaf.push_back(e);
+    
   Node *new_node = nullptr;
   if(chosen_leaf.size() > R_RECORDS_MAX){
     new_node = linear_split(chosen_leaf);
@@ -155,6 +159,49 @@ void Rtree::insert(const IdxEntry &e)
   }
 }
 
+void Rtree::insert_d(const IdxEntryD &e)
+{
+  
+  Node_d chosen_leaf(0); 
+  size_t chosen_offset = choose_leaf_d(root_d_[0].second, e);
+  chosen_leaf.parse_node(chosen_offset);
+  #ifdef DEBUG
+  std::cout << "[insert] in leaf(size): " << &chosen_leaf
+  << "(" << chosen_leaf.size() << ")" << std::endl;
+  #endif
+  
+  
+  chosen_leaf.push_back_d(e);
+  // chosen_leaf.push_back_d(e);
+  // chosne leaf has changed need to write it back to the file
+  
+  // Node *new_node = nullptr;
+  // if(chosen_leaf.size() > R_RECORDS_MAX){
+  //   new_node = linear_split(chosen_leaf);
+  // }
+  // // FIXME 
+  // // chosen_leaf_iter->first = chosen_leaf.compute_bounding_rectangle();
+  // // new_node = adjust_tree(chosen_leaf.parent_, new_node);
+  // new_node = adjust_tree(&chosen_leaf, new_node);
+
+  // if(new_node){
+  //   // root was split so create a new node and add it as the parent of the child nodes
+  //   auto new_root = new Node(nullptr, false);
+  //   new_root->push_back(IdxEntry(new_node->compute_bounding_rectangle(), new_node));
+  //   new_root->push_back(IdxEntry(*root_.begin()));
+  //   root_.begin()->second->parent_ = new_root;
+  //   new_node->parent_ = new_root;
+  //   root_.begin()->second = new_root;
+  //   root_.begin()->first = new_root->compute_bounding_rectangle();
+  //   #ifdef DEBUG
+  //   std::cout << "[nwroot] " << new_root << std::endl;
+  //   for(auto &x: new_root->children_){
+  //     std::cout << "\t[child_] " << x.second << std::endl;
+  //   }
+  //   #endif
+  // }
+}
+
 Node& Rtree::choose_leaf(Node &n, const IdxEntry &e)
 {
   Node &cur_node = n;
@@ -173,6 +220,81 @@ Node& Rtree::choose_leaf(Node &n, const IdxEntry &e)
     }
   }
   return choose_leaf(*next_idx->second, e);
+}
+
+void Node_d::parse_node(size_t p)
+{
+  db_in.seekg(p);
+  std::vector<std::pair<Rectangle, size_t>> inp;
+  size_t num_children;
+  // parse the structure on file
+
+  db_in >> tid_;
+
+  if(tid_ != p) std::cout << "ERRRRRRORRR " << p << "," << tid_ << std::endl;
+
+  db_in >> is_leaf_d_;
+  db_in >> parent_d_;
+  db_in >> num_children;
+  std::cout << "reading->" << is_leaf_d_ <<","<< parent_d_ <<","<< num_children <<"," << std::endl;
+
+  for(int i=0; i<num_children; i++){
+    inp.push_back({ Rectangle({{{0, 0},{0,0}}}), 0});
+    db_in >> inp[i].first[0].first >> inp[i].first[0].second;
+    db_in >> inp[i].first[1].first >> inp[i].first[1].second;
+    db_in >> inp[i].second;
+
+  }
+
+  children_d_.clear();
+  for(int i=0; i<inp.size(); i++)children_d_.push_back(inp[i]);
+} 
+
+void Node_d::write_node(bool eph)
+{
+  size_t init = db_out.tellp();
+  db_out.seekp(tid_);
+  db_out << 16 << std::endl;
+  db_out << is_leaf_d_ << std::endl;
+  db_out << parent_d_ << std::endl;
+  db_out  << 0 << std::endl;
+  std::cout << "init -----------" << children_d_.size() << std::endl;
+  
+  for(auto &x : children_d_){
+    db_out  << x.first[0].first << " "  << x.first[0].second << " "  << 
+    x.first[1].first << " "  << x.first[1].second << " " << x.second << std::endl;
+  }
+  
+  for(int i=0; i<R_RECORDS_MAX - children_d_.size(); i++)db_out  << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) << " " << static_cast<Dim>(0) << " "  << static_cast<Dim>(0) 
+  << " "  << 0 << std::endl;
+
+  db_out << "========" << std::endl;
+  db_out.flush();
+  if(eph) db_out.seekp(init);
+}
+
+size_t Rtree::choose_leaf_d(size_t offset_n, const IdxEntryD &e)
+{
+  // fetch node from disk given the offset
+  
+  auto cur_node = Node_d(0); 
+  cur_node.parse_node(offset_n);
+
+  // get n->second from file
+
+  if(cur_node.is_leaf_d_) return offset_n;
+  auto next_idx = cur_node.children_d_.begin();
+  UDim min_inc =  std::numeric_limits<UDim>::max();
+  for(auto it=cur_node.children_d_.begin(); it!=cur_node.children_d_.end(); ++it){
+    UDim t_inc = it->first.growth(e.first);
+    if(t_inc < min_inc){
+      min_inc = t_inc;
+      next_idx = it;
+    } else if(t_inc == min_inc){
+        next_idx = next_idx->first.area() < it->first.area() ? next_idx:it;
+    }
+  }
+  return choose_leaf_d(next_idx->second, e);
 }
 
 // add nn to n and then propagate split as required
