@@ -83,7 +83,7 @@ int main()
   std::cout << "R_DIM: " << R_DIM << ", R_RECORDS_MAX: " << R_RECORDS_MAX << std::endl;
 
 
-  std::vector<Edge> edges = readEdgesFromFile("edge_final.txt");
+  std::vector<Edge> edges = readEdgesFromFile("edge_final_berkeley.txt");
 
 
     auto rt = Rtree();
@@ -123,7 +123,7 @@ int main()
     rt.walk_d();
 
     std::vector<std::array<std::pair<Dim ,Dim>, 2>> input = {
-    {{{-86.9138,86.9128},{40.4224,40.4241}}},
+    {{{-122.2495786, -122.2489109}, {37.8673889, 37.8676961}}},
   };
 
     IdxEntryVectorD v;

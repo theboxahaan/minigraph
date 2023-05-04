@@ -14,7 +14,7 @@ typedef float Dim;
 typedef float UDim;
 
 static const int R_WIDTH = 16;
-static const int R_PRECISION = 6;
+static const int R_PRECISION = 9;
 
 #ifndef R_DIM 
 static const int R_DIM = 2; 
@@ -64,7 +64,10 @@ class Rectangle{
       
       for(int dim=0; dim < R_DIM; dim++){
         // check for overlap in dimension i
-        if(r.vertices_[dim].second < vertices_[dim].first) return false;
+        //get max start point
+        Dim hl = std::max(r.vertices_[dim].first, vertices_[dim].first);
+        Dim lh = std::min(r.vertices_[dim].second, vertices_[dim].second);
+        if(lh < hl ) return false;
       }
 
       return true;
