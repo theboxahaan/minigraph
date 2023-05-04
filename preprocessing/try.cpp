@@ -123,7 +123,7 @@ int main(){
 	std::remove("tid_offset_final.txt");
 	std::cout<<"DONE"<<std::flush;
 	for(auto edge: edges){
-		writeEdgeToFile(edge, "edge_final.txt", "tid_offset_final.txt");
+		writeEdgeToFile(edge, "edge_final_berkeley.txt", "tid_offset_final_berkeley.txt");
 	}
 
 	return 0;

@@ -95,7 +95,7 @@ int main(void)
     std::remove("edge.txt");
 	std::remove("tid_offset.txt");
     // Read the graphml file
-    std::ifstream theFile ("mynetwork.graphml");
+    std::ifstream theFile ("berkeley.graphml");
     std::vector<char> buffer((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
     buffer.push_back('\0');
    
@@ -116,12 +116,12 @@ int main(void)
 			
             
             xml_node<> * d9_node = edge_node->first_node("data");
-            while(strcmp(d9_node->first_attribute("key")->value(), "d9") && d9_node->next_sibling()){
+            while(strcmp(d9_node->first_attribute("key")->value(), "d10") && d9_node->next_sibling()){
 				d9_node = d9_node->next_sibling();
 			}
             
             std::string name_d10;
-            if(!strcmp(d9_node->first_attribute("key")->value(), "d9"))
+            if(!strcmp(d9_node->first_attribute("key")->value(), "d10"))
 			    name_d10 = d9_node->value();
             else
                 name_d10 = "";
@@ -130,20 +130,20 @@ int main(void)
 
 
             xml_node<> * d14_node = edge_node->first_node("data");
-            while(strcmp(d14_node->first_attribute("key")->value(), "d14")){
+            while(strcmp(d14_node->first_attribute("key")->value(), "d15")){
 				d14_node = d14_node->next_sibling();
 			}
-			// std::cout << "\n edge weight =   "<<std::stof(d14_node->value());
-			// std::cout << std::endl;
+			std::cout << "\n edge weight =   "<<std::stof(d14_node->value());
+			std::cout << std::endl<<std::flush;
 			float l = std::stof(d14_node->value());
 
             xml_node<> * d15_node = edge_node->first_node("data");
-			while(strcmp(d15_node->first_attribute("key")->value(), "d15") && d15_node->next_sibling()){
+			while(strcmp(d15_node->first_attribute("key")->value(), "d16") && d15_node->next_sibling()){
                 // std::cout<<d15_node->first_attribute("key")->value()<<std::endl<<std::flush;
 				d15_node = d15_node->next_sibling();
 			}
             std::string str;
-            if(!strcmp(d15_node->first_attribute("key")->value(), "d15"))
+            if(!strcmp(d15_node->first_attribute("key")->value(), "d16"))
 			    str = d15_node->value();
             else
                 continue;
@@ -196,7 +196,7 @@ int main(void)
 	}
 
 
-	auto new_edges = readEdgesFromFile("edge.txt");
+	// auto new_edges = readEdgesFromFile("edge.txt");
 	// for(auto x : new_edges){
 	// 	std::cout<<"x:"<<std::endl;
 	// 	std::cout<<"\tsource:"<<x.source<<"\ttarget:"<<x.target<<"\tlen:"<<x.length<<std::endl<<"\t";
