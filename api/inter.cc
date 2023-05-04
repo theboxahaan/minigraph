@@ -29,8 +29,8 @@ std::vector<std::vector<Edge>> name_range(std::string source, std::string type, 
 
 
 int main() {
-    std::string source = "MartinJischke Drive";
-    std::string dest = "DavidRoss Road";
+    std::string source = "Dwight Way ";
+    std::string dest = "Arden Road ";
 
     std::vector<Edge> sn = name_sssp(source, dest);
     std::cout<<"Dijkstra"<<std::endl;
@@ -55,7 +55,7 @@ int main() {
 
     std::cout<<"name_range"<<std::endl;
 
-    eds = name_range(source, "university", 250);
+    eds = name_range(source, "university", 5000);
 
     i=0;
     for(auto &vs : eds) {

@@ -1,6 +1,11 @@
 #include <string>
 #include <sstream>
 #include <unordered_map>
+
+const std::string tidFile = "../preprocessing/final_edges/Berkeley/edge_final_berkeley.txt";
+const std::string offFile = "../preprocessing/final_edges/Berkeley/tid_offset_final_berkeley.txt";
+
+
 class Edge
 {
 public:
@@ -39,7 +44,6 @@ class EdgeHash
 
 std::unordered_map<int, int> prepOffset() {
     std::unordered_map<int, int> offs;
-    const std::string offFile = "../preprocessing/tid_offset_final.txt";
     std::ifstream file(offFile);
     unsigned int itid, off;
     if (file.is_open())
@@ -94,8 +98,7 @@ Edge getEdge(std::unordered_map<int, int> &offs, std::ifstream &file, int tid) {
                         edge.target_coords.append(temp_coord);
                         edge.target_coords.append(" ");
                     }
-                } else if (key == "name:") {
-					iss >> edge.name;
+                }   else if (key == "name:") {
                     std::string temp_name;
                     while(iss >> temp_name){
                         edge.name.append(temp_name);

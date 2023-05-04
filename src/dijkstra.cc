@@ -14,7 +14,6 @@
 #include "../include/edge.h"
 #endif
 
-const std::string tidFile = "../preprocessing/edge_final.txt";
 
 
 std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, Edge &ed) {

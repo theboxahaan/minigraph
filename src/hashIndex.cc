@@ -36,10 +36,9 @@ long long hashFunc(std::string &key) {
 
 
 void genIndex() {
-    const std::string filename = "../preprocessing/edge_final.txt";
     std::map<long long, int> edges;
 
-    std::ifstream file(filename);
+    std::ifstream file(tidFile);
     
     if (file.is_open()) {
         Edge edge(0, 0.0f, "", "");
@@ -76,12 +75,10 @@ void genIndex() {
                         edge.target_coords.append(" ");
                     }
                 } else if (key == "name:") {
-					iss >> edge.name;
-
                     std::string temp_name;
                     while(iss >> temp_name){
-                        edge.name.append(" ");
                         edge.name.append(temp_name);
+                        edge.name.append(" ");
                     }
                 } else if (key == "type:") {
                     // std::cout << edge.type;
@@ -136,7 +133,7 @@ int search(std::string name) {
 }
 
 // int main(){
-//     // genIndex();
-//     std::cout<<search("StewartCenter")<<"\n";
+//     genIndex();
+//     // std::cout<<search("StewartCenter")<<"\n";
 //     return 0;
 // }
