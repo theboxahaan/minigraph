@@ -83,14 +83,14 @@ int main()
   std::cout << "R_DIM: " << R_DIM << ", R_RECORDS_MAX: " << R_RECORDS_MAX << std::endl;
 
 
-  std::vector<Edge> edges = readEdgesFromFile("test.txt");
+  std::vector<Edge> edges = readEdgesFromFile("edge_final.txt");
 
 
     auto rt = Rtree();
     int dddd = 0;
     // std::cout<< "rtree built" << std::endl;
     for(auto edge: edges){
-      if(dddd > 10)
+      if(dddd > 10000)
         break;
       dddd++;
       // rt.insert(IdxEntry(Rectangle(x), nullptr));
@@ -107,10 +107,12 @@ int main()
       getline(ss_source, coord_str_source, ',');
       getline(ss_target, coord_str_target, ',');
       mbr[1] = std::pair<Dim, Dim> ({std::stod(coord_str_source), std::stod(coord_str_target)});
-      if(mbr[0].first == mbr[0].second && mbr[1].first == mbr[1].second){  
-        mbr[0].second++;
-        mbr[1].second++;
+      if(mbr[0].first - mbr[0].second < 1e-4 || mbr[1].first - mbr[1].second < 1e-4){  
+        mbr[0].second += 1e-3;
+        mbr[1].second += 1e-3;
       }
+      if(mbr[0].first > mbr[0].second)std::swap(mbr[0].first, mbr[0].second);
+      if(mbr[1].first > mbr[1].second)std::swap(mbr[1].first, mbr[1].second);
       std::cout<<mbr[0].first<<" "<<mbr[0].second<<" "<<mbr[1].first<<" "<<mbr[1].second<<std::endl;
       rt.insert_d(IdxEntryD(Rectangle(mbr), 0)); 
       // std::cout << "insert" << std::endl; 
@@ -118,10 +120,10 @@ int main()
     
     //rand_mod = rand_mod * 2;
     //numPoints = numPoints * 2;
-  rt.walk_d();
+    rt.walk_d();
   
-   db_out.close();
-  db_in.close();
+    db_out.close();
+    db_in.close();
 
   return 0;
 

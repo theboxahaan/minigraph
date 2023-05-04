@@ -10,11 +10,11 @@
 #include <iostream>
 #endif
 
-typedef double Dim;
-typedef double UDim;
+typedef float Dim;
+typedef float UDim;
 
 static const int R_WIDTH = 16;
-
+static const int R_PRECISION = 6;
 
 #ifndef R_DIM 
 static const int R_DIM = 2; 

@@ -9,7 +9,7 @@ if __name__ == '__main__':
     for l in fd.readlines():
       s.append(l.split(',')[:-1])
   fig, ax = plt.subplots()
-  ax.plot([-4,4], [-4,4])
+  ax.plot([-85,-86], [40,41])
   i = 0
   for x, x_len, y, y_len in s:
     if i != 0:

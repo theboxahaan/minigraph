@@ -98,7 +98,7 @@ Rectangle Node_d::compute_bounding_rectangle()
   VertexArray tmp;
   std::array<Dim, R_DIM> ll, hh;
   std::fill(ll.begin(), ll.end(), std::numeric_limits<Dim>::max()); 
-  std::fill(hh.begin(), hh.end(), std::numeric_limits<Dim>::min());
+  std::fill(hh.begin(), hh.end(), std::numeric_limits<Dim>::lowest());
  
   for(auto x=children_d_.begin(); x!=children_d_.end(); x++){
     for(int i=0; i<R_DIM; ++i){
@@ -237,7 +237,7 @@ void Node_d::parse_node(size_t p)
 
   db_in >> tid_;
 
-  if(tid_ != p) std::cout << "ERRRRRRORRR " << p << "," << tid_ << std::endl;
+  if(tid_ != p) std::cout << "[PARSE ERROR].... " << p << "," << tid_ << std::endl;
 
   db_in >> is_leaf_d_;
   db_in >> parent_d_;
@@ -260,18 +260,20 @@ void Node_d::write_node(bool eph)
 {
   size_t init = db_out.tellp();
   if(eph) db_out.seekp(tid_);
-  db_out << std::setw(R_WIDTH) <<  tid_ << std::endl;
-  db_out << std::setw(R_WIDTH) << is_leaf_d_ << std::endl;
-  db_out << std::setw(R_WIDTH) <<  parent_d_ << std::endl;
-  db_out << std::setw(R_WIDTH) << children_d_.size() << std::endl;
-  db_out  << std::setw(R_WIDTH) << offset_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  tid_ << std::endl;
+  db_out << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) << is_leaf_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  parent_d_ << std::endl;
+  db_out << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) << children_d_.size() << std::endl;
+  db_out  << std::setw(R_WIDTH)<< std::setprecision(R_PRECISION) << offset_d_ << std::endl;
   
   for(auto &x : children_d_){
-    db_out  << std::setw(R_WIDTH) << x.first[0].first << " "  << std::setw(R_WIDTH) << x.first[0].second << " "  << std::setw(R_WIDTH) <<  
-    x.first[1].first << " "  << std::setw(R_WIDTH) <<  x.first[1].second << " " << std::setw(R_WIDTH) <<  x.second << std::endl;
+    db_out  << std::setw(R_WIDTH)  << std::setprecision(R_PRECISION) << x.first[0].first << " "  << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) << x.first[0].second << " "  << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  
+    x.first[1].first << " "  << std::setw(R_WIDTH)<< std::setprecision(R_PRECISION) <<  x.first[1].second << " " << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  x.second << std::endl;
   }
 
   // an extra place for adding a record that will be removed during linear split
+  if(children_d_.size() > R_RECORDS_MAX+1)std::cout << "[CHILD SIZE OVERFLOW] " << children_d_.size() << std::endl;
+
   for(int i=0; i<R_RECORDS_MAX+1 - children_d_.size(); i++)db_out  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " " << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) 
   << " "  << std::setw(R_WIDTH) <<  0 << std::endl;
 
@@ -283,7 +285,6 @@ void Node_d::write_node(bool eph)
   if(!eph)
   std::cout << "[fwrite] " << tid_ << "(leaf=" << is_leaf_d_ << ", parent=" << parent_d_ <<")" <<  std::endl;
   #endif
-
 
 }
 
