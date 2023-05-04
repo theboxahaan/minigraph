@@ -16,7 +16,7 @@
 
 
 
-std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, Edge &ed) {
+std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, Edge &ed, int dist) {
     std::vector<Edge> ans;
     Edge cur = ed;
 
@@ -25,6 +25,7 @@ std::vector<Edge> consPath(std::unordered_map<Edge, Edge, EdgeHash> &cameFrom, E
         cur = cameFrom[cur];
     }
     ans.push_back(cur);
+    ans.push_back(Edge(dist, 0, "", ""));
     std::reverse(ans.begin(), ans.end());
     return ans;
 }
@@ -55,7 +56,7 @@ std::vector<Edge> dijs(int stid, int dtid) {
         Edge u = p.second;
         if(u.tid == dtid) {
             if(file.is_open()) file.close();
-            return consPath(cameFrom, u);
+            return consPath(cameFrom, u, dist[u]);
         }
         for(auto &vtid : u.neighbours) {
             Edge v = getEdge(offs, file, vtid);
@@ -101,7 +102,7 @@ std::vector<std::vector<Edge>> range(int stid, int range, std::string type) {
 
         Edge u = p.second;
         if(u.type == type) {
-            ans.push_back(consPath(cameFrom, u));
+            ans.push_back(consPath(cameFrom, u, dist[u]));
             continue;
         }
         if(dist[u] > range) continue;
@@ -151,7 +152,7 @@ std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
 
         Edge u = p.second;
         if(u.type == type) {
-            ans.push_back(consPath(cameFrom, u));
+            ans.push_back(consPath(cameFrom, u, dist[u]));
             nreq--;
             continue;
         }

@@ -6,6 +6,9 @@ const std::string tidFile = "../preprocessing/final_edges/Berkeley/edge_final_be
 const std::string offFile = "../preprocessing/final_edges/Berkeley/tid_offset_final_berkeley.txt";
 
 
+// const std::string tidFile = "../preprocessing/final_edges/WL/edge_final_wl.txt";
+// const std::string offFile = "../preprocessing/final_edges/WL/tid_offset_final_wl.txt";
+
 class Edge
 {
 public:
