@@ -55,6 +55,22 @@ class Rectangle{
       }
       fd << "\n" ;
     }
+
+    bool overlap(const Rectangle &r)
+    {
+      // std::cout <<"my dims" << vertices_[0].first << " " << vertices_[0].second << " " << vertices_[1].first << " " << vertices_[1].second << std::endl;
+
+      // std::cout <<"given" << r.vertices_[0].first << " " << r.vertices_[0].second << " " << r.vertices_[1].first << " " << r.vertices_[1].second << std::endl;
+      
+      for(int dim=0; dim < R_DIM; dim++){
+        // check for overlap in dimension i
+        if(r.vertices_[dim].second < vertices_[dim].first) return false;
+      }
+
+      return true;
+    }
+
+
 };
 
 
@@ -176,9 +192,9 @@ typedef std::vector<IdxEntryD> IdxEntryVectorD;
 class Rtree {
   private:
     IdxEntryVector root_;
-    IdxEntryVectorD root_d_;
 
   public:
+    IdxEntryVectorD root_d_;
     Rtree()
     {
       #ifdef DEBUG
@@ -198,13 +214,14 @@ class Rtree {
     }
 
     Node& search();
+    IdxEntryVectorD& search_d(size_t, IdxEntryVectorD &, const Rectangle& );
 
     Node& choose_leaf(Node &, const IdxEntry& );
     size_t choose_leaf_d(size_t, const IdxEntryD& );
     
     
     void insert(const IdxEntry& );
-    void insert_d(const IdxEntryD& );
+    void insert_d(const IdxEntryD&);
 
     Node* adjust_tree(Node*, Node*);
     size_t adjust_tree_d(size_t, size_t);

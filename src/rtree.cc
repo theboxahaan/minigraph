@@ -559,3 +559,26 @@ void Rtree::walk_d() const
   }
   file.close();
 }
+
+
+
+IdxEntryVectorD& Rtree::search_d(size_t root, IdxEntryVectorD &v, const Rectangle& q){
+  
+  // materialize node at root
+  auto n = Node_d(0);
+  n.parse_node(root);
+  if(!n.is_leaf_d_){
+    for(auto &x: n.children_d_){
+      if(x.first.overlap(q)){
+        search_d(x.second, v, q);
+      }
+    }
+  } else {
+    for(auto &x: n.children_d_){
+      if(x.first.overlap(q)) {
+        v.push_back(x);
+      }
+    }
+  }
+  return v;
+}

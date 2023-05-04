@@ -121,7 +121,19 @@ int main()
     //rand_mod = rand_mod * 2;
     //numPoints = numPoints * 2;
     rt.walk_d();
-  
+
+    std::vector<std::array<std::pair<Dim ,Dim>, 2>> input = {
+    {{{-86.9138,86.9128},{40.4224,40.4241}}},
+  };
+
+    IdxEntryVectorD v;
+    rt.search_d(rt.root_d_[0].second, v, Rectangle(input[0]));
+    std::cout << "size of results " << v.size() << std::endl;
+
+    for(auto x: v){
+        std::cout << "-> " << x.first[0].first << " " << x.first[0].second << " " << x.first[1].first << " " << x.first[1].second << std::endl;
+    }
+
     db_out.close();
     db_in.close();
 
