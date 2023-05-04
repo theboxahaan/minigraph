@@ -10,8 +10,8 @@
 #include <iostream>
 #endif
 
-typedef float Dim;
-typedef float UDim;
+typedef double Dim;
+typedef double UDim;
 
 static const int R_WIDTH = 16;
 
