@@ -99,9 +99,13 @@ Rectangle Node_d::compute_bounding_rectangle()
   std::array<Dim, R_DIM> ll, hh;
   std::fill(ll.begin(), ll.end(), std::numeric_limits<Dim>::max()); 
   std::fill(hh.begin(), hh.end(), std::numeric_limits<Dim>::lowest());
+
+
  
   for(auto x=children_d_.begin(); x!=children_d_.end(); x++){
     for(int i=0; i<R_DIM; ++i){
+
+      // std::cout << "x->" << x->first[i].first << " " << x->first[i].second << std::endl;
       // check for the lowest low in the rectangles
       if(x->first[i].first < ll[i]) ll[i] = x->first[i].first; 
       // check for the highest high in the rectangles
@@ -231,7 +235,7 @@ Node& Rtree::choose_leaf(Node &n, const IdxEntry &e)
 void Node_d::parse_node(size_t p)
 {
   db_in.seekg(p);
-  std::vector<std::pair<Rectangle, size_t>> inp;
+  std::vector<IdxEntryD> inp;
   size_t num_children;
   // parse the structure on file
 
@@ -249,6 +253,7 @@ void Node_d::parse_node(size_t p)
     db_in >> inp[i].first[0].first >> inp[i].first[0].second;
     db_in >> inp[i].first[1].first >> inp[i].first[1].second;
     db_in >> inp[i].second;
+    db_in >> inp[i].data_tuple;
 
   }
 
@@ -268,14 +273,14 @@ void Node_d::write_node(bool eph)
   
   for(auto &x : children_d_){
     db_out  << std::setw(R_WIDTH)  << std::setprecision(R_PRECISION) << x.first[0].first << " "  << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) << x.first[0].second << " "  << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  
-    x.first[1].first << " "  << std::setw(R_WIDTH)<< std::setprecision(R_PRECISION) <<  x.first[1].second << " " << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  x.second << std::endl;
+    x.first[1].first << " "  << std::setw(R_WIDTH)<< std::setprecision(R_PRECISION) <<  x.first[1].second << " " << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) <<  x.second << std::setw(R_WIDTH) << std::setprecision(R_PRECISION) << x.data_tuple << std::endl;
   }
 
   // an extra place for adding a record that will be removed during linear split
   if(children_d_.size() > R_RECORDS_MAX+1)std::cout << "[CHILD SIZE OVERFLOW] " << children_d_.size() << std::endl;
 
   for(int i=0; i<R_RECORDS_MAX+1 - children_d_.size(); i++)db_out  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " " << std::setw(R_WIDTH) <<  static_cast<Dim>(0) << " "  << std::setw(R_WIDTH) <<  static_cast<Dim>(0) 
-  << " "  << std::setw(R_WIDTH) <<  0 << std::endl;
+  << " "  << std::setw(R_WIDTH) <<  0 << std::setw(R_WIDTH) << 0 << std::endl;
 
   db_out << "\n" << std::endl;
   db_out.flush();
@@ -551,7 +556,7 @@ void Rtree::walk_d() const
     if(visited.find(cur) == visited.end()){
       for(auto &child: cur_node.children_d_){
         child.first.dump_to_stream(file);
-        if(child.second)s.push(child.second);
+        if(child.second && !child.data_tuple)s.push(child.second);
       }
       visited.insert(cur);
     }
@@ -565,20 +570,26 @@ void Rtree::walk_d() const
 IdxEntryVectorD& Rtree::search_d(size_t root, IdxEntryVectorD &v, const Rectangle& q){
   
   // materialize node at root
+  // std::cout << "looking at " << root << std::endl; 
   auto n = Node_d(0);
   n.parse_node(root);
   if(!n.is_leaf_d_){
+    // std::cout << "here not a leaf" << std::endl;
     for(auto &x: n.children_d_){
+      // std::cout << "lookin at children .. " << x.second << std::endl;
       if(x.first.overlap(q)){
+        // std::cout << "overlap..." << std::endl;
         search_d(x.second, v, q);
       }
     }
   } else {
+    // std::cout << "leaf name ~> " << n.tid_ << std::endl;
     for(auto &x: n.children_d_){
       if(x.first.overlap(q)) {
         v.push_back(x);
       }
     }
   }
+  // std::cout << v.size() << std::endl;
   return v;
 }

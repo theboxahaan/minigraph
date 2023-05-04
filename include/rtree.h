@@ -80,11 +80,25 @@ class Rectangle{
 extern std::ofstream db_out;
 extern std::ifstream db_in;
 
+
+class IdxEntryD {
+
+  public:
+    Rectangle first;
+    size_t second;
+    bool data_tuple;
+
+    IdxEntryD(Rectangle r, size_t s, bool data_tuple=false): first{r}, second{s}, data_tuple{data_tuple}{}
+
+};
+
+
 class Node_d {
   private:
     // FIXME leaf nodes have nullptrs 
     size_t tid_=0;
-    std::vector<std::pair<Rectangle, size_t>> children_d_;
+    // std::vector<std::pair<Rectangle, size_t>> children_d_;
+    std::vector<IdxEntryD> children_d_;
     bool is_leaf_d_;
     size_t parent_d_=0;
     size_t offset_d_=0;
@@ -95,18 +109,21 @@ class Node_d {
     void parse_node(size_t);
     void write_node(bool eph=false);
 
-    void push_back_d(const std::pair<Rectangle, size_t> &e) 
+    void push_back_d(const IdxEntryD &e) 
     {
       #ifdef DEBUG
       std::cout << "[child+] " << tid_ << " <-- " << e.second << " @ " << children_d_.size() << std::endl;
       #endif
       // update the reverse pointer from child to the corresponding item of the children_d_ array
-      if(e.second){
+      // std::cout << "e.second " << e.second << ", " << e.data_tuple << std::endl;
+      if(e.second && !e.data_tuple){
         // read the child from disk
         auto n = Node_d(0, false);
         n.parse_node(e.second);
         n.offset_d_ = children_d_.size();
+        n.parent_d_ = tid_;
         n.write_node(true);
+        is_leaf_d_ = false;
         // exit();
       }
 
@@ -181,7 +198,11 @@ class Node {
 };
 
 typedef std::pair<Rectangle, Node*> IdxEntry;
-typedef std::pair<Rectangle, size_t> IdxEntryD;
+// typedef std::tuple<Rectangle, size_t> IdxEntryD;
+
+
+
+
 
 typedef std::vector<IdxEntry> IdxEntryVector;
 typedef std::vector<IdxEntryD> IdxEntryVectorD;

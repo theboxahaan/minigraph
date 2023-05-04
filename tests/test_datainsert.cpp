@@ -114,7 +114,7 @@ int main()
       if(mbr[0].first > mbr[0].second)std::swap(mbr[0].first, mbr[0].second);
       if(mbr[1].first > mbr[1].second)std::swap(mbr[1].first, mbr[1].second);
       std::cout<<mbr[0].first<<" "<<mbr[0].second<<" "<<mbr[1].first<<" "<<mbr[1].second<<std::endl;
-      rt.insert_d(IdxEntryD(Rectangle(mbr), 0)); 
+      rt.insert_d(IdxEntryD(Rectangle(mbr), dddd+700, true)); 
       // std::cout << "insert" << std::endl; 
     }
     
@@ -123,7 +123,7 @@ int main()
     rt.walk_d();
 
     std::vector<std::array<std::pair<Dim ,Dim>, 2>> input = {
-    {{{-122.2495786, -122.2489109}, {37.8673889, 37.8676961}}},
+    {{{-122.2962555, -122.2951035}, {37.8597504, 37.8599832}}},
   };
 
     IdxEntryVectorD v;
@@ -131,7 +131,7 @@ int main()
     std::cout << "size of results " << v.size() << std::endl;
 
     for(auto x: v){
-        std::cout << "-> " << x.first[0].first << " " << x.first[0].second << " " << x.first[1].first << " " << x.first[1].second << std::endl;
+        std::cout << "-> " << x.first[0].first << " " << x.first[0].second << " " << x.first[1].first << " " << x.first[1].second << " " << x.second <<  std::endl;
     }
 
     db_out.close();
