@@ -72,7 +72,6 @@ std::vector<Edge> readEdgesFromFile(const std::string& filename) {
                         edge.target_coords.append(" ");
                     }
                 } else if (key == "name:") {
-					iss >> edge.name;
                     std::string temp_name;
                     while(iss >> temp_name){
                         edge.name.append(temp_name);
