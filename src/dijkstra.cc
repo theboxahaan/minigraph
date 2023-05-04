@@ -9,7 +9,10 @@
 #include<iostream>
 #include<list>
 
+#ifndef HEADER_H
+#define HEADER_H
 #include "../include/edge.h"
+#endif
 
 const std::string tidFile = "../preprocessing/edge_final.txt";
 
@@ -176,47 +179,47 @@ std::vector<std::vector<Edge>> KNN(int stid, int nreq, std::string type) {
 }
 
 
-int main() {
+// int main() {
 
-    // Edge e = readEdgeFromFile(17);
+//     // Edge e = readEdgeFromFile(17);
 
-    // std::cout<<e.length<<std::endl;
+//     // std::cout<<e.length<<std::endl;
 
-    std::vector<Edge> sn = dijs(1, 328);
-    std::cout<<"Dijkstra"<<std::endl;
+//     std::vector<Edge> sn = dijs(1, 328);
+//     std::cout<<"Dijkstra"<<std::endl;
 
-    for(auto &e : sn) {
-        std::cout<<e.tid<<" ";
-    }
-    std::cout<<std::endl;
+//     for(auto &e : sn) {
+//         std::cout<<e.tid<<" ";
+//     }
+//     std::cout<<std::endl;
 
-    int knn = 10;
-    int rn = 200;
+//     int knn = 10;
+//     int rn = 200;
 
-    std::cout<<"KNN"<<std::endl;
+//     std::cout<<"KNN"<<std::endl;
 
-    std::vector<std::vector<Edge>> eds = KNN(112, knn, "university");
+//     std::vector<std::vector<Edge>> eds = KNN(112, knn, "university");
 
-    int i=0;
-    for(auto &vs : eds) {
-        std::cout<<i++<<std::endl;
-        for(auto &v : vs) {
-            std::cout<<v.tid<<" ";
-        }
-        std::cout<<std::endl;
-    }
+//     int i=0;
+//     for(auto &vs : eds) {
+//         std::cout<<i++<<std::endl;
+//         for(auto &v : vs) {
+//             std::cout<<v.tid<<" ";
+//         }
+//         std::cout<<std::endl;
+//     }
 
-    std::cout<<"Range"<<std::endl;
+//     std::cout<<"Range"<<std::endl;
 
-    eds = range(112, rn, "university");
+//     eds = range(112, rn, "university");
 
-    i = 0;
-    for(auto &vs : eds) {
-        std::cout<<i++<<std::endl;
-        for(auto &v : vs) {
-            std::cout<<v.tid<<" ";
-        }
-        std::cout<<std::endl;
-    }
+//     i = 0;
+//     for(auto &vs : eds) {
+//         std::cout<<i++<<std::endl;
+//         for(auto &v : vs) {
+//             std::cout<<v.tid<<" ";
+//         }
+//         std::cout<<std::endl;
+//     }
 
-}
+// }
