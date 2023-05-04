@@ -1,4 +1,9 @@
+
+#ifndef HEADER_H
+#define HEADER_H
 #include "../include/edge.h"
+#endif
+
 #include<vector>
 #include<map>
 #include<string>
@@ -14,7 +19,7 @@
 const long long hwidth = 10;
 const long long tidwidth = 10;
 const long long buckets = 100;
-const std::string hfilenamepref = "./hashIdx/hfile_";
+const std::string hfilenamepref = "../src/hashIdx/hfile_";
 
 
 
@@ -91,7 +96,7 @@ void genIndex() {
                     std::string hfn = hfilenamepref + std::to_string(hashFunc(edge.name));
                     std::ofstream hf(hfn, std::ios_base::app);
                     if(hf.is_open()) {
-                        std::cout << edge.name << "\n";
+                        // std::cout << edge.name << "\n";
 
                         hf << edge.name << ";"<< edge.tid << "\n";
                         hf.close();
@@ -108,7 +113,7 @@ void genIndex() {
 int search(std::string name) {
     long long getH = hashFunc(name);
     std::string fname = hfilenamepref + std::to_string(getH);
-    std::cout<<" file name"<<" "<<fname<<"\n";
+    // std::cout<<" file name"<<" "<<fname<<"\n";
 
     std::ifstream ifile(fname);
     std::string line;
@@ -116,7 +121,7 @@ int search(std::string name) {
     std::string delimiter = ";";
 
     if(ifile.is_open()) {
-        std::cout<<"found file"<<" "<<getH<<"\n";
+        // std::cout<<"found file"<<" "<<getH<<"\n";
         while (std::getline(ifile, line)) {
             std::string token = line.substr(0, line.find(delimiter));
             std::cout<<token<<" "<<line.substr(line.find(delimiter)+1)<<"\n";
@@ -130,8 +135,8 @@ int search(std::string name) {
     return -1;
 }
 
-int main(){
-    // genIndex();
-    std::cout<<search("StewartCenter")<<"\n";
-    return 0;
-}
+// int main(){
+//     // genIndex();
+//     std::cout<<search("StewartCenter")<<"\n";
+//     return 0;
+// }
