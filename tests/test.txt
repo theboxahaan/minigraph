@@ -1,0 +1,20 @@
+tid: 0
+length: 103.402
+source: 37968547
+target: 38001852
+source_coords: -1,-1 
+target_coords: -2,-2 
+name: AgricultureMall 
+type: road
+neighbours: 64 379 383 445 446 659 
+---next---
+
+tid: 37
+length: 108.639
+source: 37997163
+target: 37998872
+source_coords: 1,1 
+target_coords: 2,2 
+name: NorthRussell Street 
+type: road
+neighbours: 50 51 507 508 512 
