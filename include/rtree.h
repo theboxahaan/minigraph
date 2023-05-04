@@ -219,7 +219,7 @@ class Rtree {
 
   public:
     IdxEntryVectorD root_d_;
-    Rtree()
+    Rtree(bool readonly=false)
     {
       #ifdef DEBUG
       std::cout << "[rtree] create" << std::endl;
@@ -228,12 +228,30 @@ class Rtree {
       std::fill(tmp.begin(), tmp.end(), std::pair<Dim, Dim>{0,0});
       // root_.emplace_back(IdxEntry{Rectangle(tmp), new Node(nullptr)});
       //create root Node_d
-      std::ofstream gdb_out("base.db", std::ios_base::trunc);
-      // gdb_out << "";
-      db_out << "HEADER" << std::endl;
-      Node_d r = Node_d(0, true);
-      r.write_node();
-      root_d_.emplace_back(IdxEntryD{Rectangle(tmp), r.tid_});
+      if(!readonly){
+        db_out.seekp(0);
+        db_in.seekg(0);
+        // gdb_out << "";
+        db_out << "HEADER" << std::endl;
+        db_out << 123456789 << std::endl; // dummy offset for the root
+        Node_d r = Node_d(0, true);
+        r.write_node();
+        root_d_.emplace_back(IdxEntryD{Rectangle(tmp), r.tid_});
+
+      } else {
+        
+        std::string header;
+        
+        db_in >> header;
+        std::cout << header << std::endl;
+        root_d_.emplace_back(IdxEntryD{Rectangle(tmp), 0});
+        db_in >> root_d_[0].second;
+        std::cout << root_d_[0].second << std::endl;
+        Node_d temp = Node_d(0);
+        temp.parse_node(root_d_[0].second);
+        root_d_[0].first = temp.compute_bounding_rectangle();
+        db_in.seekg(0);
+      }
       
     }
 

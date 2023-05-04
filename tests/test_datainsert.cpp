@@ -80,6 +80,7 @@ std::vector<Edge> readEdgesFromFile(const std::string& filename) {
 
 int main()
 {
+    
   std::cout << "R_DIM: " << R_DIM << ", R_RECORDS_MAX: " << R_RECORDS_MAX << std::endl;
 
 
@@ -134,6 +135,9 @@ int main()
         std::cout << "-> " << x.first[0].first << " " << x.first[0].second << " " << x.first[1].first << " " << x.first[1].second << " " << x.second <<  std::endl;
     }
 
+    db_out.seekp(0);
+    db_out << "HEADER" << std::endl;
+    db_out << rt.root_d_[0].second << std::endl; 
     db_out.close();
     db_in.close();
 

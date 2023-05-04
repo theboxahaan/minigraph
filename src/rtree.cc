@@ -14,7 +14,7 @@
 
 #include "include/rtree.h"
 
-std::ofstream db_out("base.db");
+std::ofstream db_out("base.db", std::ios::in | std::ios::out);
 std::ifstream db_in("base.db");
 
 Node::Node(Node* parent, bool is_leaf): is_leaf_{is_leaf}, parent_{parent}
