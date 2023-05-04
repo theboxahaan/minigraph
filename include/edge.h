@@ -2,12 +2,17 @@
 #include <sstream>
 #include <unordered_map>
 
-const std::string tidFile = "../preprocessing/final_edges/Berkeley/edge_final_berkeley.txt";
-const std::string offFile = "../preprocessing/final_edges/Berkeley/tid_offset_final_berkeley.txt";
+std::string tidFile = "../preprocessing/final_edges/Berkeley/edge_final_berkeley.txt";
+std::string offFile = "../preprocessing/final_edges/Berkeley/tid_offset_final_berkeley.txt";
 
 
 // const std::string tidFile = "../preprocessing/final_edges/WL/edge_final_wl.txt";
 // const std::string offFile = "../preprocessing/final_edges/WL/tid_offset_final_wl.txt";
+
+void setFileLocs(std::string tidf, std::string off) {
+    tidFile = tidf;
+    offFile = off;
+}
 
 class Edge
 {

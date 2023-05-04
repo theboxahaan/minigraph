@@ -37,7 +37,7 @@ long long hashFunc(std::string &key) {
 
 void genIndex() {
     std::map<long long, int> edges;
-
+    std::unordered_map<std::string, std::ofstream*> bucktfs;
     std::ifstream file(tidFile);
     
     if (file.is_open()) {
@@ -91,16 +91,19 @@ void genIndex() {
                     }
                 } else if (key == "---next---") {
                     std::string hfn = hfilenamepref + std::to_string(hashFunc(edge.name));
-                    std::ofstream hf(hfn, std::ios_base::app);
-                    if(hf.is_open()) {
+                    if(bucktfs.find(hfn) == bucktfs.end()) {
+                        bucktfs[hfn] = new std::ofstream(hfn);
+                    }
+                    if(bucktfs[hfn]->is_open()) {
                         // std::cout << edge.name << "\n";
-
-                        hf << edge.name << ";"<< edge.tid << "\n";
-                        hf.close();
+                        *(bucktfs[hfn]) << edge.name << ";"<< edge.tid << "\n";
                     }
                     edge = Edge(0, 0.0f, "", "");
                 }
             }
+        }
+        for (auto &kv : bucktfs) {
+            kv.second->close();
         }
         file.close();
     }
@@ -132,8 +135,3 @@ int search(std::string name) {
     return -1;
 }
 
-// int main(){
-//     genIndex();
-// //     // std::cout<<search("StewartCenter")<<"\n";
-// //     return 0;
-// }
