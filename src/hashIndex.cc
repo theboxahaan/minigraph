@@ -124,7 +124,7 @@ int search(std::string name) {
         // std::cout<<"found file"<<" "<<getH<<"\n";
         while (std::getline(ifile, line)) {
             std::string token = line.substr(0, line.find(delimiter));
-            std::cout<<token<<" "<<line.substr(line.find(delimiter)+1)<<"\n";
+            // std::cout<<token<<" "<<line.substr(line.find(delimiter)+1)<<"\n";
             int tid = stoi(line.substr(line.find(delimiter)+1));
             if(token == name) return tid;
         }

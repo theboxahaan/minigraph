@@ -15,12 +15,12 @@ int main() {
     auto stop = std::chrono::high_resolution_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout<<"Dijsktra: "<<duration.count()<<std::endl;
+    std::cout<<"Time taken for SSSP (micro s): "<<duration.count()<<std::endl;
 
-
-
-    for(auto &e : sn) {
-        std::cout<<e.tid<<" ";
+    std::cout<<"Distance (m): "<< sn[0].tid<<std::endl;
+    std::cout<<"Space separated TIDs from source edge to destination edge"<<"\n";
+    for(int j=1; j<sn.size(); ++j) {
+        std::cout<<sn[j].tid<<" ";
     }
     std::cout<<std::endl;
 
@@ -30,17 +30,21 @@ int main() {
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-    std::cout<<"KNN: "<<duration.count()<<std::endl;
+    std::cout<<"Time taken for KNN (micro s): "<<duration.count()<<std::endl;
 
 
     int i=0;
     for(auto &vs : eds) {
-        std::cout<<i++<<std::endl;
-        for(auto &v : vs) {
-            std::cout<<v.tid<<" ";
+        std::cout<<"For Neighbor number: "<<i++<<std::endl;
+        std::cout<<"Distance (m): "<< vs[0].tid<<std::endl;
+        std::cout<<"Space separated TIDs from source edge to destination edge"<<"\n";
+        for(int j=1; j<vs.size(); ++j) {
+            std::cout<<vs[j].tid<<" ";
         }
         std::cout<<std::endl;
     }
+    std::cout<<std::endl;
+
 
     start = std::chrono::high_resolution_clock::now();
 
@@ -49,16 +53,20 @@ int main() {
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-    std::cout<<"range: "<<duration.count()<<std::endl;
+    std::cout<<"Time taken for range (micro s): "<<duration.count()<<std::endl;
 
 
     i=0;
     for(auto &vs : eds) {
-        std::cout<<i++<<std::endl;
-        for(auto &v : vs) {
-            std::cout<<v.tid<<" ";
+        std::cout<<"For Neighbor number: "<<i++<<std::endl;
+        std::cout<<"Distance (m): "<< vs[0].tid<<std::endl;
+        std::cout<<"Space separated TIDs from source edge to destination edge"<<"\n";
+        for(int j=1; j<vs.size(); ++j) {
+            std::cout<<vs[j].tid<<" ";
         }
         std::cout<<std::endl;
     }
+    std::cout<<std::endl;
+
     return 0;
 }
