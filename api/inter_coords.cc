@@ -100,8 +100,8 @@ std::vector<std::vector<Edge>> name_range(std::string source, std::string type, 
 int main() {
     std::string source = "Dwight Way ";
     std::string dest = "Arden Road ";
-    std::array<std::pair<Dim, Dim>, 2> mbr_source = {{{-86.9171572, -86.9170572}, {40.428163, 40.428263}}};
-    std::array<std::pair<Dim, Dim>, 2> mbr_dest = {{{-86.9215683,-86.921511},{40.4314555,40.4329905}}};
+    std::array<std::pair<Dim, Dim>, 2> mbr_source = {{{-122.2445702, -122.2443826}, {37.8590061 ,37.8598274 }}};
+    std::array<std::pair<Dim, Dim>, 2> mbr_dest = {{{-122.2457593,-122.2444017},{37.8607704,37.8608807}}};
     // std::string source = "North Martin Jischke Drive ";
     // std::string dest = "Lawson Hall (LWSN) ";
 

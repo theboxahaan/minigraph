@@ -88,12 +88,12 @@ int main()
 
 
     auto rt = Rtree();
-    int dddd = 0;
+    // int dddd = 0;
     // std::cout<< "rtree built" << std::endl;
     for(auto edge: edges){
-      if(dddd > 10000)
-        break;
-      dddd++;
+    //   if(dddd > 10000)
+    //     break;
+    //   dddd++;
       // rt.insert(IdxEntry(Rectangle(x), nullptr));
       std::array<std::pair<Dim, Dim>, 2> mbr;
       
@@ -115,7 +115,7 @@ int main()
       if(mbr[0].first > mbr[0].second)std::swap(mbr[0].first, mbr[0].second);
       if(mbr[1].first > mbr[1].second)std::swap(mbr[1].first, mbr[1].second);
       std::cout<<mbr[0].first<<" "<<mbr[0].second<<" "<<mbr[1].first<<" "<<mbr[1].second<<std::endl;
-      rt.insert_d(IdxEntryD(Rectangle(mbr), dddd+700, true)); 
+      rt.insert_d(IdxEntryD(Rectangle(mbr), edge.tid, true)); 
       // std::cout << "insert" << std::endl; 
     }
     
@@ -124,7 +124,7 @@ int main()
     rt.walk_d();
 
     std::vector<std::array<std::pair<Dim ,Dim>, 2>> input = {
-    {{{-122.2962555, -122.2951035}, {37.8597504, 37.8599832}}},
+    {{{-86.9171572, -86.9170572}, {40.428163, 40.428263}}},
   };
 
     IdxEntryVectorD v;

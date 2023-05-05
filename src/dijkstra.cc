@@ -4,7 +4,7 @@
 #include<unordered_set>
 #include<unordered_map>
 #include<set>
-
+#include <algorithm>
 #include<random>
 #include<iostream>
 #include<list>
